@@ -1,29 +1,56 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class N_222RoundManager : MonoBehaviour
 {
-    [Header("Difficulty Patterns")]
-    [SerializeField]
-    List<N_222DifficultyRoundPattern> difficultyPatterns;
-
-    [Header("Managers")]
-    [SerializeField] N_222NoteManager noteManager;
-    [SerializeField] N_222JudgeLine judgeLine;
-
-    [Header("JudgeLine")]
-    [SerializeField] float judgeLineStartX = -500f;
-
-    N_222Difficulty currentDifficulty = N_222Difficulty.Easy;
-
-    List<N_222RoundPattern> currentRounds;
-    int currentRoundIndex = -1;
-
-    void Start()
+    // ======================
+    // Difficulty
+    // ======================
+    public enum N_222Difficulty
     {
-        SelectDifficulty(currentDifficulty);
+        Easy,
+        Normal,
+        Difficult
     }
 
+    [Header("Difficulty")]
+    [SerializeField] private N_222Difficulty currentDifficulty = N_222Difficulty.Easy;
+
+    // ======================
+    // Round Data
+    // ======================
+    [System.Serializable]
+    public class NoteSpawnData
+    {
+        public KeyCode key;               // 입력 키
+        public Vector2 anchoredPosition;  // UI 기준 위치
+    }
+
+    [System.Serializable]
+    public class RoundPattern
+    {
+        public NoteSpawnData[] notes;     // 한 라운드에 등장할 노트들
+    }
+
+    [Header("Round Patterns")]
+    [SerializeField] private RoundPattern[] easyRounds;
+    [SerializeField] private RoundPattern[] normalRounds;
+    [SerializeField] private RoundPattern[] difficultRounds;
+
+    // ======================
+    // Managers
+    // ======================
+    [Header("Managers")]
+    [SerializeField] private N_222NoteManager noteManager;
+    [SerializeField] private N_222JudgeManager judgeManager;
+
+    [Header("Judge Line")]
+    [SerializeField] private Vector2 judgeLineStartPos;
+
+    private int currentRound = 0;
+
+    // ======================
+    // Unity Loop
+    // ======================
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -32,38 +59,47 @@ public class N_222RoundManager : MonoBehaviour
         }
     }
 
-    void SelectDifficulty(N_222Difficulty difficulty)
-    {
-        foreach (var set in difficultyPatterns)
-        {
-            if (set.difficulty == difficulty)
-            {
-                currentRounds = set.rounds;
-                currentRoundIndex = -1;
-                Debug.Log($"[N_222] Difficulty = {difficulty}");
-                return;
-            }
-        }
-
-        Debug.LogError($"[N_222] Difficulty {difficulty} not found");
-    }
-
+    // ======================
+    // Round Control
+    // ======================
     void StartNextRound()
     {
-        if (currentRounds == null || currentRounds.Count == 0)
+        RoundPattern[] rounds = GetCurrentDifficultyRounds();
+
+        if (rounds == null || currentRound >= rounds.Length)
             return;
 
-        currentRoundIndex++;
+        // 이전 라운드 정리
+        noteManager.ClearAllNotes();
+        judgeManager.ResetJudgeLine(judgeLineStartPos);
 
-        if (currentRoundIndex >= currentRounds.Count)
+        // 새 라운드 시작
+        noteManager.SpawnRound(rounds[currentRound]);
+
+        currentRound++;
+    }
+
+    RoundPattern[] GetCurrentDifficultyRounds()
+    {
+        switch (currentDifficulty)
         {
-            Debug.Log("[N_222] All rounds finished");
-            return;
+            case N_222Difficulty.Easy:
+                return easyRounds;
+            case N_222Difficulty.Normal:
+                return normalRounds;
+            case N_222Difficulty.Difficult:
+                return difficultRounds;
+            default:
+                return null;
         }
+    }
 
-        Debug.Log($"[N_222] Round {currentRoundIndex + 1}");
-
-        judgeLine.ResetPosition(judgeLineStartX);
-        noteManager.SpawnNotes(currentRounds[currentRoundIndex]);
+    // ======================
+    // External Control (나중 확장용)
+    // ======================
+    public void SetDifficulty(N_222Difficulty difficulty)
+    {
+        currentDifficulty = difficulty;
+        currentRound = 0;
     }
 }

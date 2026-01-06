@@ -3,60 +3,99 @@ using System.Collections.Generic;
 
 public class N_222JudgeManager : MonoBehaviour
 {
+    [Header("Judge Line")]
     [SerializeField] RectTransform judgeLine;
-    [SerializeField] float perfectRange = 20f;
-    [SerializeField] float goodRange = 40f;
 
-    Dictionary<KeyCode, List<N_222Note>> noteMap = new();
+    [Header("Judge Range")]
+    [SerializeField] float perfectRange = 10f;
+    [SerializeField] float goodRange = 25f;
 
-    void Awake()
-    {
-        noteMap[KeyCode.LeftArrow] = new();
-        noteMap[KeyCode.DownArrow] = new();
-        noteMap[KeyCode.UpArrow] = new();
-        noteMap[KeyCode.RightArrow] = new();
-    }
+    List<N_222NoteBase> activeNotes = new();
 
     void Update()
     {
-        HandleInput(KeyCode.LeftArrow);
-        HandleInput(KeyCode.DownArrow);
-        HandleInput(KeyCode.UpArrow);
-        HandleInput(KeyCode.RightArrow);
+        HandleInput();
+        CheckMiss();
     }
 
-    public void RegisterNote(N_222Note note)
+    void CheckMiss()
     {
-        noteMap[note.InputKey].Add(note);
-    }
-
-    void HandleInput(KeyCode key)
-    {
-        if (!Input.GetKeyDown(key)) return;
-
-        N_222Note target = null;
-        float minDist = float.MaxValue;
-
-        foreach (var note in noteMap[key])
+        for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
+            var note = activeNotes[i];
+            if (!note.gameObject.activeSelf) continue;
+
+            float noteX = note.GetComponent<RectTransform>().anchoredPosition.x;
+            float judgeX = judgeLine.anchoredPosition.x;
+
+            if (noteX < judgeX - goodRange)
+            {
+                note.OnMiss();
+                activeNotes.RemoveAt(i);
+            }
+        }
+    }
+
+
+    void HandleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            Judge(KeyCode.LeftArrow);
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            Judge(KeyCode.DownArrow);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            Judge(KeyCode.UpArrow);
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            Judge(KeyCode.RightArrow);
+    }
+
+    public void RegisterNote(N_222NoteBase note)
+    {
+        activeNotes.Add(note);
+    }
+
+    void Judge(KeyCode key)
+    {
+        N_222NoteBase target = null;
+        float minDistance = float.MaxValue;
+
+        foreach (var note in activeNotes)
+        {
+            if (!note.gameObject.activeSelf) continue;
+            if (note.InputKey != key) continue;
+
             float dist = Mathf.Abs(
-                note.Rect.anchoredPosition.x -
+                note.GetComponent<RectTransform>().anchoredPosition.x -
                 judgeLine.anchoredPosition.x
             );
 
-            if (dist < minDist)
+            if (dist < minDistance)
             {
-                minDist = dist;
+                minDistance = dist;
                 target = note;
             }
         }
 
         if (target == null) return;
 
-        if (minDist <= perfectRange) target.OnPerfect();
-        else if (minDist <= goodRange) target.OnGood();
-        else target.OnMiss();
-
-        noteMap[key].Remove(target);
+        if (minDistance <= perfectRange)
+        {
+            target.OnPerfect();
+            activeNotes.Remove(target);
+        }
+        else if (minDistance <= goodRange)
+        {
+            target.OnGood();
+            activeNotes.Remove(target);
+        }
     }
+    public void ResetJudgeLine(Vector2 startPos)
+    {
+        judgeLine.anchoredPosition = startPos;
+        activeNotes.Clear();
+    }
+
 }
