@@ -1,24 +1,47 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public abstract class N_222NoteBase : MonoBehaviour
 {
-    public KeyCode InputKey { get; protected set; }
-    protected RectTransform rect;
+    public enum NoteType
+    {
+        Tap,
+        LongStart,
+        LongHold,
+        LongEnd
+    }
+
+    [HideInInspector] public KeyCode inputKey;
+    [HideInInspector] public int slotIndex;
+    [HideInInspector] public NoteType noteType;
+
+    protected RectTransform rectTransform;
+    protected N_222JudgeManager judgeManager;
+
+    protected bool isFinished;
+    public bool IsFinished => isFinished;
+
+
+    public RectTransform RectTransform => rectTransform;
 
     protected virtual void Awake()
     {
-        rect = GetComponent<RectTransform>();
+        rectTransform = GetComponent<RectTransform>();
     }
 
-
-    public virtual void Initialize(KeyCode key, Sprite sprite, Vector2 pos)
+    public void Initialize(
+        KeyCode key,
+        int slot,
+        N_222JudgeManager judge
+    )
     {
-        InputKey = key;
-        rect.anchoredPosition = pos;
-        GetComponentInChildren<Image>().sprite = sprite;
-        gameObject.SetActive(true);
+        inputKey = key;
+        slotIndex = slot;
+        judgeManager = judge;
     }
+
+    public virtual void OnInputDown() { }
+    public virtual void OnInputHold() { }
+    public virtual void OnInputUp() { }
 
     public abstract void OnPerfect();
     public abstract void OnGood();
