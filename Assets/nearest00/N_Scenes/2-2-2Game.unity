@@ -173,12 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   judgeLine: {fileID: 1923204901}
-  noteSlots:
-  - {fileID: 1804827642}
-  - {fileID: 453946649}
-  - {fileID: 1942993679}
-  - {fileID: 1976705586}
-  - {fileID: 388818985}
+  noteSlots: []
   perfectRange: 20
   goodRange: 40
 --- !u!114 &30674614
