@@ -1,56 +1,45 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class N_222NoteManager : MonoBehaviour
 {
+    [SerializeField] private GameObject tapNotePrefab;
+    [SerializeField] private GameObject longNotePrefab;
+    [SerializeField] private GameObject manyNotePrefab;
     [SerializeField] private RectTransform noteParent;
-    [SerializeField] private RectTransform[] noteSlots;
     [SerializeField] private N_222JudgeManager judgeManager;
+    [SerializeField] private float noteSpacing = 200f;
 
-    [Header("Prefabs")]
-    [SerializeField] private N_222TapNote tapNotePrefab;
-    [SerializeField] private N_222LongNote longNotePrefab;
-
-    private readonly List<N_222NoteBase> activeNotes = new();
+    private int globalRoundCounter = 0; // 전체 게임 동안 올라가는 카운터
 
     public void SpawnRound(N_222RoundManager.RoundPattern pattern)
     {
-        ClearAllNotes();
+        globalRoundCounter++; // 라운드마다 고유 번호 생성
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < pattern.notes.Length; i++)
         {
             var data = pattern.notes[i];
-
-            N_222NoteBase note;
-
-            if (data.noteType == N_222NoteBase.NoteType.Tap)
-            {
-                var tap = Instantiate(tapNotePrefab, noteParent);
-                tap.noteType = N_222NoteBase.NoteType.Tap;
-                note = tap;
-            }
-            else
-            {
-                var longNote = Instantiate(longNotePrefab, noteParent);
-                longNote.SetLongType(data.noteType);
-                note = longNote;
-            }
-
-            note.Initialize(data.key, i, judgeManager);
-            note.RectTransform.anchoredPosition = noteSlots[i].anchoredPosition;
-
-            activeNotes.Add(note);
-            judgeManager.RegisterNote(note);
+            if (data == null || data.key == KeyCode.None) continue;
+            CreateNote(data.noteType, data.key, i * noteSpacing, globalRoundCounter);
         }
     }
 
-    public void ClearAllNotes()
+    private void CreateNote(N_222NoteBase.NoteType type, KeyCode key, float xPos, int rID)
     {
-        foreach (var note in activeNotes)
+        GameObject prefab = (type == N_222NoteBase.NoteType.Many) ? manyNotePrefab :
+                          (type == N_222NoteBase.NoteType.Tap ? tapNotePrefab : longNotePrefab);
+
+        GameObject go = Instantiate(prefab, noteParent);
+        N_222NoteBase note = go.GetComponent<N_222NoteBase>();
+
+        if (note != null)
         {
-            if (note != null)
-                note.gameObject.SetActive(false);
+            note.inputKey = key;
+            note.noteType = type;
+            note.roundID = rID; // [할당] 같은 라운드 노지는 같은 ID를 가짐
+            note.RectTransform.anchoredPosition = new Vector2(xPos, 0);
+
+            if (note is N_222LongNote longNote) longNote.UpdateVisual();
+            if (judgeManager != null) judgeManager.RegisterNote(note);
         }
-        activeNotes.Clear();
     }
 }

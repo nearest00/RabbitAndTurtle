@@ -2,101 +2,43 @@ using UnityEngine;
 
 public class N_222LongNote : N_222NoteBase
 {
-    private enum LongState
+    [Header("Long Note Visual Objects")]
+    [SerializeField] private GameObject headObject;
+    [SerializeField] private GameObject bodyObject;
+    [SerializeField] private GameObject tailObject;
+
+    public void UpdateVisual()
     {
-        Idle,
-        Holding,
-        Failed,
-        Completed
+        if (headObject != null) headObject.SetActive(noteType == NoteType.LongStart);
+        if (bodyObject != null) bodyObject.SetActive(noteType == NoteType.LongHold);
+        if (tailObject != null) tailObject.SetActive(noteType == NoteType.LongEnd);
     }
 
-    private LongState state = LongState.Idle;
-
-    // 롱노트 그룹 ID (같은 롱노트 묶음)
-    [HideInInspector] public int longGroupId;
-
-    // Start 노트만 상태를 관리
-    private bool isMaster => noteType == NoteType.LongStart;
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    public void SetLongType(NoteType type)
-    {
-        noteType = type;
-    }
-
-    /* =========================
-     * Input
-     * ========================= */
+    private void Start() => UpdateVisual();
 
     public override void OnInputDown()
     {
-        if (!isMaster) return;
-
-        if (state != LongState.Idle)
-            return;
-
-        Debug.Log("Long Start Down");
-        state = LongState.Holding;
-    }
-
-    public override void OnInputHold()
-    {
-        if (!isMaster) return;
-
-        if (state != LongState.Holding)
-        {
-            OnMiss();
-        }
+        if (noteType == NoteType.LongStart) Debug.Log("<color=green>Long Press Start</color>");
     }
 
     public override void OnInputUp()
     {
-        if (!isMaster) return;
-
-        if (state != LongState.Holding)
-        {
-            OnMiss();
-            return;
-        }
-
-        Debug.Log("Long End Up");
-        state = LongState.Completed;
-        OnPerfect();
+        if (noteType == NoteType.LongEnd) OnPerfect();
     }
-
-    /* =========================
-     * Judge Result
-     * ========================= */
 
     public override void OnPerfect()
     {
-        Finish();
+        IsFinished = true;
+        gameObject.SetActive(false);
+        Debug.Log("<color=cyan>Long Note Success!</color>");
     }
 
-    public override void OnGood()
-    {
-        Finish();
-    }
+    public override void OnGood() => OnPerfect();
 
     public override void OnMiss()
     {
-        if (isFinished) return;
-
-        Debug.Log("Long Miss");
-        state = LongState.Failed;
-        Finish();
-    }
-
-    private void Finish()
-    {
-        isFinished = true;
+        IsFinished = true;
         gameObject.SetActive(false);
-
-        // 같은 그룹의 롱노트 전부 제거
-        judgeManager.FinishLongGroup(longGroupId);
+        Debug.Log("<color=red>Long Note Missed & Deleted</color>");
     }
 }

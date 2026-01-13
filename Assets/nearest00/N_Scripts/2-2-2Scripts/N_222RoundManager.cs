@@ -35,8 +35,12 @@ public class N_222RoundManager : MonoBehaviour
         if (currentRound >= easyRounds.Length)
             return;
 
+        // JudgeManager에 ResetJudgeLine 메서드가 있어야 함
         judgeManager.ResetJudgeLine(judgeLineStartPos);
+
+        // NoteManager에 SpawnRound 메서드가 있어야 함
         noteManager.SpawnRound(easyRounds[currentRound]);
+
         currentRound++;
     }
 }

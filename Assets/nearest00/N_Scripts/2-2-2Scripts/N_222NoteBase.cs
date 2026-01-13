@@ -2,48 +2,27 @@ using UnityEngine;
 
 public abstract class N_222NoteBase : MonoBehaviour
 {
-    public enum NoteType
-    {
-        Tap,
-        LongStart,
-        LongHold,
-        LongEnd
-    }
+    public enum NoteType { Tap, LongStart, LongHold, LongEnd, Many }
 
-    [HideInInspector] public KeyCode inputKey;
-    [HideInInspector] public int slotIndex;
-    [HideInInspector] public NoteType noteType;
+    [Header("Base Settings")]
+    public KeyCode inputKey;
+    public NoteType noteType;
+    public int roundID; // 같은 묶음인지 확인용
+    public bool IsFinished { get; protected set; }
 
-    protected RectTransform rectTransform;
-    protected N_222JudgeManager judgeManager;
-
-    protected bool isFinished;
-    public bool IsFinished => isFinished;
-
-
-    public RectTransform RectTransform => rectTransform;
-
-    protected virtual void Awake()
-    {
-        rectTransform = GetComponent<RectTransform>();
-    }
-
-    public void Initialize(
-        KeyCode key,
-        int slot,
-        N_222JudgeManager judge
-    )
-    {
-        inputKey = key;
-        slotIndex = slot;
-        judgeManager = judge;
-    }
-
-    public virtual void OnInputDown() { }
-    public virtual void OnInputHold() { }
-    public virtual void OnInputUp() { }
+    private RectTransform rectTransform;
+    public RectTransform RectTransform => rectTransform ??= GetComponent<RectTransform>();
 
     public abstract void OnPerfect();
     public abstract void OnGood();
     public abstract void OnMiss();
+
+    public virtual void OnInputDown() { }
+    public virtual void OnInputUp() { }
+
+    public void SetFinished(bool value)
+    {
+        IsFinished = value;
+        if (!value) gameObject.SetActive(true);
+    }
 }

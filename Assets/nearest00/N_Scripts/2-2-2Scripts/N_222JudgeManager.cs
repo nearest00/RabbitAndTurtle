@@ -4,206 +4,115 @@ using UnityEngine;
 public class N_222JudgeManager : MonoBehaviour
 {
     [SerializeField] private RectTransform judgeLine;
+    [Header("Judge Ranges")]
+    [SerializeField] private float visualOffset = -35f;
+    [SerializeField] private float perfectRange = 15f;
+    [SerializeField] private float goodRange = 35f;
+    [SerializeField] private float missBoundary = 120f;
 
-    [Header("Judge Slot")]
-    [SerializeField] private RectTransform[] noteSlots; // 0~4
+    private List<N_222NoteBase> activeNotes = new List<N_222NoteBase>();
+    private int currentHoldingRoundID = -1;
 
-    [Header("Judge Range")]
-    [SerializeField] private float perfectRange = 20f;
-    [SerializeField] private float goodRange = 40f;
-
-    private readonly List<N_222NoteBase> activeNotes = new();
-
-    public int CurrentJudgeSlot { get; private set; }
-
-    /* =========================
-     * Register
-     * ========================= */
-
-    public void RegisterNote(N_222NoteBase note)
-    {
-        if (!activeNotes.Contains(note))
-            activeNotes.Add(note);
-    }
-
-    public void UnregisterNote(N_222NoteBase note)
-    {
-        activeNotes.Remove(note);
-    }
-
-
-    void Update()
-    {
-        UpdateJudgeSlot();
-        HandleInput();
-        AutoMissCheck();
-    }
-
-    /* =========================
-     * Judge Line
-     * ========================= */
-
-    void UpdateJudgeSlot()
-    {
-        float judgeX = judgeLine.anchoredPosition.x;
-
-        for (int i = 0; i < noteSlots.Length; i++)
-        {
-            if (judgeX < noteSlots[i].anchoredPosition.x)
-            {
-                CurrentJudgeSlot = Mathf.Max(0, i - 1);
-                return;
-            }
-        }
-
-        CurrentJudgeSlot = noteSlots.Length - 1;
-    }
-    /* =========================
- * Judge Line Reset
- * ========================= */
+    public void RegisterNote(N_222NoteBase note) { if (note != null) activeNotes.Add(note); }
 
     public void ResetJudgeLine(Vector2 startPos)
     {
-        if (judgeLine == null)
-        {
-            Debug.LogWarning("JudgeLine is not assigned.");
-            return;
-        }
-
-        judgeLine.anchoredPosition = startPos;
+        if (judgeLine != null) judgeLine.anchoredPosition = startPos;
+        foreach (var n in activeNotes) if (n != null) n.gameObject.SetActive(false);
+        activeNotes.Clear();
+        currentHoldingRoundID = -1;
+        Debug.Log("<color=yellow>Judge Manager Cleared for New Round</color>");
     }
 
-    /* =========================
-     * Input
-     * ========================= */
-
-    void HandleInput()
+    void Update()
     {
-        if (Input.anyKeyDown)
-        {
-            foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
-            {
-                if (Input.GetKeyDown(key))
-                    HandleKeyDown(key);
-            }
-        }
+        if (judgeLine == null) return;
+        HandleInput();
+        AutoMissCheck();
+        // 판정 완료된 노지 실시간 정리
+        activeNotes.RemoveAll(n => n == null || n.IsFinished || !n.gameObject.activeInHierarchy);
+    }
 
+    private void HandleInput()
+    {
         foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
         {
-            if (Input.GetKey(key))
-                HandleKeyHold(key);
-
-            if (Input.GetKeyUp(key))
-                HandleKeyUp(key);
+            if (Input.GetKeyDown(key)) HandleKeyDown(key);
+            if (Input.GetKeyUp(key)) HandleKeyUp(key);
         }
     }
 
-    void HandleKeyDown(KeyCode key)
+    private void HandleKeyDown(KeyCode key)
     {
-        foreach (var note in activeNotes)
+        for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
-            if (note.IsFinished) continue;
-            if (note.inputKey != key) continue;
+            var note = activeNotes[i];
+            if (note.IsFinished || note.inputKey != key) continue;
 
-            if (note.noteType == N_222NoteBase.NoteType.Tap)
+            float dist = (note.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x) - visualOffset;
+            float absDist = Mathf.Abs(dist);
+
+            if (note is N_222ManyTapNote many)
             {
-                JudgeTap(note);
-                return;
-            }
-
-            if (note.noteType == N_222NoteBase.NoteType.LongStart &&
-                note.slotIndex == CurrentJudgeSlot)
-            {
-                note.OnInputDown();
-                return;
-            }
-        }
-    }
-
-    void HandleKeyHold(KeyCode key)
-    {
-        foreach (var note in activeNotes)
-        {
-            if (note.IsFinished) continue;
-            if (note.inputKey != key) continue;
-
-            if (note.noteType == N_222NoteBase.NoteType.LongStart)
-            {
-                note.OnInputHold();
-                return;
-            }
-        }
-    }
-
-    void HandleKeyUp(KeyCode key)
-    {
-        foreach (var note in activeNotes)
-        {
-            if (note.IsFinished) continue;
-            if (note.inputKey != key) continue;
-
-            if (note.noteType == N_222NoteBase.NoteType.LongEnd &&
-                note.slotIndex == CurrentJudgeSlot)
-            {
-                note.OnInputUp();
-                return;
-            }
-        }
-    }
-
-    /* =========================
-     * Tap Judge
-     * ========================= */
-
-    void JudgeTap(N_222NoteBase note)
-    {
-        float distance = Mathf.Abs(
-            judgeLine.anchoredPosition.x -
-            noteSlots[note.slotIndex].anchoredPosition.x
-        );
-
-        if (distance <= perfectRange)
-        {
-            note.OnPerfect();
-            UnregisterNote(note);
-        }
-        else if (distance <= goodRange)
-        {
-            note.OnGood();
-            UnregisterNote(note);
-        }
-    }
-
-    /* =========================
-     * Auto Miss
-     * ========================= */
-
-    void AutoMissCheck()
-    {
-        foreach (var note in activeNotes)
-        {
-            if (note.IsFinished)
+                if (absDist <= (note.RectTransform.rect.width * 0.5f + goodRange)) many.OnManyTapInput();
                 continue;
+            }
 
-            if (CurrentJudgeSlot > note.slotIndex)
+            if (absDist <= goodRange)
             {
-                note.OnMiss();
+                if (note.noteType == N_222NoteBase.NoteType.Tap)
+                {
+                    if (absDist <= perfectRange) note.OnPerfect(); else note.OnGood();
+                }
+                else if (note.noteType == N_222NoteBase.NoteType.LongStart)
+                {
+                    note.OnInputDown();
+                    currentHoldingRoundID = note.roundID;
+                }
             }
         }
     }
 
-    /* =========================
-     * Long Group Finish
-     * ========================= */
-
-    public void FinishLongGroup(int groupId)
+    private void HandleKeyUp(KeyCode key)
     {
-        foreach (var note in activeNotes)
+        if (currentHoldingRoundID == -1) return;
+        for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
-            if (note is N_222LongNote longNote &&
-                longNote.longGroupId == groupId)
+            var note = activeNotes[i];
+            if (note.IsFinished || note.inputKey != key || note.roundID != currentHoldingRoundID) continue;
+
+            if (note.noteType == N_222NoteBase.NoteType.LongEnd)
             {
-                longNote.gameObject.SetActive(false);
+                float dist = Mathf.Abs((note.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x) - visualOffset);
+                if (dist <= goodRange) note.OnInputUp();
+                else FailLongGroup(key, currentHoldingRoundID);
+            }
+            else FailLongGroup(key, currentHoldingRoundID);
+        }
+    }
+
+    private void FailLongGroup(KeyCode key, int rID)
+    {
+        for (int i = activeNotes.Count - 1; i >= 0; i--)
+        {
+            var n = activeNotes[i];
+            if (n.inputKey == key && n.roundID == rID && n is N_222LongNote) n.OnMiss();
+        }
+        if (currentHoldingRoundID == rID) currentHoldingRoundID = -1;
+    }
+
+    private void AutoMissCheck()
+    {
+        float lineX = judgeLine.anchoredPosition.x;
+        for (int i = activeNotes.Count - 1; i >= 0; i--)
+        {
+            var n = activeNotes[i];
+            if (n.IsFinished) continue;
+            if (n.roundID == currentHoldingRoundID && n.noteType != N_222NoteBase.NoteType.LongEnd) continue;
+
+            if (lineX > (n.RectTransform.anchoredPosition.x - visualOffset) + missBoundary)
+            {
+                if (n is N_222LongNote) FailLongGroup(n.inputKey, n.roundID); else n.OnMiss();
             }
         }
     }
