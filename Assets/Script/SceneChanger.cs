@@ -3,17 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject panelA;
+    [SerializeField] private GameObject panelB;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // 하나라도 켜져 있으면 입력 차단
+            if (panelA.activeSelf || panelB.activeSelf)
+                return;
+
             SceneManager.LoadScene("MiniGame1");
         }
     }
