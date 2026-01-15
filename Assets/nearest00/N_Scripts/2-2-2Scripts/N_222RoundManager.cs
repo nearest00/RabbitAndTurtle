@@ -28,11 +28,13 @@ public class N_222RoundManager : MonoBehaviour
 
     [SerializeField] private N_222NoteManager noteManager;
     [SerializeField] private N_222JudgeManager judgeManager;
+    [SerializeField] private N_222RabbitAnimation rabbitAnimation;
 
     public static N_222RoundManager Instance;
     public string currentDifficulty = "easy";
     public int currentRoundIndex = -1; // -1로 시작해야 첫 스페이스바에 0번이 나옴
 
+    N_222RabbitAnimation RabbitAnimation;
     void Start()
     {
         // 게임 시작 시 0번 라운드를 바로 보고 싶다면 아래 주석 해제
@@ -55,9 +57,13 @@ public class N_222RoundManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (rabbitAnimation != null)
+                rabbitAnimation.PlayTalking();
+
             NextRound();
         }
     }
+
 
     public void StartRound(string difficulty, int index)
     {

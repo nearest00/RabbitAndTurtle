@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class N_222JudgeManager : MonoBehaviour
 {
@@ -37,12 +36,20 @@ public class N_222JudgeManager : MonoBehaviour
         for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
             var n = activeNotes[i];
-            if (n == null || n.IsFinished || n.isJudged) continue;
+            if (n == null || n.IsFinished) continue;
 
             float noteX = n.RectTransform.anchoredPosition.x;
+
+            // 판정선이 노트를 완전히 지나쳤을 때
             if (lineX > noteX + missBoundary)
             {
-                if (IsLongNote(n.noteType))
+                if (n.noteType == N_222NoteBase.NoteType.ManyTap)
+                {
+                    // 연타노트는 지나가는 순간 최종 결과 확인 (횟수 채웠는지)
+                    n.GetComponent<N_222ManyTapNote>()?.CheckFinalResult();
+                }
+                else if (n.isJudged) continue;
+                else if (IsLongNote(n.noteType))
                 {
                     FailLongGroup(n.roundID, "Pass Miss");
                 }
@@ -56,6 +63,7 @@ public class N_222JudgeManager : MonoBehaviour
 
     private void HandleInput()
     {
+        // 1. 연타 노트 입력 별도 처리
         for (int i = 0; i < activeNotes.Count; i++)
         {
             var n = activeNotes[i];
@@ -63,12 +71,15 @@ public class N_222JudgeManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(n.inputKey))
                 {
-                    float dist = Mathf.Abs((n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
-                    if (dist <= goodRange * 2.0f) n.GetComponent<N_222ManyTapNote>()?.OnManyTapInput();
+                    float dist = Mathf.Abs(n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
+                    // 연타는 판정선 근처(Good x 2)에서만 입력 받음
+                    if (dist <= badRange * 2.0f)
+                        n.GetComponent<N_222ManyTapNote>()?.OnManyTapInput();
                 }
             }
         }
 
+        // 2. 일반 및 롱노트 입력 처리
         foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
         {
             if (key == KeyCode.Space) continue;
@@ -76,14 +87,14 @@ public class N_222JudgeManager : MonoBehaviour
             if (Input.GetKeyUp(key)) HandleKeyUp(key);
         }
 
+        // 3. 롱노트 유지(Hold) 판정
         if (holdingRoundID != -1)
         {
-            for (int i = activeNotes.Count - 1; i >= 0; i--)
+            foreach (var n in activeNotes)
             {
-                var n = activeNotes[i];
                 if (n.roundID == holdingRoundID && n.noteType == N_222NoteBase.NoteType.LongHold && !n.isJudged)
                 {
-                    float dist = Mathf.Abs((n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
+                    float dist = Mathf.Abs(n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
                     if (dist <= perfectRange) n.OnPerfect();
                 }
             }
@@ -95,29 +106,22 @@ public class N_222JudgeManager : MonoBehaviour
         for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
             var note = activeNotes[i];
-            if (note == null || note.IsFinished || note.isJudged) continue;
-            if (note.noteType == N_222NoteBase.NoteType.ManyTap) continue;
+            if (note == null || note.IsFinished || note.isJudged || note.noteType == N_222NoteBase.NoteType.ManyTap) continue;
 
-            float dist = Mathf.Abs((note.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
+            float dist = Mathf.Abs(note.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
             if (dist > goodRange) continue;
 
             if (note.noteType == N_222NoteBase.NoteType.MultiTap)
             {
-                if (note.inputKey == key || note.inputKey2 == key)
+                if ((note.inputKey == key || note.inputKey2 == key) && Input.GetKey(note.inputKey) && Input.GetKey(note.inputKey2))
                 {
-                    if (Input.GetKey(note.inputKey) && Input.GetKey(note.inputKey2))
-                    {
-                        note.isJudged = true;
-                        Judge(note, dist);
-                    }
+                    note.isJudged = true;
+                    Judge(note, dist);
                 }
             }
             else if (note.inputKey == key)
             {
-                if (note.noteType == N_222NoteBase.NoteType.LongStart)
-                {
-                    holdingRoundID = note.roundID;
-                }
+                if (note.noteType == N_222NoteBase.NoteType.LongStart) holdingRoundID = note.roundID;
                 note.isJudged = true;
                 Judge(note, dist);
             }
@@ -128,14 +132,12 @@ public class N_222JudgeManager : MonoBehaviour
     {
         if (holdingRoundID == -1) return;
 
-        int targetID = holdingRoundID;
-        bool isCorrectKey = false;
         N_222NoteBase endNote = null;
+        bool isCorrectKey = false;
 
-        // 현재 홀딩 중인 그룹의 키인지, 꼬리가 존재하는지 확인
         foreach (var n in activeNotes)
         {
-            if (n.roundID == targetID && n.inputKey == key)
+            if (n.roundID == holdingRoundID && n.inputKey == key)
             {
                 isCorrectKey = true;
                 if (n.noteType == N_222NoteBase.NoteType.LongEnd) endNote = n;
@@ -146,61 +148,15 @@ public class N_222JudgeManager : MonoBehaviour
         {
             if (endNote != null)
             {
-                float dist = Mathf.Abs((endNote.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
-                // 꼬리 판정 범위 내에서 뗐을 때
-                if (dist <= goodRange)
-                {
-                    endNote.isJudged = true;
-                    Judge(endNote, dist);
-                    ClearLongGroup(targetID);
-                }
-                else
-                {
-                    // 꼬리가 아직 멀었는데 뗐을 때 (도중 이탈 미스)
-                    FailLongGroup(targetID, "Early Release Miss");
-                }
+                float dist = Mathf.Abs(endNote.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
+                if (dist <= goodRange) { endNote.isJudged = true; Judge(endNote, dist); ClearLongGroup(holdingRoundID); }
+                else FailLongGroup(holdingRoundID, "Early Release");
             }
-            else
-            {
-                // 꼬리 자체가 아직 생성 전이거나 리스트에 없을 때 뗐을 경우
-                FailLongGroup(targetID, "Incomplete Hold Miss");
-            }
+            else FailLongGroup(holdingRoundID, "Incomplete");
+
             holdingRoundID = -1;
         }
     }
-
-    // 롱노트 실패 처리 및 로그 출력
-    private void FailLongGroup(int rID, string reason)
-    {
-        Debug.Log($"<color=red>[Long Group Failed]</color> ID: {rID} | Reason: {reason}");
-        for (int i = activeNotes.Count - 1; i >= 0; i--)
-        {
-            if (activeNotes[i].roundID == rID && IsLongNote(activeNotes[i].noteType))
-            {
-                if (!activeNotes[i].isJudged)
-                {
-                    activeNotes[i].OnMiss(); // 미판정 조각들 미스 처리
-                }
-                activeNotes[i].IsFinished = true;
-                activeNotes[i].gameObject.SetActive(false);
-            }
-        }
-    }
-
-    private void ClearLongGroup(int rID)
-    {
-        for (int i = activeNotes.Count - 1; i >= 0; i--)
-        {
-            if (activeNotes[i].roundID == rID && IsLongNote(activeNotes[i].noteType))
-            {
-                activeNotes[i].IsFinished = true;
-                activeNotes[i].gameObject.SetActive(false);
-            }
-        }
-    }
-
-    private bool IsLongNote(N_222NoteBase.NoteType type) =>
-        type == N_222NoteBase.NoteType.LongStart || type == N_222NoteBase.NoteType.LongHold || type == N_222NoteBase.NoteType.LongEnd;
 
     private void Judge(N_222NoteBase note, float dist)
     {
@@ -210,4 +166,33 @@ public class N_222JudgeManager : MonoBehaviour
         else if (dist <= badRange) note.OnBad();
         else note.OnMiss();
     }
+
+    private void FailLongGroup(int rID, string reason)
+    {
+        Debug.Log($"<color=red>[Long Fail]</color> ID: {rID} ({reason})");
+        foreach (var n in activeNotes)
+        {
+            if (n.roundID == rID && IsLongNote(n.noteType))
+            {
+                if (!n.isJudged) n.OnMiss();
+                n.IsFinished = true;
+                n.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void ClearLongGroup(int rID)
+    {
+        foreach (var n in activeNotes)
+        {
+            if (n.roundID == rID && IsLongNote(n.noteType))
+            {
+                n.IsFinished = true;
+                n.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private bool IsLongNote(N_222NoteBase.NoteType type) =>
+        type == N_222NoteBase.NoteType.LongStart || type == N_222NoteBase.NoteType.LongHold || type == N_222NoteBase.NoteType.LongEnd;
 }

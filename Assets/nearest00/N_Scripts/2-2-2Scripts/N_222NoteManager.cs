@@ -13,13 +13,19 @@ public class N_222NoteManager : MonoBehaviour
 
     [SerializeField] private RectTransform noteParent;
     [SerializeField] private N_222JudgeManager judgeManager;
+    [Header("Layers")]
+    [SerializeField] private RectTransform headLayer; // 머리/꼬리/일반노트용 (하단 배치)
+    [SerializeField] private RectTransform bodyLayer; // 몸통용 (상단 배치)
 
     public void CreateNote(RoundNoteData data, Vector2 position, int rID)
     {
         GameObject prefab = GetPrefab(data.noteType);
         if (prefab == null) return;
 
-        GameObject go = Instantiate(prefab, noteParent);
+        // [수정] 몸통(Hold)이면 bodyLayer에, 나머지는 headLayer에 생성
+        RectTransform targetLayer = (data.noteType == N_222NoteBase.NoteType.LongHold) ? bodyLayer : headLayer;
+
+        GameObject go = Instantiate(prefab, targetLayer);
         N_222NoteBase note = go.GetComponent<N_222NoteBase>();
 
         if (note != null)
@@ -29,9 +35,6 @@ public class N_222NoteManager : MonoBehaviour
             note.noteType = data.noteType;
             note.roundID = rID;
             note.RectTransform.anchoredPosition = position;
-
-            // 타입별 로그 출력
-            Debug.Log($"<color=white>[Manager]</color> 생성: {data.noteType} | 위치: {position}");
 
             judgeManager.RegisterNote(note);
         }

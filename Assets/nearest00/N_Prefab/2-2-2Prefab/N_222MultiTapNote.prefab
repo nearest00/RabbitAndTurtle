@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ac0ce320c1194f8f307068e9344f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteType: 0
   inputKey: 0
   inputKey2: 0
-  noteType: 0
   roundID: 0
 --- !u!114 &462239709896770666
 MonoBehaviour:
@@ -66,9 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ac0ce320c1194f8f307068e9344f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteType: 0
   inputKey: 0
   inputKey2: 0
-  noteType: 0
   roundID: 0
 --- !u!1 &3452941946481432240
 GameObject:
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 230fb139d36447c48ab83c83d99e2207, type: 3}
+  m_Sprite: {fileID: -2282084998842309432, guid: 5d7642d1976b4f94385255dcef445036, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
