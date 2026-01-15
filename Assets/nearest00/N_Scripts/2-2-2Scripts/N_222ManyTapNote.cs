@@ -1,25 +1,21 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class N_222ManyTapNote : N_222NoteBase
 {
-    [Header("Many Note Settings")]
-    [SerializeField] private int targetTapCount = 10;
+    [SerializeField] private int requiredTapCount = 10;
     private int currentTapCount = 0;
 
-    [SerializeField] private Text countText;
-
-    private void Awake()
+    public void OnManyTapInput()
     {
-        noteType = NoteType.Many;
-        UpdateCountUI();
+        currentTapCount++;
+        if (currentTapCount >= requiredTapCount) OnPerfect();
     }
 
     public override void OnPerfect()
     {
-        if (IsFinished) return;
+        Debug.Log($"<color=lime>[ManyTap Perfect]</color> ID: {roundID}");
+        isJudged = true;
         IsFinished = true;
-        Debug.Log("<color=cyan>[Many]</color> Perfect! Clear");
         gameObject.SetActive(false);
     }
 
@@ -27,28 +23,9 @@ public class N_222ManyTapNote : N_222NoteBase
 
     public override void OnMiss()
     {
-        if (IsFinished) return;
+        Debug.Log($"<color=red>[ManyTap Miss]</color> ID: {roundID}");
+        isJudged = true;
         IsFinished = true;
-        Debug.Log("<color=red>[Many]</color> Miss!");
         gameObject.SetActive(false);
-    }
-
-    public void OnManyTapInput()
-    {
-        if (IsFinished) return;
-
-        currentTapCount++;
-        UpdateCountUI();
-
-        if (currentTapCount >= targetTapCount)
-        {
-            OnPerfect();
-        }
-    }
-
-    private void UpdateCountUI()
-    {
-        if (countText != null)
-            countText.text = (targetTapCount - currentTapCount).ToString();
     }
 }

@@ -3,43 +3,51 @@ using UnityEngine;
 public class N_222NoteManager : MonoBehaviour
 {
     [SerializeField] private GameObject tapNotePrefab;
-    [SerializeField] private GameObject longNotePrefab;
+    [SerializeField] private GameObject multiTapNotePrefab;
     [SerializeField] private GameObject manyNotePrefab;
+
+    [Header("Long Note Parts")]
+    [SerializeField] private GameObject longStartPrefab; // 머리만 있는 프리팹
+    [SerializeField] private GameObject longHoldPrefab;  // 몸통만 있는 프리팹
+    [SerializeField] private GameObject longEndPrefab;   // 꼬리만 있는 프리팹
+
     [SerializeField] private RectTransform noteParent;
     [SerializeField] private N_222JudgeManager judgeManager;
-    [SerializeField] private float noteSpacing = 200f;
 
-    private int globalRoundCounter = 0; // 전체 게임 동안 올라가는 카운터
-
-    public void SpawnRound(N_222RoundManager.RoundPattern pattern)
+    public void CreateNote(RoundNoteData data, Vector2 position, int rID)
     {
-        globalRoundCounter++; // 라운드마다 고유 번호 생성
-
-        for (int i = 0; i < pattern.notes.Length; i++)
-        {
-            var data = pattern.notes[i];
-            if (data == null || data.key == KeyCode.None) continue;
-            CreateNote(data.noteType, data.key, i * noteSpacing, globalRoundCounter);
-        }
-    }
-
-    private void CreateNote(N_222NoteBase.NoteType type, KeyCode key, float xPos, int rID)
-    {
-        GameObject prefab = (type == N_222NoteBase.NoteType.Many) ? manyNotePrefab :
-                          (type == N_222NoteBase.NoteType.Tap ? tapNotePrefab : longNotePrefab);
+        GameObject prefab = GetPrefab(data.noteType);
+        if (prefab == null) return;
 
         GameObject go = Instantiate(prefab, noteParent);
         N_222NoteBase note = go.GetComponent<N_222NoteBase>();
 
         if (note != null)
         {
-            note.inputKey = key;
-            note.noteType = type;
-            note.roundID = rID; // [할당] 같은 라운드 노지는 같은 ID를 가짐
-            note.RectTransform.anchoredPosition = new Vector2(xPos, 0);
+            note.inputKey = data.key;
+            note.inputKey2 = data.key2;
+            note.noteType = data.noteType;
+            note.roundID = rID;
+            note.RectTransform.anchoredPosition = position;
 
-            if (note is N_222LongNote longNote) longNote.UpdateVisual();
-            if (judgeManager != null) judgeManager.RegisterNote(note);
+            // 타입별 로그 출력
+            Debug.Log($"<color=white>[Manager]</color> 생성: {data.noteType} | 위치: {position}");
+
+            judgeManager.RegisterNote(note);
+        }
+    }
+
+    private GameObject GetPrefab(N_222NoteBase.NoteType type)
+    {
+        switch (type)
+        {
+            case N_222NoteBase.NoteType.Tap: return tapNotePrefab;
+            case N_222NoteBase.NoteType.MultiTap: return multiTapNotePrefab;
+            case N_222NoteBase.NoteType.ManyTap: return manyNotePrefab;
+            case N_222NoteBase.NoteType.LongStart: return longStartPrefab;
+            case N_222NoteBase.NoteType.LongHold: return longHoldPrefab;
+            case N_222NoteBase.NoteType.LongEnd: return longEndPrefab;
+            default: return null;
         }
     }
 }

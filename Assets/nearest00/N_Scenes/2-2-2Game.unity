@@ -176,7 +176,6 @@ MonoBehaviour:
   visualOffset: 0
   perfectRange: 15
   goodRange: 25
-  missBoundary: 100
 --- !u!114 &30674614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,41 +190,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easyRounds:
   - notes:
-    - key: 274
-      noteType: 0
-    - key: 274
-      noteType: 0
-    - key: 274
-      noteType: 0
-    - key: 274
-      noteType: 0
-    - key: 274
-      noteType: 0
+    - noteType: 0
+      key: 274
+      key2: 0
+    - noteType: 0
+      key: 274
+      key2: 0
+    - noteType: 0
+      key: 274
+      key2: 0
+    - noteType: 0
+      key: 274
+      key2: 0
+    - noteType: 0
+      key: 274
+      key2: 0
   - notes:
-    - key: 274
-      noteType: 1
-    - key: 274
-      noteType: 2
-    - key: 274
-      noteType: 3
-    - key: 274
-      noteType: 0
-    - key: 274
-      noteType: 0
+    - noteType: 1
+      key: 274
+      key2: 0
+    - noteType: 2
+      key: 274
+      key2: 0
+    - noteType: 2
+      key: 274
+      key2: 0
+    - noteType: 3
+      key: 274
+      key2: 0
+    - noteType: 0
+      key: 274
+      key2: 0
   - notes:
-    - key: 274
-      noteType: 4
-    - key: 274
-      noteType: 0
-    - key: 274
-      noteType: 4
-    - key: 274
-      noteType: 0
-    - key: 274
-      noteType: 0
+    - noteType: 4
+      key: 274
+      key2: 0
+    - noteType: 0
+      key: 274
+      key2: 0
+    - noteType: 5
+      key: 274
+      key2: 273
+    - noteType: 0
+      key: 274
+      key2: 0
+    - noteType: 4
+      key: 274
+      key2: 0
+  normalRounds: []
+  hardRounds: []
+  noteSlots:
+  - {fileID: 1804827642}
+  - {fileID: 453946649}
+  - {fileID: 1942993679}
+  - {fileID: 1976705586}
+  - {fileID: 388818985}
   noteManager: {fileID: 30674615}
   judgeManager: {fileID: 30674613}
-  judgeLineStartPos: {x: 0, y: 0}
+  currentDifficulty: easy
+  currentRoundIndex: -1
 --- !u!114 &30674615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,11 +262,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapNotePrefab: {fileID: 5451500382826482393, guid: fc1a52e57f48d2f4a854a3a309d13905, type: 3}
-  longNotePrefab: {fileID: 7036199757681625988, guid: 98f73f480ebc4734d9c308aec51b9c32, type: 3}
+  multiTapNotePrefab: {fileID: 127592131847842697, guid: 474a530dfc77cad4d812cc65b22febd2, type: 3}
   manyNotePrefab: {fileID: 1928382226238386980, guid: 6416f84c57b50b7449b9e8c20fdaca9e, type: 3}
+  longStartPrefab: {fileID: 7036199757681625988, guid: 98f73f480ebc4734d9c308aec51b9c32, type: 3}
+  longHoldPrefab: {fileID: 6146233159053690189, guid: f35b576b8535ee349ac7699c85052f13, type: 3}
+  longEndPrefab: {fileID: 8614897158037026401, guid: a66688f2c68447f4490a6a069acb3c58, type: 3}
   noteParent: {fileID: 2132600648}
   judgeManager: {fileID: 30674613}
-  noteSpacing: 200
 --- !u!1 &255074064
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +595,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1594597611
 MonoBehaviour:
