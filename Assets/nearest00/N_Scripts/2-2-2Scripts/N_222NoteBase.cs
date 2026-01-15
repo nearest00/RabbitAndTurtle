@@ -14,6 +14,8 @@ public abstract class N_222NoteBase : MonoBehaviour
     public RectTransform RectTransform => GetComponent<RectTransform>();
 
     public abstract void OnPerfect();
+    public abstract void OnGreat();
     public abstract void OnGood();
+    public abstract void OnBad();
     public abstract void OnMiss();
 }

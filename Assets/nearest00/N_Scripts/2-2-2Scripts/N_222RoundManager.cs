@@ -29,6 +29,7 @@ public class N_222RoundManager : MonoBehaviour
     [SerializeField] private N_222NoteManager noteManager;
     [SerializeField] private N_222JudgeManager judgeManager;
 
+    public static N_222RoundManager Instance;
     public string currentDifficulty = "easy";
     public int currentRoundIndex = -1; // -1로 시작해야 첫 스페이스바에 0번이 나옴
 
@@ -36,6 +37,18 @@ public class N_222RoundManager : MonoBehaviour
     {
         // 게임 시작 시 0번 라운드를 바로 보고 싶다면 아래 주석 해제
         // StartRound("easy", 0);
+    }
+    private void Awake()
+    {
+        // 싱글톤 패턴: 인스턴스가 없으면 자신을 할당, 이미 있으면 중복 제거
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
@@ -73,7 +86,7 @@ public class N_222RoundManager : MonoBehaviour
         // 판정선 위치: 0번 슬롯 기준으로 초기화
         if (noteSlots.Length > 0 && noteSlots[0] != null)
         {
-            judgeManager.ResetJudgeLine(new Vector2(noteSlots[0].anchoredPosition.x - 100f, 0));
+            judgeManager.ResetJudgeLine(new Vector2(noteSlots[0].anchoredPosition.x - 100f, 92f));
         }
 
         for (int i = 0; i < pattern.notes.Length; i++)

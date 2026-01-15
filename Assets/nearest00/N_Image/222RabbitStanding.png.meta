@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: 24f603f077ba00247bf7b3d9267d9073
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4019523832631232784
+    second: 222RabbitStanding_0
+  - first:
+      213: 1667050847091098235
+    second: 222RabbitStanding_1
+  - first:
+      213: -9101687821725571185
+    second: 222RabbitStanding_2
+  - first:
+      213: -4336743278452150331
+    second: 222RabbitStanding_3
+  - first:
+      213: -306029838333772783
+    second: 222RabbitStanding_4
+  - first:
+      213: -3231284842780622102
+    second: 222RabbitStanding_5
+  - first:
+      213: -8642662836566122549
+    second: 222RabbitStanding_6
+  - first:
+      213: -7314292207874180617
+    second: 222RabbitStanding_7
+  - first:
+      213: -4923142801503308561
+    second: 222RabbitStanding_8
+  - first:
+      213: 2693241600291605103
+    second: 222RabbitStanding_9
+  - first:
+      213: -900557605752081521
+    second: 222RabbitStanding_10
+  - first:
+      213: -7044618426747564922
+    second: 222RabbitStanding_11
+  - first:
+      213: -2897126893131254571
+    second: 222RabbitStanding_12
+  - first:
+      213: -4525680707429485980
+    second: 222RabbitStanding_13
+  - first:
+      213: 8373189194487539695
+    second: 222RabbitStanding_14
+  - first:
+      213: -8614774655639637154
+    second: 222RabbitStanding_15
+  - first:
+      213: 7589134032819165821
+    second: 222RabbitStanding_16
+  - first:
+      213: -4210383056170281753
+    second: 222RabbitStanding_17
+  - first:
+      213: -1996008786812458098
+    second: 222RabbitStanding_18
+  - first:
+      213: -4047590570012956469
+    second: 222RabbitStanding_19
+  - first:
+      213: 3306682698755327638
+    second: 222RabbitStanding_20
+  - first:
+      213: -2802542882100630142
+    second: 222RabbitStanding_21
+  - first:
+      213: -2665381301857514627
+    second: 222RabbitStanding_22
+  - first:
+      213: 8872701119807329713
+    second: 222RabbitStanding_23
+  - first:
+      213: 4608854304106903225
+    second: 222RabbitStanding_24
+  - first:
+      213: 3117756514582754739
+    second: 222RabbitStanding_25
+  - first:
+      213: -7450155445711980028
+    second: 222RabbitStanding_26
+  - first:
+      213: -4765861001269179262
+    second: 222RabbitStanding_27
+  - first:
+      213: 7692106652887220141
+    second: 222RabbitStanding_28
+  - first:
+      213: 3728334407541391805
+    second: 222RabbitStanding_29
+  - first:
+      213: -6008987827557466423
+    second: 222RabbitStanding_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 222RabbitStanding_0
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 5059
+        width: 406
+        height: 678
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 019833221a738c730800000000000000
+      internalID: 4019523832631232784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_1
+      rect:
+        serializedVersion: 2
+        x: 1724
+        y: 5059
+        width: 404
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b72016bb9ed822710800000000000000
+      internalID: 1667050847091098235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_2
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 5059
+        width: 409
+        height: 670
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f876c81262f40b180800000000000000
+      internalID: -9101687821725571185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_3
+      rect:
+        serializedVersion: 2
+        x: 4282
+        y: 5059
+        width: 408
+        height: 663
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cfebcd17fac0d3c0800000000000000
+      internalID: -4336743278452150331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_4
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 4338
+        width: 405
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11cf173cb73c0cbf0800000000000000
+      internalID: -306029838333772783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_5
+      rect:
+        serializedVersion: 2
+        x: 1725
+        y: 4338
+        width: 403
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae205f93e8b2823d0800000000000000
+      internalID: -3231284842780622102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_6
+      rect:
+        serializedVersion: 2
+        x: 2999
+        y: 4338
+        width: 410
+        height: 667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcf9101e0f71f0880800000000000000
+      internalID: -8642662836566122549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_7
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 4338
+        width: 406
+        height: 666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f9704e5df96e7a90800000000000000
+      internalID: -7314292207874180617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_8
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 3617
+        width: 405
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4bfd9b4bb7dabb0800000000000000
+      internalID: -4923142801503308561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_9
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 3617
+        width: 402
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a8faf47f0506520800000000000000
+      internalID: 2693241600291605103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_10
+      rect:
+        serializedVersion: 2
+        x: 2998
+        y: 3617
+        width: 411
+        height: 665
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f83fe5101a39083f0800000000000000
+      internalID: -900557605752081521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_11
+      rect:
+        serializedVersion: 2
+        x: 4285
+        y: 3617
+        width: 405
+        height: 668
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c4a876ddc7c3e90800000000000000
+      internalID: -7044618426747564922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_12
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 2896
+        width: 403
+        height: 678
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d43ea9b0765bc7d0800000000000000
+      internalID: -2897126893131254571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_13
+      rect:
+        serializedVersion: 2
+        x: 1723
+        y: 2896
+        width: 405
+        height: 677
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 462b3daef5d8131c0800000000000000
+      internalID: -4525680707429485980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_14
+      rect:
+        serializedVersion: 2
+        x: 2997
+        y: 2896
+        width: 412
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe7a196953b833470800000000000000
+      internalID: 8373189194487539695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_15
+      rect:
+        serializedVersion: 2
+        x: 4287
+        y: 2896
+        width: 403
+        height: 671
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e53bf8ef71c227880800000000000000
+      internalID: -8614774655639637154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_16
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 2175
+        width: 406
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7a9303a135025960800000000000000
+      internalID: 7589134032819165821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_17
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 2175
+        width: 408
+        height: 673
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e495a00be6b195c0800000000000000
+      internalID: -4210383056170281753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_18
+      rect:
+        serializedVersion: 2
+        x: 2997
+        y: 2175
+        width: 412
+        height: 659
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8b2c7d6590cc44e0800000000000000
+      internalID: -1996008786812458098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_19
+      rect:
+        serializedVersion: 2
+        x: 4288
+        y: 2175
+        width: 402
+        height: 673
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc8282652d114d7c0800000000000000
+      internalID: -4047590570012956469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_20
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 1454
+        width: 412
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696cd3c1562b3ed20800000000000000
+      internalID: 3306682698755327638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_21
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 1454
+        width: 412
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28da794e81e5b19d0800000000000000
+      internalID: -2802542882100630142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_22
+      rect:
+        serializedVersion: 2
+        x: 2997
+        y: 1454
+        width: 412
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7b80d7e3d9a20bd0800000000000000
+      internalID: -2665381301857514627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_23
+      rect:
+        serializedVersion: 2
+        x: 4287
+        y: 1454
+        width: 403
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5935ca8aa222b70800000000000000
+      internalID: 8872701119807329713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_24
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 733
+        width: 411
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b672d12290f5ff30800000000000000
+      internalID: 4608854304106903225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_25
+      rect:
+        serializedVersion: 2
+        x: 1718
+        y: 733
+        width: 410
+        height: 658
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b57ddb080f744b20800000000000000
+      internalID: 3117756514582754739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_26
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 733
+        width: 409
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40a35e0481bbb9890800000000000000
+      internalID: -7450155445711980028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_27
+      rect:
+        serializedVersion: 2
+        x: 4286
+        y: 733
+        width: 404
+        height: 676
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28c86728ba24cddb0800000000000000
+      internalID: -4765861001269179262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_28
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 12
+        width: 405
+        height: 677
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daff2cb0f3adfba60800000000000000
+      internalID: 7692106652887220141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_29
+      rect:
+        serializedVersion: 2
+        x: 1723
+        y: 12
+        width: 405
+        height: 678
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db10f5dd364bdb330800000000000000
+      internalID: 3728334407541391805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222RabbitStanding_30
+      rect:
+        serializedVersion: 2
+        x: 3003
+        y: 12
+        width: 406
+        height: 678
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce7ac66869cb9ca0800000000000000
+      internalID: -6008987827557466423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      222RabbitStanding_0: 4019523832631232784
+      222RabbitStanding_1: 1667050847091098235
+      222RabbitStanding_10: -900557605752081521
+      222RabbitStanding_11: -7044618426747564922
+      222RabbitStanding_12: -2897126893131254571
+      222RabbitStanding_13: -4525680707429485980
+      222RabbitStanding_14: 8373189194487539695
+      222RabbitStanding_15: -8614774655639637154
+      222RabbitStanding_16: 7589134032819165821
+      222RabbitStanding_17: -4210383056170281753
+      222RabbitStanding_18: -1996008786812458098
+      222RabbitStanding_19: -4047590570012956469
+      222RabbitStanding_2: -9101687821725571185
+      222RabbitStanding_20: 3306682698755327638
+      222RabbitStanding_21: -2802542882100630142
+      222RabbitStanding_22: -2665381301857514627
+      222RabbitStanding_23: 8872701119807329713
+      222RabbitStanding_24: 4608854304106903225
+      222RabbitStanding_25: 3117756514582754739
+      222RabbitStanding_26: -7450155445711980028
+      222RabbitStanding_27: -4765861001269179262
+      222RabbitStanding_28: 7692106652887220141
+      222RabbitStanding_29: 3728334407541391805
+      222RabbitStanding_3: -4336743278452150331
+      222RabbitStanding_30: -6008987827557466423
+      222RabbitStanding_4: -306029838333772783
+      222RabbitStanding_5: -3231284842780622102
+      222RabbitStanding_6: -8642662836566122549
+      222RabbitStanding_7: -7314292207874180617
+      222RabbitStanding_8: -4923142801503308561
+      222RabbitStanding_9: 2693241600291605103
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

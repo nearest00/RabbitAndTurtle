@@ -17,9 +17,14 @@ public class N_222ManyTapNote : N_222NoteBase
         isJudged = true;
         IsFinished = true;
         gameObject.SetActive(false);
+        N_222LifeSlider.Instance.AddValue(10f);
+
     }
 
+    public override void OnGreat() => OnPerfect();
     public override void OnGood() => OnPerfect();
+    public override void OnBad() => OnPerfect();
+
 
     public override void OnMiss()
     {
@@ -27,5 +32,6 @@ public class N_222ManyTapNote : N_222NoteBase
         isJudged = true;
         IsFinished = true;
         gameObject.SetActive(false);
+        N_222LifeSlider.Instance.AddValue(-50f);
     }
 }

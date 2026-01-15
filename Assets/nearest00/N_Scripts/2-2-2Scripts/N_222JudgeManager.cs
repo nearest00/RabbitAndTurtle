@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class N_222JudgeManager : MonoBehaviour
 {
     [SerializeField] private RectTransform judgeLine;
-    [SerializeField] private float visualOffset = -35f;
-    [SerializeField] private float perfectRange = 25f;
-    [SerializeField] private float goodRange = 50f;
+    [SerializeField] private float perfectRange = 15f;
+    [SerializeField] private float greatRange = 35f;
+    [SerializeField] private float goodRange = 60f;
+    [SerializeField] private float badRange = 90f;
     [SerializeField] private float missBoundary = 180f;
 
     private List<N_222NoteBase> activeNotes = new List<N_222NoteBase>();
@@ -38,7 +39,7 @@ public class N_222JudgeManager : MonoBehaviour
             var n = activeNotes[i];
             if (n == null || n.IsFinished || n.isJudged) continue;
 
-            float noteX = n.RectTransform.anchoredPosition.x - visualOffset;
+            float noteX = n.RectTransform.anchoredPosition.x;
             if (lineX > noteX + missBoundary)
             {
                 if (IsLongNote(n.noteType))
@@ -62,7 +63,7 @@ public class N_222JudgeManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(n.inputKey))
                 {
-                    float dist = Mathf.Abs((n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x) - visualOffset);
+                    float dist = Mathf.Abs((n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
                     if (dist <= goodRange * 2.0f) n.GetComponent<N_222ManyTapNote>()?.OnManyTapInput();
                 }
             }
@@ -82,7 +83,7 @@ public class N_222JudgeManager : MonoBehaviour
                 var n = activeNotes[i];
                 if (n.roundID == holdingRoundID && n.noteType == N_222NoteBase.NoteType.LongHold && !n.isJudged)
                 {
-                    float dist = Mathf.Abs((n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x) - visualOffset);
+                    float dist = Mathf.Abs((n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
                     if (dist <= perfectRange) n.OnPerfect();
                 }
             }
@@ -97,7 +98,7 @@ public class N_222JudgeManager : MonoBehaviour
             if (note == null || note.IsFinished || note.isJudged) continue;
             if (note.noteType == N_222NoteBase.NoteType.ManyTap) continue;
 
-            float dist = Mathf.Abs((note.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x) - visualOffset);
+            float dist = Mathf.Abs((note.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
             if (dist > goodRange) continue;
 
             if (note.noteType == N_222NoteBase.NoteType.MultiTap)
@@ -145,7 +146,7 @@ public class N_222JudgeManager : MonoBehaviour
         {
             if (endNote != null)
             {
-                float dist = Mathf.Abs((endNote.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x) - visualOffset);
+                float dist = Mathf.Abs((endNote.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x));
                 // 꼬리 판정 범위 내에서 뗐을 때
                 if (dist <= goodRange)
                 {
@@ -203,6 +204,10 @@ public class N_222JudgeManager : MonoBehaviour
 
     private void Judge(N_222NoteBase note, float dist)
     {
-        if (dist <= perfectRange) note.OnPerfect(); else note.OnGood();
+        if (dist <= perfectRange) note.OnPerfect();
+        else if (dist <= greatRange) note.OnGreat();
+        else if (dist <= goodRange) note.OnGood();
+        else if (dist <= badRange) note.OnBad();
+        else note.OnMiss();
     }
 }
