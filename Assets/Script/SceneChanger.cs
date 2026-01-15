@@ -14,7 +14,7 @@ public class SceneChanger : MonoBehaviour
             if (panelA.activeSelf || panelB.activeSelf)
                 return;
 
-            SceneManager.LoadScene("MiniGame1");
+            SceneManager.LoadScene("2-2-2Game");
         }
     }
 }
