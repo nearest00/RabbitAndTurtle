@@ -19,6 +19,14 @@ public class RoundPattern
 
 public class N_222RoundManager : MonoBehaviour
 {
+    [System.Serializable] // 인스펙터에 보이게 함
+    public class RoundNoteData
+    {
+        public N_222NoteBase.NoteType noteType;
+        public float beat; // 예시 (박자 정보)
+
+        public string key;
+    }
     [Header("Difficulty Lists")]
     public List<RoundPattern> easyRounds = new List<RoundPattern>();
     public List<RoundPattern> normalRounds = new List<RoundPattern>();

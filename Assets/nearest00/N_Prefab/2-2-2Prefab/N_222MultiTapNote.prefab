@@ -54,6 +54,19 @@ MonoBehaviour:
   inputKey: 0
   inputKey2: 0
   roundID: 0
+  noteImage: {fileID: 3731916403771373810}
+  imageLeft: {fileID: 5688108486578453880, guid: 471f328a5fe1df14e8a6a46c02a267eb, type: 3}
+  imageRight: {fileID: -4154153192459530125, guid: 6272de95d5b65804d9109c806a777219, type: 3}
+  imageUp: {fileID: 133222596878361469, guid: a4b1d38258059be4ea8c398af1f2ed93, type: 3}
+  imageDown: {fileID: -3697858079898758732, guid: 54b5e033dd2d18f4694e26553e486532, type: 3}
+  multiLeft: {fileID: 0}
+  multiRight: {fileID: 0}
+  multiUp: {fileID: 0}
+  multiDown: {fileID: 0}
+  manyLeft: {fileID: 0}
+  manyRight: {fileID: 0}
+  manyUp: {fileID: 0}
+  manyDown: {fileID: 0}
 --- !u!114 &462239709896770666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +83,19 @@ MonoBehaviour:
   inputKey: 0
   inputKey2: 0
   roundID: 0
+  noteImage: {fileID: 0}
+  imageLeft: {fileID: 0}
+  imageRight: {fileID: 0}
+  imageUp: {fileID: 0}
+  imageDown: {fileID: 0}
+  multiLeft: {fileID: 0}
+  multiRight: {fileID: 0}
+  multiUp: {fileID: 0}
+  multiDown: {fileID: 0}
+  manyLeft: {fileID: 0}
+  manyRight: {fileID: 0}
+  manyUp: {fileID: 0}
+  manyDown: {fileID: 0}
 --- !u!1 &3452941946481432240
 GameObject:
   m_ObjectHideFlags: 0

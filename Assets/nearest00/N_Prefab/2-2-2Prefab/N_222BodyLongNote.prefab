@@ -53,6 +53,19 @@ MonoBehaviour:
   inputKey: 0
   inputKey2: 0
   roundID: 0
+  noteImage: {fileID: 2448829836348297808}
+  imageLeft: {fileID: 0}
+  imageRight: {fileID: 0}
+  imageUp: {fileID: 0}
+  imageDown: {fileID: 0}
+  multiLeft: {fileID: 0}
+  multiRight: {fileID: 0}
+  multiUp: {fileID: 0}
+  multiDown: {fileID: 0}
+  manyLeft: {fileID: 0}
+  manyRight: {fileID: 0}
+  manyUp: {fileID: 0}
+  manyDown: {fileID: 0}
 --- !u!1 &6368642331974235417
 GameObject:
   m_ObjectHideFlags: 0
