@@ -1,41 +1,36 @@
 using UnityEngine;
 
-public class N_222JudgeLine : MonoBehaviour
+public class N_222PrevJudgeLine : MonoBehaviour
 {
-    private float speed; // 현재 이동 속도
+    private float speed;
     private RectTransform rect;
+    private bool isMoving = false;
 
     void Awake()
     {
         rect = GetComponent<RectTransform>();
     }
 
-    private bool isMoving = false;
-
     void Update()
     {
-        if (isMoving && speed > 0) // isMoving이 true일 때만 이동
+        if (isMoving && speed > 0)
         {
             rect.anchoredPosition += Vector2.right * speed * Time.deltaTime;
         }
     }
 
-    public void StartMoving() => isMoving = true;
-    public void StopMoving() => isMoving = false;
-
-    public void SetSpeedByBPM(float bpm, float distancePerBeat)
+    public void SetSpeed(float bpm, float distancePerBeat)
     {
-        if (bpm <= 0) return;
-
-        // 속도 공식: (거리 * BPM) / 60
         speed = (distancePerBeat * bpm) / 60f;
-
-        Debug.Log($"<color=yellow>[JudgeLine]</color> 속도 변경 완료: {speed}");
     }
 
     public void ResetPosition(float startX)
     {
         if (rect == null) rect = GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(startX, rect.anchoredPosition.y);
+        isMoving = false;
     }
+
+    public void StartMoving() => isMoving = true;
+    public void StopMoving() => isMoving = false;
 }

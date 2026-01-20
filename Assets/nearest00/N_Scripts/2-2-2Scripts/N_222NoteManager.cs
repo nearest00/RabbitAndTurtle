@@ -2,30 +2,45 @@ using UnityEngine;
 
 public class N_222NoteManager : MonoBehaviour
 {
+    [Header("Note Prefabs")]
     [SerializeField] private GameObject tapNotePrefab;
     [SerializeField] private GameObject multiTapNotePrefab;
     [SerializeField] private GameObject manyNotePrefab;
 
     [Header("Long Note Parts")]
-    [SerializeField] private GameObject longStartPrefab; // 머리만 있는 프리팹
-    [SerializeField] private GameObject longHoldPrefab;  // 몸통만 있는 프리팹
-    [SerializeField] private GameObject longEndPrefab;   // 꼬리만 있는 프리팹
+    [SerializeField] private GameObject longStartPrefab;
+    [SerializeField] private GameObject longHoldPrefab;
+    [SerializeField] private GameObject longEndPrefab;
 
-    [SerializeField] private RectTransform noteParent;
+    [Header("Main Game Layers")]
+    [SerializeField] private RectTransform bodyLayer;
+    [SerializeField] private RectTransform elseLayer;
+
+    [Header("External References")]
     [SerializeField] private N_222JudgeManager judgeManager;
-    [Header("Layers")]
-    [SerializeField] private RectTransform headLayer; // 머리/꼬리/일반노트용 (하단 배치)
-    [SerializeField] private RectTransform bodyLayer; // 몸통용 (상단 배치)
 
-    public void CreateNote(RoundNoteData data, Vector2 position, int rID)
+    public void CreateNote(RoundNoteData data, Vector2 position, int rID, bool isDecoration = false)
     {
         GameObject prefab = GetPrefab(data.noteType);
         if (prefab == null) return;
 
-        // [수정] 몸통(Hold)이면 bodyLayer에, 나머지는 headLayer에 생성
-        RectTransform targetLayer = (data.noteType == N_222NoteBase.NoteType.LongHold) ? bodyLayer : headLayer;
+        // 1. 부모 레이어 결정
+        RectTransform targetParent;
+        if (isDecoration)
+        {
+            // 미리보기용 레이어 (RoundManager의 Instance 참조)
+            targetParent = (data.noteType == N_222NoteBase.NoteType.LongHold) ?
+                N_222RoundManager.Instance.previewBodyLayer :
+                N_222RoundManager.Instance.previewElseLayer;
+        }
+        else
+        {
+            // 실제 게임용 레이어
+            targetParent = (data.noteType == N_222NoteBase.NoteType.LongHold) ? bodyLayer : elseLayer;
+        }
 
-        GameObject go = Instantiate(prefab, targetLayer);
+        // 2. 생성
+        GameObject go = Instantiate(prefab, targetParent);
         N_222NoteBase note = go.GetComponent<N_222NoteBase>();
 
         if (note != null)
@@ -36,7 +51,14 @@ public class N_222NoteManager : MonoBehaviour
             note.roundID = rID;
             note.RectTransform.anchoredPosition = position;
 
-            judgeManager.RegisterNote(note);
+            // 판정 등록 (데코레이션이 아닐 때만)
+            if (!isDecoration) judgeManager.RegisterNote(note);
+
+            // 3. 레이어 내 순서 정렬 (겹침 방지)
+            if (data.noteType == N_222NoteBase.NoteType.LongHold)
+                go.transform.SetAsFirstSibling();
+            else
+                go.transform.SetAsLastSibling();
         }
     }
 

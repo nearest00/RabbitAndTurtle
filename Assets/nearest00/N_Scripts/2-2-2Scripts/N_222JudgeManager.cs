@@ -17,7 +17,14 @@ public class N_222JudgeManager : MonoBehaviour
 
     public void ResetJudgeLine(Vector2 startPos)
     {
-        if (judgeLine != null) judgeLine.anchoredPosition = startPos;
+        // [확인] 이 부분에서 startPos를 쓰지 않고 숫자를 직접 써넣었는지 확인하세요.
+        if (judgeLine != null)
+        {
+            // 인자로 받은 (-346, 92)를 그대로 대입
+            judgeLine.anchoredPosition = startPos;
+        }
+
+        // 기존 노트 청소
         foreach (var n in activeNotes) if (n != null) n.gameObject.SetActive(false);
         activeNotes.Clear();
         holdingRoundID = -1;
