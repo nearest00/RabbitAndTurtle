@@ -47,7 +47,6 @@ public class N_222NoteManager : MonoBehaviour
             note.roundID = rID;
             note.RectTransform.anchoredPosition = position;
 
-            // 기존처럼 string으로 전달 (내부적으로 Enum -> string 변환됨)
             note.SetKeyAndVisual(data.key, data.key2);
 
             if (!isDecoration) judgeManager.RegisterNote(note);
