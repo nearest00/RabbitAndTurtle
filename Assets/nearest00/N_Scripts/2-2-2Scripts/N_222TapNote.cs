@@ -8,6 +8,7 @@ public class N_222TapNote : N_222NoteBase
         IsFinished = true;
         gameObject.SetActive(false);
         N_222LifeSlider.Instance.AddValue(10f);
+        N_222JudgeEffectManager.Instance.ShowJudge("Perfect");
     }
     public override void OnGreat()
     {
@@ -15,6 +16,7 @@ public class N_222TapNote : N_222NoteBase
         IsFinished = true;
         gameObject.SetActive(false);
         N_222LifeSlider.Instance.AddValue(7f);
+        N_222JudgeEffectManager.Instance.ShowJudge("Great");
 
     }
     public override void OnGood()
@@ -23,6 +25,7 @@ public class N_222TapNote : N_222NoteBase
         IsFinished = true;
         gameObject.SetActive(false);
         N_222LifeSlider.Instance.AddValue(4f);
+        N_222JudgeEffectManager.Instance.ShowJudge("good");
     }
     public override void OnBad()
     {
@@ -30,6 +33,7 @@ public class N_222TapNote : N_222NoteBase
         IsFinished = true;
         gameObject.SetActive(false);
         N_222LifeSlider.Instance.AddValue(1f);
+        N_222JudgeEffectManager.Instance.ShowJudge("bad");
     }
     public override void OnMiss()
     {
@@ -37,5 +41,6 @@ public class N_222TapNote : N_222NoteBase
         IsFinished = true;
         gameObject.SetActive(false);
         N_222LifeSlider.Instance.AddValue(-50f);
+        N_222JudgeEffectManager.Instance.ShowJudge("miss");
     }
 }

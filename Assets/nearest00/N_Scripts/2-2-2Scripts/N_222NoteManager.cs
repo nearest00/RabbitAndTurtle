@@ -47,14 +47,8 @@ public class N_222NoteManager : MonoBehaviour
             note.roundID = rID;
             note.RectTransform.anchoredPosition = position;
 
-            // [수정] string 타입임을 확실하게 못 박아서 전달합니다.
-            // data.key가 string이 맞다면 .ToString()을 붙여도 아무 문제 없습니다.
-            string finalKey = data.key.ToString();
-            // NoteManager.cs의 CreateNote 내부
-            note.SetKeyAndVisual(finalKey);
-            Debug.Log($"노트 생성됨: 타입={note.noteType}, 설정된 키={note.inputKey}"); // 이 로그가 KeyCode.None으로 뜨면 판정 불가
-
-            if (!isDecoration) judgeManager.RegisterNote(note);
+            // 기존처럼 string으로 전달 (내부적으로 Enum -> string 변환됨)
+            note.SetKeyAndVisual(data.key, data.key2);
 
             if (!isDecoration) judgeManager.RegisterNote(note);
         }

@@ -4,11 +4,21 @@ using System.Collections;
 using System.Collections.Generic;
 
 [Serializable]
+public enum NoteDir { Left, Right, Up, Down, None } // 우리가 쓸 방향 정의
+
+[Serializable]
 public class RoundNoteData
 {
     public N_222NoteBase.NoteType noteType;
-    public KeyCode key;
-    public KeyCode key2;
+    public float beat;
+
+    // 인스펙터에서는 이 Enum이 드롭다운으로 뜹니다.
+    public NoteDir keyDir = NoteDir.Left;
+    public NoteDir keyDir2 = NoteDir.None;
+
+    // 기존 시스템(string)과의 호환을 위한 프로퍼티
+    public string key => keyDir.ToString();
+    public string key2 => keyDir2.ToString();
 }
 
 [Serializable]
@@ -19,14 +29,6 @@ public class RoundPattern
 
 public class N_222RoundManager : MonoBehaviour
 {
-    [System.Serializable] // 인스펙터에 보이게 함
-    public class RoundNoteData
-    {
-        public N_222NoteBase.NoteType noteType;
-        public float beat; // 예시 (박자 정보)
-
-        public string key;
-    }
     [Header("Difficulty Lists")]
     public List<RoundPattern> easyRounds = new List<RoundPattern>();
     public List<RoundPattern> normalRounds = new List<RoundPattern>();

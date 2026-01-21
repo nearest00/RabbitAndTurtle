@@ -7,10 +7,8 @@ public class N_222LongNote : N_222NoteBase
     {
         Debug.Log($"<color=lime>[Perfect]</color> {noteType} (ID: {roundID})");
 
-        // 1. 점수 처리 (헤드와 꼬리뿐만 아니라 홀드(몸통)도 퍼펙트 점수를 줌)
         N_222LifeSlider.Instance.AddValue(10f);
-
-        // 2. 공통 상태 관리 로직 실행
+        N_222JudgeEffectManager.Instance.ShowJudge("perfect");
         HandleNoteStatus();
     }
 
@@ -18,18 +16,22 @@ public class N_222LongNote : N_222NoteBase
     {
         Debug.Log($"<color=yellow>[Great</color> {noteType} (ID: {roundID})");
         N_222LifeSlider.Instance.AddValue(7f);
+        N_222JudgeEffectManager.Instance.ShowJudge("great");
+
         HandleNoteStatus();
     }
     public override void OnGood()
     {
         Debug.Log($"<color=yellow>[Good]</color> {noteType} (ID: {roundID})");
         N_222LifeSlider.Instance.AddValue(4f);
+        N_222JudgeEffectManager.Instance.ShowJudge("good");
         HandleNoteStatus();
     }
     public override void OnBad()
     {
         Debug.Log($"<color=yellow>[Bad]</color> {noteType} (ID: {roundID})");
         N_222LifeSlider.Instance.AddValue(1f);
+        N_222JudgeEffectManager.Instance.ShowJudge("bad");
         HandleNoteStatus();
     }
 
@@ -40,6 +42,7 @@ public class N_222LongNote : N_222NoteBase
         IsFinished = true;
         gameObject.SetActive(false);
         N_222LifeSlider.Instance.AddValue(-50f);
+        N_222JudgeEffectManager.Instance.ShowJudge("miss");
 
     }
     private void HandleNoteStatus()

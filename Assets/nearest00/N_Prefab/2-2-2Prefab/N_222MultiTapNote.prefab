@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ac0ce320c1194f8f307068e9344f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteType: 0
+  noteType: 1
   inputKey: 0
   inputKey2: 0
   roundID: 0

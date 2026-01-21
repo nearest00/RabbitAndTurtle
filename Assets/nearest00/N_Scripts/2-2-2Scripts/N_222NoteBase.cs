@@ -6,79 +6,80 @@ public abstract class N_222NoteBase : MonoBehaviour
     public enum NoteType { Tap, MultiTap, ManyTap, LongStart, LongHold, LongEnd }
     public NoteType noteType;
 
-    public KeyCode inputKey;  // KeyCode 타입
-    public KeyCode inputKey2; // 멀티탭용
+    public KeyCode inputKey;
+    public KeyCode inputKey2;
     public int roundID;
-    public bool IsFinished { get; set; } 
+    public bool IsFinished { get; set; }
     public bool isJudged { get; set; }
+
     [Header("Image Component")]
     [SerializeField] protected Image noteImage;
 
-    [Header("Normal Sprites")]
-    [SerializeField] private Sprite imageLeft;
-    [SerializeField] private Sprite imageRight;
-    [SerializeField] private Sprite imageUp;
-    [SerializeField] private Sprite imageDown;
+    [Header("Sprites (Left, Right, Up, Down)")]
+    [SerializeField] private Sprite imageLeft; [SerializeField] private Sprite imageRight;
+    [SerializeField] private Sprite imageUp; [SerializeField] private Sprite imageDown;
 
     [Header("Multi Tap Sprites")]
-    [SerializeField] private Sprite multiLeft;
-    [SerializeField] private Sprite multiRight;
-    [SerializeField] private Sprite multiUp;
-    [SerializeField] private Sprite multiDown;
+    [SerializeField] private Sprite multiLeft; [SerializeField] private Sprite multiRight;
+    [SerializeField] private Sprite multiUp; [SerializeField] private Sprite multiDown;
 
     [Header("Many Tap Sprites")]
-    [SerializeField] private Sprite manyLeft;
-    [SerializeField] private Sprite manyRight;
-    [SerializeField] private Sprite manyUp;
-    [SerializeField] private Sprite manyDown;
+    [SerializeField] private Sprite manyLeft; [SerializeField] private Sprite manyRight;
+    [SerializeField] private Sprite manyUp; [SerializeField] private Sprite manyDown;
 
     public RectTransform RectTransform => GetComponent<RectTransform>();
 
-    public void SetKeyAndVisual(string keyName) // 여기서 string을 받음
+    // [수정] 매개변수를 두 개(k1, k2) 받는 버전으로 변경하여 데이터 누락 방지
+    public void SetKeyAndVisual(string k1, string k2) // k2를 필수 인자로 변경
     {
-        Debug.Log($"[데이터 확인] 전달된 키 텍스트: [{keyName}]");
-        if (string.IsNullOrEmpty(keyName)) return;
-        string lowerKey = keyName.ToLower().Trim();
+        // 1. 첫 번째 키 설정
+        inputKey = ConvertToKeyCode(k1);
 
-        // 1. 롱노트 바디/테일은 이미지 안 바꾸고 키만 설정 후 종료(return)
-        if (noteType == NoteType.LongHold || noteType == NoteType.LongEnd)
+        // 2. 두 번째 키 설정 (라운드 매니저에서 넘어온 k2를 직접 사용)
+        if (noteType == NoteType.MultiTap)
         {
-            inputKey = ConvertToKeyCode(lowerKey);
-            return;
+            inputKey2 = ConvertToKeyCode(k2);
+
+            // 만약 인스펙터 Key2가 비어있을 때를 대비한 안전장치 (선택 사항)
+            if (inputKey2 == KeyCode.None && k1.Contains(","))
+            {
+                string[] split = k1.Split(',');
+                inputKey2 = ConvertToKeyCode(split[1]);
+            }
+        }
+        else
+        {
+            inputKey2 = KeyCode.None;
         }
 
+        // 디버깅: 이제 인스펙터 설정값이 로그에 찍혀야 합니다.
+        if (noteType == NoteType.MultiTap)
+            Debug.Log($"<color=cyan>[NoteBase]</color> 멀티탭 키 설정 완료: {inputKey} + {inputKey2}");
+
+        // 3. 비주얼 설정 (기존 로직 유지)
+        if (noteType == NoteType.LongHold || noteType == NoteType.LongEnd) return;
         if (noteImage == null) noteImage = GetComponent<Image>();
 
-        // 2. 키 이름에 따라 KeyCode 할당 및 Sprite 선택
         Sprite selectedSprite = null;
-        inputKey = ConvertToKeyCode(lowerKey); // 문자열을 KeyCode로 변환
+        string mainKey = k1.ToLower().Trim();
 
-        switch (lowerKey)
-        {
-            case "leftarrow": selectedSprite = GetSprite(imageLeft, multiLeft, manyLeft); break;
-            case "rightarrow": selectedSprite = GetSprite(imageRight, multiRight, manyRight); break;
-            case "uparrow": selectedSprite = GetSprite(imageUp, multiUp, manyUp); break;
-            case "downarrow": selectedSprite = GetSprite(imageDown, multiDown, manyDown); break;
-        }
+        if (mainKey.Contains("left")) selectedSprite = GetSprite(imageLeft, multiLeft, manyLeft);
+        else if (mainKey.Contains("right")) selectedSprite = GetSprite(imageRight, multiRight, manyRight);
+        else if (mainKey.Contains("up")) selectedSprite = GetSprite(imageUp, multiUp, manyUp);
+        else if (mainKey.Contains("down")) selectedSprite = GetSprite(imageDown, multiDown, manyDown);
 
-        // 3. 최종 이미지 적용
-        if (selectedSprite != null && noteImage != null)
-        {
-            noteImage.sprite = selectedSprite;
-        }
+        if (selectedSprite != null && noteImage != null) noteImage.sprite = selectedSprite;
     }
 
-    // 문자열을 KeyCode로 바꿔주는 헬퍼 함수
     private KeyCode ConvertToKeyCode(string key)
     {
-        switch (key)
-        {
-            case "leftarrow": return KeyCode.LeftArrow;
-            case "rightarrow": return KeyCode.RightArrow;
-            case "uparrow": return KeyCode.UpArrow;
-            case "downarrow": return KeyCode.DownArrow;
-            default: return KeyCode.None;
-        }
+        if (string.IsNullOrEmpty(key)) return KeyCode.None;
+        string k = key.ToLower();
+        if (k.Contains("left")) return KeyCode.LeftArrow;
+        if (k.Contains("right")) return KeyCode.RightArrow;
+        if (k.Contains("up")) return KeyCode.UpArrow;
+        if (k.Contains("down")) return KeyCode.DownArrow;
+        return KeyCode.None;
     }
 
     private Sprite GetSprite(Sprite normal, Sprite multi, Sprite many)
