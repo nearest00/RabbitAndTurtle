@@ -11,6 +11,10 @@ public class N_222RabbitAnimation : MonoBehaviour
 
     public void PlayTalking()
     {
-        anim.SetTrigger("rabbittalk");
+        anim.SetBool("RabbitTalking", true);
+    }
+    public void StopTalking()
+    {
+        anim.SetBool("RabbitTalking", false);
     }
 }

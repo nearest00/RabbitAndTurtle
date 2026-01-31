@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: f627f6eedcef3f94d8d7ff736a300d74
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 484813325983671929
+    second: 222rabbittalkingNew_0
+  - first:
+      213: 6372413968628654960
+    second: 222rabbittalkingNew_1
+  - first:
+      213: 7919603962397871261
+    second: 222rabbittalkingNew_2
+  - first:
+      213: 411655000214891152
+    second: 222rabbittalkingNew_3
+  - first:
+      213: -4835090019489271306
+    second: 222rabbittalkingNew_4
+  - first:
+      213: 6572811656549167206
+    second: 222rabbittalkingNew_5
+  - first:
+      213: -4365587942035966702
+    second: 222rabbittalkingNew_6
+  - first:
+      213: 4853245551548693989
+    second: 222rabbittalkingNew_7
+  - first:
+      213: -6626068023633742310
+    second: 222rabbittalkingNew_8
+  - first:
+      213: 6612053649569829962
+    second: 222rabbittalkingNew_9
+  - first:
+      213: -6173671231589166086
+    second: 222rabbittalkingNew_10
+  - first:
+      213: 6404134289889843990
+    second: 222rabbittalkingNew_11
+  - first:
+      213: 3704777544241273385
+    second: 222rabbittalkingNew_12
+  - first:
+      213: 4706073944440856372
+    second: 222rabbittalkingNew_13
+  - first:
+      213: 6564347618223167129
+    second: 222rabbittalkingNew_14
+  - first:
+      213: -6264432815580111019
+    second: 222rabbittalkingNew_15
+  - first:
+      213: -1896433422193338884
+    second: 222rabbittalkingNew_16
+  - first:
+      213: -2335265622376251630
+    second: 222rabbittalkingNew_17
+  - first:
+      213: -6313576285923199958
+    second: 222rabbittalkingNew_18
+  - first:
+      213: 1268178593282138876
+    second: 222rabbittalkingNew_19
+  - first:
+      213: -2352342828185171700
+    second: 222rabbittalkingNew_20
+  - first:
+      213: -2880021709773214205
+    second: 222rabbittalkingNew_21
+  - first:
+      213: 3463300124242389658
+    second: 222rabbittalkingNew_22
+  - first:
+      213: -242635998156886013
+    second: 222rabbittalkingNew_23
+  - first:
+      213: 5520001408825333912
+    second: 222rabbittalkingNew_24
+  - first:
+      213: -4335323014229837435
+    second: 222rabbittalkingNew_25
+  - first:
+      213: -9059242580065941922
+    second: 222rabbittalkingNew_26
+  - first:
+      213: 4706555410156057287
+    second: 222rabbittalkingNew_27
+  - first:
+      213: -2968635971669847293
+    second: 222rabbittalkingNew_28
+  - first:
+      213: 768879299652732386
+    second: 222rabbittalkingNew_29
+  - first:
+      213: 6206276589845400953
+    second: 222rabbittalkingNew_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_0
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 3612
+        width: 423
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976e1adb6276ab600800000000000000
+      internalID: 484813325983671929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_1
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 3612
+        width: 429
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07329d1fdbc5f6850800000000000000
+      internalID: 6372413968628654960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_2
+      rect:
+        serializedVersion: 2
+        x: 2972
+        y: 3612
+        width: 435
+        height: 678
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c408c08d518ed60800000000000000
+      internalID: 7919603962397871261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_3
+      rect:
+        serializedVersion: 2
+        x: 4255
+        y: 3612
+        width: 432
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a62d9aa0e76b500800000000000000
+      internalID: 411655000214891152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_4
+      rect:
+        serializedVersion: 2
+        x: 5541
+        y: 3612
+        width: 426
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f13e43ae3f46ecb0800000000000000
+      internalID: -4835090019489271306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_5
+      rect:
+        serializedVersion: 2
+        x: 6830
+        y: 3612
+        width: 417
+        height: 682
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 660f82c9061573b50800000000000000
+      internalID: 6572811656549167206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_6
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 2892
+        width: 409
+        height: 683
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 215b73785e05a63c0800000000000000
+      internalID: -4365587942035966702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_7
+      rect:
+        serializedVersion: 2
+        x: 1719
+        y: 2892
+        width: 408
+        height: 683
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5edfdc39d113a5340800000000000000
+      internalID: 4853245551548693989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_8
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 2892
+        width: 411
+        height: 683
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a167cb92d3a7b04a0800000000000000
+      internalID: -6626068023633742310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_9
+      rect:
+        serializedVersion: 2
+        x: 4277
+        y: 2892
+        width: 410
+        height: 681
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a445f6a13cbb2cb50800000000000000
+      internalID: 6612053649569829962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_10
+      rect:
+        serializedVersion: 2
+        x: 5558
+        y: 2892
+        width: 409
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af3541179b6b25aa0800000000000000
+      internalID: -6173671231589166086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_11
+      rect:
+        serializedVersion: 2
+        x: 6840
+        y: 2892
+        width: 407
+        height: 676
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b58c2c43e00e850800000000000000
+      internalID: 6404134289889843990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_12
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 2172
+        width: 404
+        height: 672
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a58583c830a6330800000000000000
+      internalID: 3704777544241273385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_13
+      rect:
+        serializedVersion: 2
+        x: 1725
+        y: 2172
+        width: 402
+        height: 667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f5e1191555f4140800000000000000
+      internalID: 4706073944440856372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_14
+      rect:
+        serializedVersion: 2
+        x: 3008
+        y: 2172
+        width: 399
+        height: 663
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9969f5e116f391b50800000000000000
+      internalID: 6564347618223167129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_15
+      rect:
+        serializedVersion: 2
+        x: 4289
+        y: 2172
+        width: 398
+        height: 659
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55f1c0c6b834019a0800000000000000
+      internalID: -6264432815580111019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_16
+      rect:
+        serializedVersion: 2
+        x: 5568
+        y: 2172
+        width: 399
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf5dcf9a9d38ea5e0800000000000000
+      internalID: -1896433422193338884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_17
+      rect:
+        serializedVersion: 2
+        x: 6846
+        y: 2172
+        width: 401
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ff41a0a48779fd0800000000000000
+      internalID: -2335265622376251630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_18
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1452
+        width: 403
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a24b73791dba168a0800000000000000
+      internalID: -6313576285923199958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_19
+      rect:
+        serializedVersion: 2
+        x: 1721
+        y: 1452
+        width: 406
+        height: 661
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf2265426b9799110800000000000000
+      internalID: 1268178593282138876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_20
+      rect:
+        serializedVersion: 2
+        x: 2999
+        y: 1452
+        width: 408
+        height: 665
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c09c51839acca5fd0800000000000000
+      internalID: -2352342828185171700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_21
+      rect:
+        serializedVersion: 2
+        x: 4278
+        y: 1452
+        width: 409
+        height: 670
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30eed83938b1808d0800000000000000
+      internalID: -2880021709773214205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_22
+      rect:
+        serializedVersion: 2
+        x: 5557
+        y: 1452
+        width: 410
+        height: 674
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9aa8081d1d101030800000000000000
+      internalID: 3463300124242389658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_23
+      rect:
+        serializedVersion: 2
+        x: 6838
+        y: 1452
+        width: 409
+        height: 678
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300f22068dbf1acf0800000000000000
+      internalID: -242635998156886013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_24
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 732
+        width: 409
+        height: 681
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89890bcf80cfa9c40800000000000000
+      internalID: 5520001408825333912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_25
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 732
+        width: 411
+        height: 682
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 589314620b6d5d3c0800000000000000
+      internalID: -4335323014229837435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_26
+      rect:
+        serializedVersion: 2
+        x: 2994
+        y: 732
+        width: 413
+        height: 683
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5683111fda174280800000000000000
+      internalID: -9059242580065941922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_27
+      rect:
+        serializedVersion: 2
+        x: 4272
+        y: 732
+        width: 415
+        height: 683
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c27b0a853b015140800000000000000
+      internalID: 4706555410156057287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_28
+      rect:
+        serializedVersion: 2
+        x: 5551
+        y: 732
+        width: 416
+        height: 682
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3031c21ff494dc6d0800000000000000
+      internalID: -2968635971669847293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_29
+      rect:
+        serializedVersion: 2
+        x: 6826
+        y: 732
+        width: 421
+        height: 681
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e5c3fa36ab9baa00800000000000000
+      internalID: 768879299652732386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222rabbittalkingNew_30
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 12
+        width: 423
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97dce8b1daf112650800000000000000
+      internalID: 6206276589845400953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      222rabbittalkingNew_0: 484813325983671929
+      222rabbittalkingNew_1: 6372413968628654960
+      222rabbittalkingNew_10: -6173671231589166086
+      222rabbittalkingNew_11: 6404134289889843990
+      222rabbittalkingNew_12: 3704777544241273385
+      222rabbittalkingNew_13: 4706073944440856372
+      222rabbittalkingNew_14: 6564347618223167129
+      222rabbittalkingNew_15: -6264432815580111019
+      222rabbittalkingNew_16: -1896433422193338884
+      222rabbittalkingNew_17: -2335265622376251630
+      222rabbittalkingNew_18: -6313576285923199958
+      222rabbittalkingNew_19: 1268178593282138876
+      222rabbittalkingNew_2: 7919603962397871261
+      222rabbittalkingNew_20: -2352342828185171700
+      222rabbittalkingNew_21: -2880021709773214205
+      222rabbittalkingNew_22: 3463300124242389658
+      222rabbittalkingNew_23: -242635998156886013
+      222rabbittalkingNew_24: 5520001408825333912
+      222rabbittalkingNew_25: -4335323014229837435
+      222rabbittalkingNew_26: -9059242580065941922
+      222rabbittalkingNew_27: 4706555410156057287
+      222rabbittalkingNew_28: -2968635971669847293
+      222rabbittalkingNew_29: 768879299652732386
+      222rabbittalkingNew_3: 411655000214891152
+      222rabbittalkingNew_30: 6206276589845400953
+      222rabbittalkingNew_4: -4835090019489271306
+      222rabbittalkingNew_5: 6572811656549167206
+      222rabbittalkingNew_6: -4365587942035966702
+      222rabbittalkingNew_7: 4853245551548693989
+      222rabbittalkingNew_8: -6626068023633742310
+      222rabbittalkingNew_9: 6612053649569829962
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

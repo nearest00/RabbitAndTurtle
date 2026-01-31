@@ -56,7 +56,7 @@ public class N_222RoundManager : MonoBehaviour
     [SerializeField] private N_222NoteManager noteManager;
     [SerializeField] private N_222JudgeManager judgeManager;
     [SerializeField] private N_222RabbitAnimation rabbitAnimation;
-
+    [SerializeField] private N_222KingAnimation kingAnimation;
     [Header("Judge Lines")]
     [SerializeField] private N_222JudgeLine mainLine;
     [SerializeField] private N_222PrevJudgeLine previewLine;
@@ -76,7 +76,7 @@ public class N_222RoundManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (rabbitAnimation != null) rabbitAnimation.PlayTalking();
+            if (rabbitAnimation != null) rabbitAnimation.StopTalking();
             NextRound();
         }
     }
@@ -182,6 +182,7 @@ public class N_222RoundManager : MonoBehaviour
     private IEnumerator LineSequenceRoutine()
     {
         // [Step 1] 미리보기 판정선만 출발
+        kingAnimation.PlayTalking();
         previewLine.StartMoving();
 
         // [Step 2] 6박자 동안 대기
@@ -190,11 +191,12 @@ public class N_222RoundManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         // [Step 3] 미리보기 판정선 멈춤
+        kingAnimation.StopTalking();
         previewLine.StopMoving();
 
         // [Step 4] 메인 판정선 출발
         mainLine.StartMoving();
-
+        rabbitAnimation.PlayTalking();
         Debug.Log("<color=orange>미리보기 종료, 메인 판정 시작!</color>");
     }
 }

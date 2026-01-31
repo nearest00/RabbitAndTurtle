@@ -1,0 +1,1183 @@
+fileFormatVersion: 2
+guid: e328fbc663787224cb55e92319742497
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5795500146176720336
+    second: 222KingTalking_0
+  - first:
+      213: -3457319762430359895
+    second: 222KingTalking_1
+  - first:
+      213: 8009838989297143221
+    second: 222KingTalking_2
+  - first:
+      213: -2232389450134721443
+    second: 222KingTalking_3
+  - first:
+      213: 6630399214466281909
+    second: 222KingTalking_4
+  - first:
+      213: -7903801179117421019
+    second: 222KingTalking_5
+  - first:
+      213: -6427935612694348417
+    second: 222KingTalking_6
+  - first:
+      213: -8918055750552850617
+    second: 222KingTalking_7
+  - first:
+      213: -4920606257788740541
+    second: 222KingTalking_8
+  - first:
+      213: -7460023096901662137
+    second: 222KingTalking_9
+  - first:
+      213: 7730706453109183126
+    second: 222KingTalking_10
+  - first:
+      213: 7194562736265174593
+    second: 222KingTalking_11
+  - first:
+      213: -7255427623719306533
+    second: 222KingTalking_12
+  - first:
+      213: -925488258402723690
+    second: 222KingTalking_13
+  - first:
+      213: -8793223262302893641
+    second: 222KingTalking_14
+  - first:
+      213: -8405685102332542069
+    second: 222KingTalking_15
+  - first:
+      213: 7470165570315989040
+    second: 222KingTalking_16
+  - first:
+      213: -4918489662095031751
+    second: 222KingTalking_17
+  - first:
+      213: -3621120010324161333
+    second: 222KingTalking_18
+  - first:
+      213: -8222234057796971534
+    second: 222KingTalking_19
+  - first:
+      213: -2482423385718516507
+    second: 222KingTalking_20
+  - first:
+      213: 192404790758498389
+    second: 222KingTalking_21
+  - first:
+      213: -461692522177540482
+    second: 222KingTalking_22
+  - first:
+      213: -6987875726732987630
+    second: 222KingTalking_23
+  - first:
+      213: -1200591920052746004
+    second: 222KingTalking_24
+  - first:
+      213: 197485295646576142
+    second: 222KingTalking_25
+  - first:
+      213: -5384226016113311364
+    second: 222KingTalking_26
+  - first:
+      213: 2200623897757350688
+    second: 222KingTalking_27
+  - first:
+      213: 8197379943484711188
+    second: 222KingTalking_28
+  - first:
+      213: -4519618248124007351
+    second: 222KingTalking_29
+  - first:
+      213: 1583981260832513645
+    second: 222KingTalking_30
+  - first:
+      213: 145166734682769685
+    second: 222KingTalking_31
+  - first:
+      213: 948781174197710091
+    second: 222KingTalking_32
+  - first:
+      213: -6705653593161607779
+    second: 222KingTalking_33
+  - first:
+      213: -4899009378797453660
+    second: 222KingTalking_34
+  - first:
+      213: -8510147553050096530
+    second: 222KingTalking_35
+  - first:
+      213: 8339978782981636523
+    second: 222KingTalking_36
+  - first:
+      213: -4295163132266358114
+    second: 222KingTalking_37
+  - first:
+      213: -2913321252163336196
+    second: 222KingTalking_38
+  - first:
+      213: -1593321597759944812
+    second: 222KingTalking_39
+  - first:
+      213: -3964156246105763922
+    second: 222KingTalking_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 222KingTalking_0
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 3600
+        width: 734
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dd76945da0cd6050800000000000000
+      internalID: 5795500146176720336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_1
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 3601
+        width: 734
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a686656ef12500d0800000000000000
+      internalID: -3457319762430359895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_2
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 3602
+        width: 735
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd41217f1aa82f60800000000000000
+      internalID: 8009838989297143221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_3
+      rect:
+        serializedVersion: 2
+        x: 4147
+        y: 3604
+        width: 736
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ce3607f95f401e0800000000000000
+      internalID: -2232389450134721443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_4
+      rect:
+        serializedVersion: 2
+        x: 5427
+        y: 3605
+        width: 736
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b1ba49c4f8e30c50800000000000000
+      internalID: 6630399214466281909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_5
+      rect:
+        serializedVersion: 2
+        x: 6707
+        y: 3607
+        width: 736
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e746724be005290800000000000000
+      internalID: -7903801179117421019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_6
+      rect:
+        serializedVersion: 2
+        x: 7987
+        y: 3609
+        width: 735
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7d354eed926bc6a0800000000000000
+      internalID: -6427935612694348417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_7
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 2891
+        width: 734
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74fea257b83bc3480800000000000000
+      internalID: -8918055750552850617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_8
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 2893
+        width: 733
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34c10f4ddae76bbb0800000000000000
+      internalID: -4920606257788740541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_9
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 2894
+        width: 731
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74a87fca48ca87890800000000000000
+      internalID: -7460023096901662137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_10
+      rect:
+        serializedVersion: 2
+        x: 4148
+        y: 2895
+        width: 730
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69294606f8cf84b60800000000000000
+      internalID: 7730706453109183126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_11
+      rect:
+        serializedVersion: 2
+        x: 5428
+        y: 2896
+        width: 730
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e1951b0b838d360800000000000000
+      internalID: 7194562736265174593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_12
+      rect:
+        serializedVersion: 2
+        x: 6708
+        y: 2897
+        width: 730
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bda77a2640b8f4b90800000000000000
+      internalID: -7255427623719306533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_13
+      rect:
+        serializedVersion: 2
+        x: 7989
+        y: 2898
+        width: 730
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6985c1a15510823f0800000000000000
+      internalID: -925488258402723690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_14
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 2178
+        width: 731
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b90cbb080238f580800000000000000
+      internalID: -8793223262302893641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_15
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 2178
+        width: 734
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b830da54fe1095b80800000000000000
+      internalID: -8405685102332542069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_16
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 2179
+        width: 736
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 030b900f10c5ba760800000000000000
+      internalID: 7470165570315989040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_17
+      rect:
+        serializedVersion: 2
+        x: 4150
+        y: 2179
+        width: 739
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 932056b26b30ebbb0800000000000000
+      internalID: -4918489662095031751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_18
+      rect:
+        serializedVersion: 2
+        x: 5430
+        y: 2180
+        width: 742
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bccc19f39823fbdc0800000000000000
+      internalID: -3621120010324161333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_19
+      rect:
+        serializedVersion: 2
+        x: 6710
+        y: 2181
+        width: 745
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f394ec00b1c4ed80800000000000000
+      internalID: -8222234057796971534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_20
+      rect:
+        serializedVersion: 2
+        x: 7990
+        y: 2181
+        width: 747
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e410284519ac8dd0800000000000000
+      internalID: -2482423385718516507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_21
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1462
+        width: 749
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5506e36432f8ba200800000000000000
+      internalID: 192404790758498389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_22
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 1462
+        width: 750
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e4724e81db799f0800000000000000
+      internalID: -461692522177540482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_23
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 1462
+        width: 750
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2137185cc04160f90800000000000000
+      internalID: -6987875726732987630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_24
+      rect:
+        serializedVersion: 2
+        x: 4150
+        y: 1462
+        width: 749
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce84d0d7204a65fe0800000000000000
+      internalID: -1200591920052746004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_25
+      rect:
+        serializedVersion: 2
+        x: 5429
+        y: 1462
+        width: 748
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0e806f74db9db200800000000000000
+      internalID: 197485295646576142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_26
+      rect:
+        serializedVersion: 2
+        x: 6709
+        y: 1462
+        width: 745
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71462717f26745b0800000000000000
+      internalID: -5384226016113311364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_27
+      rect:
+        serializedVersion: 2
+        x: 7989
+        y: 1461
+        width: 741
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02bff0e86cf2a8e10800000000000000
+      internalID: 2200623897757350688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_28
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 739
+        width: 738
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 411615480a1f2c170800000000000000
+      internalID: 8197379943484711188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_29
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 738
+        width: 734
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94cf13836271741c0800000000000000
+      internalID: -4519618248124007351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_30
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 735
+        width: 730
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e1cce709e6bf510800000000000000
+      internalID: 1583981260832513645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_31
+      rect:
+        serializedVersion: 2
+        x: 4148
+        y: 733
+        width: 727
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51948f5406cb30200800000000000000
+      internalID: 145166734682769685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_32
+      rect:
+        serializedVersion: 2
+        x: 5427
+        y: 731
+        width: 725
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0de1a9737fba2d00800000000000000
+      internalID: 948781174197710091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_33
+      rect:
+        serializedVersion: 2
+        x: 6707
+        y: 728
+        width: 723
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d95d7c8c59bb0f2a0800000000000000
+      internalID: -6705653593161607779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_34
+      rect:
+        serializedVersion: 2
+        x: 7987
+        y: 726
+        width: 722
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae78711de8330cb0800000000000000
+      internalID: -4899009378797453660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_35
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 4
+        width: 722
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c0a42a3e1e5e980800000000000000
+      internalID: -8510147553050096530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_36
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 2
+        width: 723
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba14ae9148e8db370800000000000000
+      internalID: 8339978782981636523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_37
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 0
+        width: 724
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9ad8e053e38464c0800000000000000
+      internalID: -4295163132266358114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_38
+      rect:
+        serializedVersion: 2
+        x: 4147
+        y: 0
+        width: 726
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf74530b1cdc197d0800000000000000
+      internalID: -2913321252163336196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_39
+      rect:
+        serializedVersion: 2
+        x: 5427
+        y: 0
+        width: 728
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4978f88d27263e9e0800000000000000
+      internalID: -1593321597759944812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingTalking_40
+      rect:
+        serializedVersion: 2
+        x: 6707
+        y: 0
+        width: 730
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf48bca5ec7cf8c0800000000000000
+      internalID: -3964156246105763922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      222KingTalking_0: 5795500146176720336
+      222KingTalking_1: -3457319762430359895
+      222KingTalking_10: 7730706453109183126
+      222KingTalking_11: 7194562736265174593
+      222KingTalking_12: -7255427623719306533
+      222KingTalking_13: -925488258402723690
+      222KingTalking_14: -8793223262302893641
+      222KingTalking_15: -8405685102332542069
+      222KingTalking_16: 7470165570315989040
+      222KingTalking_17: -4918489662095031751
+      222KingTalking_18: -3621120010324161333
+      222KingTalking_19: -8222234057796971534
+      222KingTalking_2: 8009838989297143221
+      222KingTalking_20: -2482423385718516507
+      222KingTalking_21: 192404790758498389
+      222KingTalking_22: -461692522177540482
+      222KingTalking_23: -6987875726732987630
+      222KingTalking_24: -1200591920052746004
+      222KingTalking_25: 197485295646576142
+      222KingTalking_26: -5384226016113311364
+      222KingTalking_27: 2200623897757350688
+      222KingTalking_28: 8197379943484711188
+      222KingTalking_29: -4519618248124007351
+      222KingTalking_3: -2232389450134721443
+      222KingTalking_30: 1583981260832513645
+      222KingTalking_31: 145166734682769685
+      222KingTalking_32: 948781174197710091
+      222KingTalking_33: -6705653593161607779
+      222KingTalking_34: -4899009378797453660
+      222KingTalking_35: -8510147553050096530
+      222KingTalking_36: 8339978782981636523
+      222KingTalking_37: -4295163132266358114
+      222KingTalking_38: -2913321252163336196
+      222KingTalking_39: -1593321597759944812
+      222KingTalking_4: 6630399214466281909
+      222KingTalking_40: -3964156246105763922
+      222KingTalking_5: -7903801179117421019
+      222KingTalking_6: -6427935612694348417
+      222KingTalking_7: -8918055750552850617
+      222KingTalking_8: -4920606257788740541
+      222KingTalking_9: -7460023096901662137
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,60 +15,94 @@ public abstract class N_222NoteBase : MonoBehaviour
     [Header("Image Component")]
     [SerializeField] protected Image noteImage;
 
-    [Header("Sprites (Left, Right, Up, Down)")]
-    [SerializeField] private Sprite imageLeft; [SerializeField] private Sprite imageRight;
-    [SerializeField] private Sprite imageUp; [SerializeField] private Sprite imageDown;
+    [Header("Sprites (Single Tap)")]
+    [SerializeField] private Sprite imageLeft;
+    [SerializeField] private Sprite imageRight;
+    [SerializeField] private Sprite imageUp;
+    [SerializeField] private Sprite imageDown;
 
-    [Header("Multi Tap Sprites")]
-    [SerializeField] private Sprite multiLeft; [SerializeField] private Sprite multiRight;
-    [SerializeField] private Sprite multiUp; [SerializeField] private Sprite multiDown;
+    // --- 이 부분을 아래 조합형으로 교체하세요 ---
+    [Header("Multi Tap Combined Sprites")]
+    [SerializeField] private Sprite multiLeftRight; // 좌 + 우
+    [SerializeField] private Sprite multiUpDown;    // 상 + 하
+    [SerializeField] private Sprite multiLeftUp;    // 좌 + 상
+    [SerializeField] private Sprite multiLeftDown;  // 좌 + 하
+    [SerializeField] private Sprite multiRightUp;   // 우 + 상
+    [SerializeField] private Sprite multiRightDown; // 우 + 하
 
     [Header("Many Tap Sprites")]
-    [SerializeField] private Sprite manyLeft; [SerializeField] private Sprite manyRight;
-    [SerializeField] private Sprite manyUp; [SerializeField] private Sprite manyDown;
+    [SerializeField] private Sprite manyLeft;
+    [SerializeField] private Sprite manyRight;
+    [SerializeField] private Sprite manyUp;
+    [SerializeField] private Sprite manyDown;
 
     public RectTransform RectTransform => GetComponent<RectTransform>();
 
-    // [수정] 매개변수를 두 개(k1, k2) 받는 버전으로 변경하여 데이터 누락 방지
-    public void SetKeyAndVisual(string k1, string k2) // k2를 필수 인자로 변경
+    public void SetKeyAndVisual(string k1, string k2)
     {
-        // 1. 첫 번째 키 설정
+        // 1. 키 데이터 설정
         inputKey = ConvertToKeyCode(k1);
+        inputKey2 = (noteType == NoteType.MultiTap) ? ConvertToKeyCode(k2) : KeyCode.None;
 
-        // 2. 두 번째 키 설정 (라운드 매니저에서 넘어온 k2를 직접 사용)
+        if (noteImage == null) noteImage = GetComponent<Image>();
+        if (noteType == NoteType.LongHold || noteType == NoteType.LongEnd) return;
+
+        // 2. 비주얼 결정 로직
+        Sprite selectedSprite = null;
+
         if (noteType == NoteType.MultiTap)
         {
-            inputKey2 = ConvertToKeyCode(k2);
-
-            // 만약 인스펙터 Key2가 비어있을 때를 대비한 안전장치 (선택 사항)
-            if (inputKey2 == KeyCode.None && k1.Contains(","))
-            {
-                string[] split = k1.Split(',');
-                inputKey2 = ConvertToKeyCode(split[1]);
-            }
+            // [중요] 조합형 이미지 찾기 로직 실행
+            selectedSprite = GetMultiTapCombinedSprite(inputKey, inputKey2);
+        }
+        else if (noteType == NoteType.ManyTap)
+        {
+            selectedSprite = GetManyTapSprite(inputKey);
         }
         else
         {
-            inputKey2 = KeyCode.None;
+            selectedSprite = GetNormalSprite(inputKey);
         }
 
-        // 디버깅: 이제 인스펙터 설정값이 로그에 찍혀야 합니다.
-        if (noteType == NoteType.MultiTap)
-            Debug.Log($"<color=cyan>[NoteBase]</color> 멀티탭 키 설정 완료: {inputKey} + {inputKey2}");
+        if (selectedSprite != null) noteImage.sprite = selectedSprite;
+    }
 
-        // 3. 비주얼 설정 (기존 로직 유지)
-        if (noteType == NoteType.LongHold || noteType == NoteType.LongEnd) return;
-        if (noteImage == null) noteImage = GetComponent<Image>();
+    // [새로 추가] 멀티탭 조합 판별 함수
+    private Sprite GetMultiTapCombinedSprite(KeyCode k1, KeyCode k2)
+    {
+        // 순서에 상관없이 어떤 키들이 눌렸는지 체크
+        bool hasLeft = (k1 == KeyCode.LeftArrow || k2 == KeyCode.LeftArrow);
+        bool hasRight = (k1 == KeyCode.RightArrow || k2 == KeyCode.RightArrow);
+        bool hasUp = (k1 == KeyCode.UpArrow || k2 == KeyCode.UpArrow);
+        bool hasDown = (k1 == KeyCode.DownArrow || k2 == KeyCode.DownArrow);
 
-        Sprite selectedSprite = null;
-        string mainKey = k1.ToLower().Trim();
+        // 조합 케이스별 이미지 리턴
+        if (hasLeft && hasRight) return multiLeftRight;
+        if (hasUp && hasDown) return multiUpDown;
+        if (hasLeft && hasUp) return multiLeftUp;
+        if (hasLeft && hasDown) return multiLeftDown;
+        if (hasRight && hasUp) return multiRightUp;
+        if (hasRight && hasDown) return multiRightDown;
 
-        if (mainKey.Contains("left")) selectedSprite = GetSprite(imageLeft, multiLeft, manyLeft);
-        else if (mainKey.Contains("right")) selectedSprite = GetSprite(imageRight, multiRight, manyRight);
-        else if (mainKey.Contains("up")) selectedSprite = GetSprite(imageUp, multiUp, manyUp);
-        else if (mainKey.Contains("down")) selectedSprite = GetSprite(imageDown, multiDown, manyDown);
+        return null;
+    }
 
-        if (selectedSprite != null && noteImage != null) noteImage.sprite = selectedSprite;
+    private Sprite GetNormalSprite(KeyCode k)
+    {
+        if (k == KeyCode.LeftArrow) return imageLeft;
+        if (k == KeyCode.RightArrow) return imageRight;
+        if (k == KeyCode.UpArrow) return imageUp;
+        if (k == KeyCode.DownArrow) return imageDown;
+        return null;
+    }
+
+    private Sprite GetManyTapSprite(KeyCode k)
+    {
+        if (k == KeyCode.LeftArrow) return manyLeft;
+        if (k == KeyCode.RightArrow) return manyRight;
+        if (k == KeyCode.UpArrow) return manyUp;
+        if (k == KeyCode.DownArrow) return manyDown;
+        return null;
     }
 
     private KeyCode ConvertToKeyCode(string key)
@@ -80,13 +114,6 @@ public abstract class N_222NoteBase : MonoBehaviour
         if (k.Contains("up")) return KeyCode.UpArrow;
         if (k.Contains("down")) return KeyCode.DownArrow;
         return KeyCode.None;
-    }
-
-    private Sprite GetSprite(Sprite normal, Sprite multi, Sprite many)
-    {
-        if (noteType == NoteType.MultiTap) return multi;
-        if (noteType == NoteType.ManyTap) return many;
-        return normal;
     }
 
     public abstract void OnPerfect();

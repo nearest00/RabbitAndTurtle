@@ -124,7 +124,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cb324af6e1b3746b6cfc2f6e47ec5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteType: 0
+  noteType: 5
   inputKey: 0
   inputKey2: 0
   roundID: 0
+  noteImage: {fileID: 0}
+  imageLeft: {fileID: 0}
+  imageRight: {fileID: 0}
+  imageUp: {fileID: 0}
+  imageDown: {fileID: 0}
+  multiLeftRight: {fileID: 0}
+  multiUpDown: {fileID: 0}
+  multiLeftUp: {fileID: 0}
+  multiLeftDown: {fileID: 0}
+  multiRightUp: {fileID: 0}
+  multiRightDown: {fileID: 0}
+  manyLeft: {fileID: 0}
+  manyRight: {fileID: 0}
+  manyUp: {fileID: 0}
+  manyDown: {fileID: 0}

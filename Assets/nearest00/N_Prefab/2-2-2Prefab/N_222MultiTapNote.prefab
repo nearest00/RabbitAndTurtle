@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3018456853402569497}
   - component: {fileID: 8210809469113538214}
-  - component: {fileID: 462239709896770666}
   m_Layer: 5
   m_Name: N_222MultiTapNote
   m_TagString: Untagged
@@ -58,40 +57,13 @@ MonoBehaviour:
   imageLeft: {fileID: 5688108486578453880, guid: 471f328a5fe1df14e8a6a46c02a267eb, type: 3}
   imageRight: {fileID: -4154153192459530125, guid: 6272de95d5b65804d9109c806a777219, type: 3}
   imageUp: {fileID: 133222596878361469, guid: a4b1d38258059be4ea8c398af1f2ed93, type: 3}
-  imageDown: {fileID: -3697858079898758732, guid: 54b5e033dd2d18f4694e26553e486532, type: 3}
-  multiLeft: {fileID: 0}
-  multiRight: {fileID: 0}
-  multiUp: {fileID: 0}
-  multiDown: {fileID: 0}
-  manyLeft: {fileID: 0}
-  manyRight: {fileID: 0}
-  manyUp: {fileID: 0}
-  manyDown: {fileID: 0}
---- !u!114 &462239709896770666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 127592131847842697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676ac0ce320c1194f8f307068e9344f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noteType: 0
-  inputKey: 0
-  inputKey2: 0
-  roundID: 0
-  noteImage: {fileID: 0}
-  imageLeft: {fileID: 0}
-  imageRight: {fileID: 0}
-  imageUp: {fileID: 0}
   imageDown: {fileID: 0}
-  multiLeft: {fileID: 0}
-  multiRight: {fileID: 0}
-  multiUp: {fileID: 0}
-  multiDown: {fileID: 0}
+  multiLeftRight: {fileID: -431436683484757596, guid: e8e2785d9570dc04594757a1b9043575, type: 3}
+  multiUpDown: {fileID: -2282084998842309432, guid: 5d7642d1976b4f94385255dcef445036, type: 3}
+  multiLeftUp: {fileID: -4991660768871010938, guid: 35df101aa331f9448bf45968b1ce74f0, type: 3}
+  multiLeftDown: {fileID: 4690976529108297771, guid: 48899fabb9c234b4b8f7dfa7547f47fb, type: 3}
+  multiRightUp: {fileID: -3462614485454024961, guid: c50b96d75a885914cabefc42b9a97a74, type: 3}
+  multiRightDown: {fileID: 7624248517085096478, guid: 888edfe978151614b9cec5e7df236ec9, type: 3}
   manyLeft: {fileID: 0}
   manyRight: {fileID: 0}
   manyUp: {fileID: 0}

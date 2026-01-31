@@ -62,6 +62,11 @@ public class N_222JudgeManager : MonoBehaviour
 
     private void HandleInput()
     {
+        if (activeNotes.Count > 0 && (Input.anyKeyDown))
+        {
+            var firstNote = activeNotes[0];
+            Debug.Log($"<color=yellow>[Judge]</color> 현재 리스트 노드 수: {activeNotes.Count}, 첫 노드 키: {firstNote.inputKey}, 타입: {firstNote.noteType}");
+        }
         // 1. 연타 노트 처리 (기존 유지)
         for (int i = 0; i < activeNotes.Count; i++)
         {
@@ -71,74 +76,63 @@ public class N_222JudgeManager : MonoBehaviour
                 if (Input.GetKeyDown(n.inputKey))
                 {
                     float dist = Mathf.Abs(n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
-                    if (dist <= badRange * 2.0f)
+                    if (dist <= badRange * 2.5f) // 연타는 좀 더 넉넉하게
                         n.GetComponent<N_222ManyTapNote>()?.OnManyTapInput();
                 }
             }
         }
 
-        // 2. 판정 루프 (멀티탭 및 일반 노트)
-        // 리스트를 돌며 '이미지 하나(노트 하나)'만 판정하면 되므로 구조가 단순해집니다.
+        // 2. 판정 루프 (단타 및 멀티탭)
         for (int i = 0; i < activeNotes.Count; i++)
         {
             var note = activeNotes[i];
 
+            // 판정 제외 대상 필터링
             if (note == null || note.isJudged || note.IsFinished ||
                 note.noteType == N_222NoteBase.NoteType.ManyTap ||
                 note.noteType == N_222NoteBase.NoteType.LongHold) continue;
 
             float dist = Mathf.Abs(note.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
-            if (dist > goodRange) continue;
+
+            // [중요] 사용자가 미리 누르는 것을 고려해 판정 최대 거리(missBoundary) 안쪽이면 입력 체크 시작
+            if (dist > missBoundary) continue;
 
             bool isHit = false;
-            if (note.noteType == N_222NoteBase.NoteType.MultiTap)
-            {
-                // 이 로그가 콘솔에 찍히는지 보세요. 안 찍히면 리스트에 없는 겁니다.
-                Debug.Log($"멀티탭 검사 중: {note.inputKey} + {note.inputKey2} / 거리: {dist}");
 
-                if (Input.GetKey(note.inputKey) && Input.GetKey(note.inputKey2))
-                {
-                    Debug.Log("두 키 모두 눌림 감지!"); // 이게 뜨는지 확인
-                    isHit = true;
-                }
-            }
-            // 테스트용: HandleInput의 일부
+            // --- 멀티탭 판정 ---
             if (note.noteType == N_222NoteBase.NoteType.MultiTap)
             {
-                // 거리 무시하고 키 상태만 체크
-                if (Input.GetKey(note.inputKey) && Input.GetKey(note.inputKey2))
-                {
-                    Debug.Log("멀티탭 성공!");
-                    isHit = true;
-                }
-            }
-            // [멀티탭 판정 핵심] 한 이미지에 화살표 두 개가 있는 경우
-            if (note.noteType == N_222NoteBase.NoteType.MultiTap)
-            {
-                // 조건: 두 키가 모두 '눌려(GetKey)' 있어야 하며, 
-                // 그중 최소 하나는 '방금(GetKeyDown)' 눌린 상태여야 함
-                bool key1Down = Input.GetKeyDown(note.inputKey);
-                bool key2Down = Input.GetKeyDown(note.inputKey2);
-                bool key1Pressed = Input.GetKey(note.inputKey);
-                bool key2Pressed = Input.GetKey(note.inputKey2);
+                bool key1 = Input.GetKey(note.inputKey);
+                bool key2 = Input.GetKey(note.inputKey2);
+                bool eitherDown = Input.GetKeyDown(note.inputKey) || Input.GetKeyDown(note.inputKey2);
 
-                if ((key1Down || key2Down) && key1Pressed && key2Pressed)
+                // 둘 다 눌려있고, 그 중 하나는 방금 누른 상태여야 함
+                if (eitherDown && key1 && key2)
                 {
                     isHit = true;
                 }
             }
-            // [일반 노트 판정]
-            else if (Input.GetKeyDown(note.inputKey))
+            // --- 단타 판정 ---
+            else
             {
-                isHit = true;
+                if (Input.GetKeyDown(note.inputKey))
+                {
+                    isHit = true;
+                }
             }
 
             if (isHit)
             {
+                // 거리와 상관없이 일단 'hit' 했으므로 판정 실행
                 if (note.noteType == N_222NoteBase.NoteType.LongStart) holdingRoundID = note.roundID;
                 note.isJudged = true;
                 Judge(note, dist);
-                break; // 한 프레임에 가장 가까운 노트 하나만 판정하고 루프 탈출
+                // Debug.Log($"판정 성공: {note.noteType}, 거리: {dist}");
+                break;
+            }
+            if (Input.anyKeyDown && !note.isJudged)
+            {
+                Debug.Log($"<color=cyan>[Check]</color> {note.inputKey} 입력 대기 중. 거리: {dist}");
             }
         }
 
@@ -168,28 +162,6 @@ public class N_222JudgeManager : MonoBehaviour
         }
     }
 
-    // 롱노트 유지 및 떼기 로직 분리
-    private void HandleLongNoteCheck()
-    {
-        if (Input.GetKeyUp(KeyCode.LeftArrow)) HandleKeyUp(KeyCode.LeftArrow);
-        if (Input.GetKeyUp(KeyCode.RightArrow)) HandleKeyUp(KeyCode.RightArrow);
-        if (Input.GetKeyUp(KeyCode.UpArrow)) HandleKeyUp(KeyCode.UpArrow);
-        if (Input.GetKeyUp(KeyCode.DownArrow)) HandleKeyUp(KeyCode.DownArrow);
-
-        if (holdingRoundID != -1)
-        {
-            foreach (var n in activeNotes)
-            {
-                if (n.roundID == holdingRoundID && n.noteType == N_222NoteBase.NoteType.LongHold && !n.isJudged)
-                {
-                    float dist = Mathf.Abs(n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
-                    if (dist <= perfectRange) n.OnPerfect();
-                }
-            }
-        }
-    }
-
-    
 
     private void HandleKeyUp(KeyCode key)
     {

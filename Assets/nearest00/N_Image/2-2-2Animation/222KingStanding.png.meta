@@ -1,0 +1,1183 @@
+fileFormatVersion: 2
+guid: c3eb28af2962b7d4680733744d044d86
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1134196054805348451
+    second: 222KingStanding_0
+  - first:
+      213: -7154618761201725354
+    second: 222KingStanding_1
+  - first:
+      213: 569886805533492242
+    second: 222KingStanding_2
+  - first:
+      213: -2905059679399879352
+    second: 222KingStanding_3
+  - first:
+      213: 8518606823835562990
+    second: 222KingStanding_4
+  - first:
+      213: 1457785885140913644
+    second: 222KingStanding_5
+  - first:
+      213: 8852861073244904454
+    second: 222KingStanding_6
+  - first:
+      213: 2548678935600724731
+    second: 222KingStanding_7
+  - first:
+      213: -4621553179445964564
+    second: 222KingStanding_8
+  - first:
+      213: 9046201266724048859
+    second: 222KingStanding_9
+  - first:
+      213: 5265770922036955436
+    second: 222KingStanding_10
+  - first:
+      213: 6194312594598703946
+    second: 222KingStanding_11
+  - first:
+      213: 6678598156823401974
+    second: 222KingStanding_12
+  - first:
+      213: -7085675977768351953
+    second: 222KingStanding_13
+  - first:
+      213: 3551988341502310020
+    second: 222KingStanding_14
+  - first:
+      213: 5482772855033136900
+    second: 222KingStanding_15
+  - first:
+      213: 2398035916556697647
+    second: 222KingStanding_16
+  - first:
+      213: -1340957281109539106
+    second: 222KingStanding_17
+  - first:
+      213: 8828479518350217146
+    second: 222KingStanding_18
+  - first:
+      213: -4997904019267457676
+    second: 222KingStanding_19
+  - first:
+      213: 2232864135804904682
+    second: 222KingStanding_20
+  - first:
+      213: -4136209326853093571
+    second: 222KingStanding_21
+  - first:
+      213: 3418409858747584461
+    second: 222KingStanding_22
+  - first:
+      213: 9026325635017927190
+    second: 222KingStanding_23
+  - first:
+      213: 766980320440327586
+    second: 222KingStanding_24
+  - first:
+      213: -209381131131611679
+    second: 222KingStanding_25
+  - first:
+      213: 160362387962344302
+    second: 222KingStanding_26
+  - first:
+      213: -408641760134970352
+    second: 222KingStanding_27
+  - first:
+      213: 6596503318441570719
+    second: 222KingStanding_28
+  - first:
+      213: 5752024973709128693
+    second: 222KingStanding_29
+  - first:
+      213: 229826898594095595
+    second: 222KingStanding_30
+  - first:
+      213: 2460818136850341726
+    second: 222KingStanding_31
+  - first:
+      213: 1828175027404161508
+    second: 222KingStanding_32
+  - first:
+      213: -924950441406390898
+    second: 222KingStanding_33
+  - first:
+      213: -5568325971241189692
+    second: 222KingStanding_34
+  - first:
+      213: 3152278505143254972
+    second: 222KingStanding_35
+  - first:
+      213: 233969467818198874
+    second: 222KingStanding_36
+  - first:
+      213: -6151631755453262147
+    second: 222KingStanding_37
+  - first:
+      213: -8156074368100865269
+    second: 222KingStanding_38
+  - first:
+      213: -7886179267563513625
+    second: 222KingStanding_39
+  - first:
+      213: 4204164430356697020
+    second: 222KingStanding_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 222KingStanding_0
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 3600
+        width: 734
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36082587d497dbf00800000000000000
+      internalID: 1134196054805348451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_1
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 3601
+        width: 735
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 650d93bb420b5bc90800000000000000
+      internalID: -7154618761201725354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_2
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 3602
+        width: 739
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 214810eb705a8e700800000000000000
+      internalID: 569886805533492242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_3
+      rect:
+        serializedVersion: 2
+        x: 4147
+        y: 3604
+        width: 744
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d5f0efc972fa7d0800000000000000
+      internalID: -2905059679399879352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_4
+      rect:
+        serializedVersion: 2
+        x: 5427
+        y: 3605
+        width: 749
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee3ffe3d5cb283670800000000000000
+      internalID: 8518606823835562990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_5
+      rect:
+        serializedVersion: 2
+        x: 6707
+        y: 3607
+        width: 752
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced0762f9881b3410800000000000000
+      internalID: 1457785885140913644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_6
+      rect:
+        serializedVersion: 2
+        x: 7987
+        y: 3609
+        width: 754
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60c55acdd3eabda70800000000000000
+      internalID: 8852861073244904454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_7
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 2891
+        width: 754
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa700b0df9be5320800000000000000
+      internalID: 2548678935600724731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_8
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 2893
+        width: 754
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce0db8c8ed1fcdfb0800000000000000
+      internalID: -4621553179445964564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_9
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 2894
+        width: 752
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdf86cd8f109a8d70800000000000000
+      internalID: 9046201266724048859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_10
+      rect:
+        serializedVersion: 2
+        x: 4148
+        y: 2895
+        width: 751
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c29089c11c6c31940800000000000000
+      internalID: 5265770922036955436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_11
+      rect:
+        serializedVersion: 2
+        x: 5428
+        y: 2896
+        width: 748
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43b8c46c7e96f550800000000000000
+      internalID: 6194312594598703946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_12
+      rect:
+        serializedVersion: 2
+        x: 6708
+        y: 2897
+        width: 745
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f5990f83a52fac50800000000000000
+      internalID: 6678598156823401974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_13
+      rect:
+        serializedVersion: 2
+        x: 7989
+        y: 2898
+        width: 741
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f27499f5d3f9aad90800000000000000
+      internalID: -7085675977768351953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_14
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 2178
+        width: 738
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 486f29dc3923b4130800000000000000
+      internalID: 3551988341502310020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_15
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 2178
+        width: 736
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4078768dcd8b61c40800000000000000
+      internalID: 5482772855033136900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_16
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 2179
+        width: 732
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f208df4f5f8874120800000000000000
+      internalID: 2398035916556697647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_17
+      rect:
+        serializedVersion: 2
+        x: 4150
+        y: 2179
+        width: 729
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed60e702576f36de0800000000000000
+      internalID: -1340957281109539106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_18
+      rect:
+        serializedVersion: 2
+        x: 5430
+        y: 2180
+        width: 727
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abf831eb85f058a70800000000000000
+      internalID: 8828479518350217146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_19
+      rect:
+        serializedVersion: 2
+        x: 6710
+        y: 2181
+        width: 726
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47de01646c0e3aab0800000000000000
+      internalID: -4997904019267457676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_20
+      rect:
+        serializedVersion: 2
+        x: 7990
+        y: 2181
+        width: 727
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae46c5ee91abcfe10800000000000000
+      internalID: 2232864135804904682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_21
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1462
+        width: 731
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d378344288b3996c0800000000000000
+      internalID: -4136209326853093571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_22
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 1462
+        width: 736
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcfc75fa7a1a07f20800000000000000
+      internalID: 3418409858747584461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_23
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 1462
+        width: 741
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61aee3e6753f34d70800000000000000
+      internalID: 9026325635017927190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_24
+      rect:
+        serializedVersion: 2
+        x: 4150
+        y: 1462
+        width: 746
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ad9f8da98cd4aa00800000000000000
+      internalID: 766980320440327586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_25
+      rect:
+        serializedVersion: 2
+        x: 5429
+        y: 1462
+        width: 750
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e51b3878f0281df0800000000000000
+      internalID: -209381131131611679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_26
+      rect:
+        serializedVersion: 2
+        x: 6709
+        y: 1462
+        width: 752
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6334d10eb8b93200800000000000000
+      internalID: 160362387962344302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_27
+      rect:
+        serializedVersion: 2
+        x: 7989
+        y: 1461
+        width: 752
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 014c3c6fb76345af0800000000000000
+      internalID: -408641760134970352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_28
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 739
+        width: 753
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f91356f71dc7b8b50800000000000000
+      internalID: 6596503318441570719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_29
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 738
+        width: 752
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f3bb11fc3c43df40800000000000000
+      internalID: 5752024973709128693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_30
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 735
+        width: 751
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1e78ab852803300800000000000000
+      internalID: 229826898594095595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_31
+      rect:
+        serializedVersion: 2
+        x: 4148
+        y: 733
+        width: 748
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f9dc7be05962220800000000000000
+      internalID: 2460818136850341726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_32
+      rect:
+        serializedVersion: 2
+        x: 5427
+        y: 731
+        width: 746
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e14aa7508bfe5910800000000000000
+      internalID: 1828175027404161508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_33
+      rect:
+        serializedVersion: 2
+        x: 6707
+        y: 728
+        width: 743
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8d9121697ae923f0800000000000000
+      internalID: -924950441406390898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_34
+      rect:
+        serializedVersion: 2
+        x: 7987
+        y: 726
+        width: 740
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce369a080559b2b0800000000000000
+      internalID: -5568325971241189692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_35
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 4
+        width: 738
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbfb92459942fbb20800000000000000
+      internalID: 3152278505143254972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_36
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 2
+        width: 735
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a574799cdf93f3300800000000000000
+      internalID: 233969467818198874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_37
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 0
+        width: 732
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db6123bd28301aaa0800000000000000
+      internalID: -6151631755453262147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_38
+      rect:
+        serializedVersion: 2
+        x: 4147
+        y: 0
+        width: 730
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0bedaf239dcfce80800000000000000
+      internalID: -8156074368100865269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_39
+      rect:
+        serializedVersion: 2
+        x: 5427
+        y: 0
+        width: 729
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e893d92db9ae8290800000000000000
+      internalID: -7886179267563513625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 222KingStanding_40
+      rect:
+        serializedVersion: 2
+        x: 6707
+        y: 0
+        width: 730
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf4eb85641385a30800000000000000
+      internalID: 4204164430356697020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      222KingStanding_0: 1134196054805348451
+      222KingStanding_1: -7154618761201725354
+      222KingStanding_10: 5265770922036955436
+      222KingStanding_11: 6194312594598703946
+      222KingStanding_12: 6678598156823401974
+      222KingStanding_13: -7085675977768351953
+      222KingStanding_14: 3551988341502310020
+      222KingStanding_15: 5482772855033136900
+      222KingStanding_16: 2398035916556697647
+      222KingStanding_17: -1340957281109539106
+      222KingStanding_18: 8828479518350217146
+      222KingStanding_19: -4997904019267457676
+      222KingStanding_2: 569886805533492242
+      222KingStanding_20: 2232864135804904682
+      222KingStanding_21: -4136209326853093571
+      222KingStanding_22: 3418409858747584461
+      222KingStanding_23: 9026325635017927190
+      222KingStanding_24: 766980320440327586
+      222KingStanding_25: -209381131131611679
+      222KingStanding_26: 160362387962344302
+      222KingStanding_27: -408641760134970352
+      222KingStanding_28: 6596503318441570719
+      222KingStanding_29: 5752024973709128693
+      222KingStanding_3: -2905059679399879352
+      222KingStanding_30: 229826898594095595
+      222KingStanding_31: 2460818136850341726
+      222KingStanding_32: 1828175027404161508
+      222KingStanding_33: -924950441406390898
+      222KingStanding_34: -5568325971241189692
+      222KingStanding_35: 3152278505143254972
+      222KingStanding_36: 233969467818198874
+      222KingStanding_37: -6151631755453262147
+      222KingStanding_38: -8156074368100865269
+      222KingStanding_39: -7886179267563513625
+      222KingStanding_4: 8518606823835562990
+      222KingStanding_40: 4204164430356697020
+      222KingStanding_5: 1457785885140913644
+      222KingStanding_6: 8852861073244904454
+      222KingStanding_7: 2548678935600724731
+      222KingStanding_8: -4621553179445964564
+      222KingStanding_9: 9046201266724048859
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

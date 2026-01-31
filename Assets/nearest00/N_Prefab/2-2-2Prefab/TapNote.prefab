@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3697858079898758732, guid: 54b5e033dd2d18f4694e26553e486532, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -129,14 +129,16 @@ MonoBehaviour:
   inputKey2: 0
   roundID: 0
   noteImage: {fileID: 5659341527612376961}
-  imageLeft: {fileID: 5688108486578453880, guid: 471f328a5fe1df14e8a6a46c02a267eb, type: 3}
-  imageRight: {fileID: -4154153192459530125, guid: 6272de95d5b65804d9109c806a777219, type: 3}
-  imageUp: {fileID: 133222596878361469, guid: a4b1d38258059be4ea8c398af1f2ed93, type: 3}
+  imageLeft: {fileID: 5688108486578453880, guid: bfad21634023086479bcb443228e0406, type: 3}
+  imageRight: {fileID: -4154153192459530125, guid: 55e2a3a257bcd04478585931ae45292a, type: 3}
+  imageUp: {fileID: 133222596878361469, guid: 49d0ed8296dd35249a1abfdff0e2ae62, type: 3}
   imageDown: {fileID: -3697858079898758732, guid: 54b5e033dd2d18f4694e26553e486532, type: 3}
-  multiLeft: {fileID: 0}
-  multiRight: {fileID: 0}
-  multiUp: {fileID: 0}
-  multiDown: {fileID: 0}
+  multiLeftRight: {fileID: 0}
+  multiUpDown: {fileID: 0}
+  multiLeftUp: {fileID: 0}
+  multiLeftDown: {fileID: 0}
+  multiRightUp: {fileID: 0}
+  multiRightDown: {fileID: 0}
   manyLeft: {fileID: 0}
   manyRight: {fileID: 0}
   manyUp: {fileID: 0}

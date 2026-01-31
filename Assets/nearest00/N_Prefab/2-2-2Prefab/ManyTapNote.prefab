@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34527a0c2729eaf4284cb0ec4ef68aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteType: 0
+  noteType: 2
   inputKey: 0
   inputKey2: 0
   roundID: 0
@@ -58,10 +58,12 @@ MonoBehaviour:
   imageRight: {fileID: 0}
   imageUp: {fileID: 0}
   imageDown: {fileID: 0}
-  multiLeft: {fileID: 0}
-  multiRight: {fileID: 0}
-  multiUp: {fileID: 0}
-  multiDown: {fileID: 0}
+  multiLeftRight: {fileID: 0}
+  multiUpDown: {fileID: 0}
+  multiLeftUp: {fileID: 0}
+  multiLeftDown: {fileID: 0}
+  multiRightUp: {fileID: 0}
+  multiRightDown: {fileID: 0}
   manyLeft: {fileID: 0}
   manyRight: {fileID: 0}
   manyUp: {fileID: 0}
