@@ -1737,7 +1737,7 @@ GameObject:
   - component: {fileID: 831716918}
   - component: {fileID: 831716917}
   m_Layer: 0
-  m_Name: SFX
+  m_Name: SFXList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2495,8 +2495,8 @@ RectTransform:
   - {fileID: 388784938}
   - {fileID: 30674612}
   - {fileID: 2083168416}
-  - {fileID: 1342603966}
   - {fileID: 177094739}
+  - {fileID: 1342603966}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3017,7 +3017,7 @@ GameObject:
   - component: {fileID: 1923204901}
   - component: {fileID: 1923204902}
   m_Layer: 5
-  m_Name: JudgeLine
+  m_Name: N_222JudgeLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

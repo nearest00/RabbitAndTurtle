@@ -103,4 +103,8 @@ public class SettingPanel : MonoBehaviour
     {
         Time.timeScale = 1f;
     }
+    public bool IsAnyPanelOpen()
+    {
+        return basePanel.activeSelf || soundPanel.activeSelf;
+    }
 }
