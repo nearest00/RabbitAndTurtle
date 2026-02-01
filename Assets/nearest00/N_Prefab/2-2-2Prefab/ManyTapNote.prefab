@@ -64,11 +64,11 @@ MonoBehaviour:
   multiLeftDown: {fileID: 0}
   multiRightUp: {fileID: 0}
   multiRightDown: {fileID: 0}
-  manyLeft: {fileID: 0}
-  manyRight: {fileID: 0}
-  manyUp: {fileID: 0}
-  manyDown: {fileID: 0}
-  requiredTapCount: 10
+  manyLeft: {fileID: -721535197567673233, guid: 5392fbbe9c535214bb77bb6d9914a090, type: 3}
+  manyRight: {fileID: 1944813494786550413, guid: 38c743c8d4bc3894f965310a065ba254, type: 3}
+  manyUp: {fileID: 910091792467538589, guid: 1081ffaffc41fc44fb7afdd8b000f2be, type: 3}
+  manyDown: {fileID: 1108052030516427527, guid: bff7bd48a84ed844caa37b38c6581c57, type: 3}
+  requiredTapCount: 5
 --- !u!1 &6550411115723792607
 GameObject:
   m_ObjectHideFlags: 0

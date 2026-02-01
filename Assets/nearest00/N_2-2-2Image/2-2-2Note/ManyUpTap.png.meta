@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 82dc89e0e65d63543a699392b39ba8aa
+guid: 1081ffaffc41fc44fb7afdd8b000f2be
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2864450935571011549
-    second: 222JudgeLine_0
+      213: 910091792467538589
+    second: ManyUpTap_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 222JudgeLine_0
+      name: ManyUpTap_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 3
-        width: 244
-        height: 244
+        x: 0
+        y: 0
+        width: 599
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32821c4fc0d6f38d0800000000000000
-      internalID: -2864450935571011549
+      spriteID: d92b603d9ab41ac00800000000000000
+      internalID: 910091792467538589
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      222JudgeLine_0: -2864450935571011549
+      ManyUpTap_0: 910091792467538589
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
