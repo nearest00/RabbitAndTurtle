@@ -35,7 +35,7 @@ public class N_222RoundManager : MonoBehaviour
     public List<RoundPattern> hardRounds = new List<RoundPattern>();
 
     [Header("Note Slots (Actual Game)")]
-    public RectTransform[] noteSlots = new RectTransform[5]; // 에러 해결: 중복 선언 제거 및 하나로 통합
+    public RectTransform[] noteSlots = new RectTransform[5];
 
     [Header("Preview Slots (Decoration)")]
     public RectTransform[] secondNoteSlots = new RectTransform[5];
