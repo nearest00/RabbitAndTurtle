@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class SettingPanel : MonoBehaviour
 {
+    private bool isCountingDown = false;
     public static SettingPanel Instance { get; private set; }
+    public PauseCountDown Count;
     private void Awake()
     {
         // --- 싱글톤 및 씬 전환 방지 로직 ---
@@ -25,36 +27,47 @@ public class SettingPanel : MonoBehaviour
 
     void Update()
     {
+        if (isCountingDown) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             HandleEscape();
         }
     }
-
+    public void SetIsCountingDown(bool value)
+    {
+        isCountingDown = value;
+    }
     private void HandleEscape()
     {
         if (soundPanel.activeSelf)
         {
             soundPanel.SetActive(false);
-            ResumeGame();
+            StartResumeSequence();
             return;
         }
 
         if (basePanel.activeSelf)
         {
             basePanel.SetActive(false);
-            ResumeGame();
+            StartResumeSequence();
             return;
         }
         
-        OpenBasePanel();
+        OpenBasePanel(); //아무 패널도 안 열려있으면 베이스 열기
     }
-
-    // =====================
-    // 기본 패널
-    // =====================
-
-    public void OpenBasePanel()
+    private void StartResumeSequence()
+    {
+        if (PauseCountDown.Instance != null)
+        {
+            isCountingDown = true; // 입력 차단 시작
+            PauseCountDown.Instance.ResumeGameCountDown();
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+    public void OpenBasePanel() //esc 베이스 / 사운드->베이스 공통함수 사운드끄고 베이스켜기
     {
         basePanel.SetActive(true);
         soundPanel.SetActive(false);
@@ -64,7 +77,7 @@ public class SettingPanel : MonoBehaviour
     public void CloseBasePanel()
     {
         basePanel.SetActive(false);
-        ResumeGame();
+        StartResumeSequence();
     }
 
     // 기본 패널 버튼 1
@@ -90,19 +103,11 @@ public class SettingPanel : MonoBehaviour
         Debug.Log("게임 종료");
         Application.Quit();
     }
-    // =====================
-    // 공통
-    // =====================
-
     private void PauseGame()
     {
         Time.timeScale = 0f;
     }
 
-    private void ResumeGame()
-    {
-        Time.timeScale = 1f;
-    }
     public bool IsAnyPanelOpen()
     {
         return basePanel.activeSelf || soundPanel.activeSelf;
