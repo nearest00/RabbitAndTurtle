@@ -15,6 +15,12 @@ public class SoundManager : MonoBehaviour
 
     private Coroutine fadeCoroutine;
 
+    private bool isPaused = false;
+    public bool CanSettingOn
+    {
+        get => SettingPanel.Instance.CanSettingOn;
+        set => SettingPanel.Instance.CanSettingOn = value;
+    }
     void Awake()
     {
         if (Instance == null)
@@ -54,7 +60,7 @@ public class SoundManager : MonoBehaviour
     // [배경음 재생] 씬별 BGMInitializer가 호출
     public void PlayBGM(AudioClip clip)
     {
-        if (bgmSource.clip == clip) return;
+        if (bgmSource.clip == clip&&bgmSource.isPlaying) return;
         bgmSource.clip = clip;
         bgmSource.volume = BgmVolume; // 기존 설정 볼륨으로 재생
         bgmSource.Play();
@@ -63,7 +69,7 @@ public class SoundManager : MonoBehaviour
     // [효과음 재생] 씬 내의 어떤 스크립트든 호출 가능
     public void PlaySFX(AudioClip clip)
     {
-        if (clip == null) return;
+        if (clip == null || isPaused) return;
         // 재생하는 순간의 설정된 SFX 볼륨을 적용
         sfxSource.PlayOneShot(clip, SfxVolume);
     }
@@ -95,11 +101,38 @@ public class SoundManager : MonoBehaviour
     {
         FadeOutBGM(duration);
         yield return new WaitForSeconds(duration);
+        CanSettingOn=true;
         SceneManager.LoadScene(sceneName);
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 씬 이동 후 볼륨 자동 복구
         bgmSource.volume = BgmVolume;
+    }
+    public void PauseAllSounds()
+    {
+        isPaused = true;
+        if (bgmSource.isPlaying)
+        {
+            bgmSource.Pause();
+        }
+        sfxSource.Stop();
+    }
+    public void ResumeAllSounds()
+    {
+        isPaused = false;
+        bgmSource.UnPause();
+        if (!bgmSource.isPlaying)
+        {
+            bgmSource.Play();
+        }
+    }
+    public void StopBGM()
+    {
+        bgmSource.Pause();
+    }
+    public void ResetBGM()
+    {
+        bgmSource.Stop();
     }
 }

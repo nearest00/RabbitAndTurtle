@@ -60,11 +60,14 @@ public class N_222RoundManager : MonoBehaviour
     [Header("Judge Lines")]
     [SerializeField] private N_222JudgeLine mainLine;
     [SerializeField] private N_222PrevJudgeLine previewLine;
+    [SerializeField] private N_222LifeSlider lifeslider;
+    [SerializeField] private N_222Ending ending;
 
     public static N_222RoundManager Instance;
     public string currentDifficulty = "easy";
     public int currentRoundIndex = -1;
     private float currentBPM;
+    public int MaxLife;
 
     private void Awake()
     {
@@ -94,7 +97,22 @@ public class N_222RoundManager : MonoBehaviour
         if (targetList == null || targetList.Count == 0) return;
 
         currentRoundIndex++;
-        if (currentRoundIndex >= targetList.Count) currentRoundIndex = 0;
+        if (currentRoundIndex == targetList.Count)
+        {
+            Time.timeScale = 0f;
+            if (lifeslider.Max == 0)
+            {
+                Debug.Log("난이도 설정 실패!");
+                MaxLife = 400;
+            }
+            Debug.Log("분모"+ lifeslider.Max);
+            if (lifeslider.targetSlider.value / lifeslider.Max >= 0.6)
+            {
+                ending.StageClear();
+            }
+            else ending.StageFailed();
+            return;
+        }
 
         SpawnCurrent();
     }

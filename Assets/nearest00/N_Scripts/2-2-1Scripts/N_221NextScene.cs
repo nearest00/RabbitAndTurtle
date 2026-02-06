@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class N_222NextScene : MonoBehaviour
+public class N_221NextScene : MonoBehaviour
 {
     private bool isTransitioning = false;
     public bool isCountingDown
@@ -21,7 +21,7 @@ public class N_222NextScene : MonoBehaviour
         isTransitioning = true;
         if (SoundManager.Instance != null)
         {
-            SoundManager.Instance.FadeAndLoadScene("MiniGame1", 1.5f);
+            SoundManager.Instance.FadeAndLoadScene("2-2-2Game", 1.5f);
         }
     }
 }

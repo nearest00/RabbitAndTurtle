@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 
-public class N_222GuidePanelOff : MonoBehaviour
+public class N_221GuidePanelOff : MonoBehaviour
 {
     [SerializeField] private GameObject[] guidePanel;
     int i = 0;
@@ -32,17 +32,17 @@ public class N_222GuidePanelOff : MonoBehaviour
     void Update()
     {
         if (isCountingDown) return;
-        if (Input.GetMouseButtonDown(0)&&tutorialing)
+        if (Input.GetMouseButtonDown(0) && tutorialing)
         {
             if (guidePanel.Length == 0) return;
 
             guidePanel[i].SetActive(false);
-            if (i<guidePanel.Length-1)
+            if (i < guidePanel.Length - 1)
             {
                 i++;
                 guidePanel[i].SetActive(true);
             }
-            else if(i==guidePanel.Length-1)
+            else if (i == guidePanel.Length - 1)
             {
                 Debug.Log("튜토리얼 종료");
                 StartResumeSequence();

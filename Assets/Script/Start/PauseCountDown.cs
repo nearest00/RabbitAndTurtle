@@ -8,24 +8,25 @@ public class PauseCountDown : MonoBehaviour
     public static PauseCountDown Instance;
 
     public TextMeshProUGUI countdownText;
+    public bool isCounting;
 
     private void Awake()
     {
-        // 싱글톤 초기화
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     public void ResumeGameCountDown()
     {
-        // 중복 실행 방지
         StopAllCoroutines();
         StartCoroutine(ResumeSequence());
     }
 
     private IEnumerator ResumeSequence()
     {
+        Debug.Log("카운트 코루틴 시작");
+        isCounting = true;
+        Time.timeScale = 0f;
         countdownText.gameObject.SetActive(true);
-
         int count = 3;
         while (count > 0)
         {
@@ -39,6 +40,9 @@ public class PauseCountDown : MonoBehaviour
 
         countdownText.gameObject.SetActive(false);
         Time.timeScale = 1f;
+        SoundManager.Instance.ResumeAllSounds();
+        isCounting = false;
+
         if (SettingPanel.Instance != null)
         {
             SettingPanel.Instance.SetIsCountingDown(false);

@@ -1,10 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingPanel : MonoBehaviour
 {
-    private bool isCountingDown = false;
     public static SettingPanel Instance { get; private set; }
-    public PauseCountDown Count;
+    public bool CanSettingOn;
+    public bool isCountingDown
+    {
+        get => PauseCountDown.Instance.isCounting;
+        set=>PauseCountDown.Instance.isCounting = value;
+    }
     private void Awake()
     {
         // --- 싱글톤 및 씬 전환 방지 로직 ---
@@ -24,12 +30,17 @@ public class SettingPanel : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject basePanel;   // 기본 패널
     [SerializeField] private GameObject soundPanel;  // 사운드 패널
-
+    private void Start()
+    {
+        CanSettingOn = true;
+        Debug.Log("설정패널 사용가능");
+    }
     void Update()
     {
-        if (isCountingDown) return;
+        if (isCountingDown) return; 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if(!CanSettingOn) return;
             HandleEscape();
         }
     }
@@ -52,22 +63,27 @@ public class SettingPanel : MonoBehaviour
             StartResumeSequence();
             return;
         }
-        
-        OpenBasePanel(); //아무 패널도 안 열려있으면 베이스 열기
+        SoundManager.Instance.PauseAllSounds();
+        OpenBasePanel();
     }
     private void StartResumeSequence()
     {
         if (PauseCountDown.Instance != null)
         {
-            isCountingDown = true; // 입력 차단 시작
+            basePanel.SetActive(false);
+            soundPanel.SetActive(false);
+
+            isCountingDown = true;
             PauseCountDown.Instance.ResumeGameCountDown();
         }
         else
         {
+            basePanel.SetActive(false);
+            soundPanel.SetActive(false);
             Time.timeScale = 1f;
         }
     }
-    public void OpenBasePanel() //esc 베이스 / 사운드->베이스 공통함수 사운드끄고 베이스켜기
+    public void OpenBasePanel() 
     {
         basePanel.SetActive(true);
         soundPanel.SetActive(false);
@@ -76,13 +92,18 @@ public class SettingPanel : MonoBehaviour
 
     public void CloseBasePanel()
     {
+        Debug.Log("클로즈베이스패널실행");
         basePanel.SetActive(false);
-        StartResumeSequence();
+        if (PauseCountDown.Instance != null)
+        {
+            PauseCountDown.Instance.ResumeGameCountDown();
+        }
     }
 
     // 기본 패널 버튼 1
     public void OnCloseBasePanelButton()
     {
+        Debug.Log("온클로즈베이스패널버튼 클릭");
         CloseBasePanel();
     }
 
@@ -98,6 +119,16 @@ public class SettingPanel : MonoBehaviour
         soundPanel.SetActive(false);
         basePanel.SetActive(true);
     }
+    public void OnResetGameButton()
+    {
+        Time.timeScale = 1f;
+        SoundManager.Instance.ResetBGM();
+        // 2. 현재 씬 이름을 가져와서 다시 로드
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+        basePanel.SetActive(false);
+        Debug.Log($"{sceneName} 씬을 완전히 새로 시작합니다.");
+    }
     public void OnExitGameButton()
     {
         Debug.Log("게임 종료");
@@ -107,7 +138,6 @@ public class SettingPanel : MonoBehaviour
     {
         Time.timeScale = 0f;
     }
-
     public bool IsAnyPanelOpen()
     {
         return basePanel.activeSelf || soundPanel.activeSelf;
