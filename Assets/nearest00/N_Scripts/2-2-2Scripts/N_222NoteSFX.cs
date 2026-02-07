@@ -12,7 +12,7 @@ public class N_222NoteSFX : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetKeyDown(KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.LeftArrow)|| Input.GetKeyDown(KeyCode.RightArrow))
         {
-            SoundManager.Instance.PlaySFX(sfx.NoteSound);
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySFX(sfx.NoteSound);
         }
     }
 }

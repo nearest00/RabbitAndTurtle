@@ -12,6 +12,7 @@ public class TestSoundEffect : MonoBehaviour
     }
     void Sound()
     {
+        if (SoundManager.Instance == null) return;
         SoundManager.Instance.PlaySFX(TestSound);
     }
 }

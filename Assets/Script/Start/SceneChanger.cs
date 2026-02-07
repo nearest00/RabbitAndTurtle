@@ -57,7 +57,7 @@ public class SceneChanger : MonoBehaviour
             SetResetButtonActive(true);
             if (SoundManager.Instance != null)
             {
-                SoundManager.Instance.FadeAndLoadScene("2-2-1Game", 1.5f);
+                SoundManager.Instance.FadeAndLoadScene("StageSellect", 1.5f);
             }
         }
     }

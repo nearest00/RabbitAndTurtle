@@ -12,6 +12,7 @@ public class N_221NextScene : MonoBehaviour
     }
     public void ButtonClick()
     {
+        Destroy(N_221LifeSlider.Instance);
         if (isTransitioning) return;
         if (isCountingDown) return;
         if (SettingPanel.Instance != null && SettingPanel.Instance.IsAnyPanelOpen())

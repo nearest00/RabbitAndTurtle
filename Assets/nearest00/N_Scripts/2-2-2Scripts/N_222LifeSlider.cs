@@ -28,20 +28,6 @@ public class N_222LifeSlider : MonoBehaviour
             Debug.LogError("RoundManager가 씬에 없습니다!");
             return;
         }
-        if (roundDifficulty == "easy")
-        {
-            Max = 400;
-        }
-        if (roundDifficulty == "normal")
-        {
-            Max = 600;
-        }
-        if (roundDifficulty == "hard")
-        {
-            Max = 850;
-        }
-        targetSlider.maxValue = Max;
-        UpdateSliderUI();
     }
     private void UpdateSliderUI()
     {

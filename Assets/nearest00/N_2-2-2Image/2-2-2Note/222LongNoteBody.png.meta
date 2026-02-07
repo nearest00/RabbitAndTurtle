@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 45b991da1801fc74dbf6e39d576ffba4
+guid: b3a360a7e0a52d84bb7ae2051ead103a
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -103,10 +103,10 @@ TextureImporter:
       name: 222LongNoteBody_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 50
-        width: 197
-        height: 198
+        x: 0
+        y: 0
+        width: 190
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

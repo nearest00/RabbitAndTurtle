@@ -62,9 +62,17 @@ public class N_222RoundManager : MonoBehaviour
     [SerializeField] private N_222PrevJudgeLine previewLine;
     [SerializeField] private N_222LifeSlider lifeslider;
     [SerializeField] private N_222Ending ending;
-
+    public string currentDifficulty
+    {
+        get => N_StageSellectButton.Instance.StageDifficulty;
+        set => N_StageSellectButton.Instance.StageDifficulty = value;
+    }
+    public float Max
+    {
+        get => (lifeslider != null) ? lifeslider.Max : 0;
+        set { if (lifeslider != null) lifeslider.Max = value; }
+    }
     public static N_222RoundManager Instance;
-    public string currentDifficulty = "easy";
     public int currentRoundIndex = -1;
     private float currentBPM;
     public int MaxLife;
@@ -73,8 +81,51 @@ public class N_222RoundManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
+        SetDifficulty();
     }
+    private void SetDifficulty()
+    {
+        float notes = 0;
+        // currentDifficulty가 null일 경우를 대비해 안전하게 처리
+        string diff = currentDifficulty?.ToLower() ?? "easy";
 
+        switch (diff)
+        {
+            case "easy": notes = 55; break;
+            case "normal": notes = 55; break;
+            case "hard": notes = 120; break;
+            default: notes = 55; break;
+        }
+
+        // [중요] N_222LifeSlider.Instance 대신, 이미 선언된 'lifeslider' 변수를 사용합니다.
+        if (lifeslider != null)
+        {
+            lifeslider.Max = notes;
+            if (lifeslider.targetSlider != null)
+            {
+                lifeslider.targetSlider.maxValue = notes;
+            }
+
+            // 로그에서도 Instance를 지우고 lifeslider 변수를 참조합니다.
+            Debug.Log("LifeSlider Max Set: " + lifeslider.Max);
+            if (lifeslider.targetSlider != null)
+                Debug.Log("Slider UI MaxValue: " + lifeslider.targetSlider.maxValue);
+        }
+        else
+        {
+            // 만약 인스펙터에 연결을 안 했다면 코드로라도 찾습니다.
+            lifeslider = FindFirstObjectByType<N_222LifeSlider>();
+            if (lifeslider != null)
+            {
+                lifeslider.Max = notes;
+                lifeslider.targetSlider.maxValue = notes;
+            }
+            else
+            {
+                Debug.LogError("N_222RoundManager: lifeslider가 인스펙터에 연결되지 않았고 씬에서도 찾을 수 없습니다!");
+            }
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -100,11 +151,7 @@ public class N_222RoundManager : MonoBehaviour
         if (currentRoundIndex == targetList.Count)
         {
             Time.timeScale = 0f;
-            if (lifeslider.Max == 0)
-            {
-                Debug.Log("난이도 설정 실패!");
-                MaxLife = 400;
-            }
+            
             Debug.Log("분모"+ lifeslider.Max);
             if (lifeslider.targetSlider.value / lifeslider.Max >= 0.6)
             {

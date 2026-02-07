@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/nearest00/N_Scenes/Start.unity
     guid: 862c8d6b8acdd1a4cbe5b41f58ea6798
   - enabled: 1
+    path: Assets/nearest00/N_Scenes/StageSellect.unity
+    guid: 7c08342eb17b93249a05b50cab732e50
+  - enabled: 1
     path: Assets/rxsuoz/R_Scenes/MiniGame1.unity
     guid: f0cf4ceeddb48724fbbdc0d53107519b
   - enabled: 1

@@ -21,9 +21,10 @@ public class N_222GuidePanelOff : MonoBehaviour
     private bool tutorialing;
     private IEnumerator Start()
     {
+
         yield return null;
         CanSettingOn = false;
-        SoundManager.Instance.PauseAllSounds();
+        if (SoundManager.Instance != null) SoundManager.Instance.PauseAllSounds();
         Time.timeScale = 0f;
         tutorialing = true;
         Debug.Log("기본세팅 완료");
@@ -31,7 +32,7 @@ public class N_222GuidePanelOff : MonoBehaviour
     }
     void Update()
     {
-        if (isCountingDown) return;
+        if(PauseCountDown.Instance!=null) if (isCountingDown) return;
         if (Input.GetMouseButtonDown(0)&&tutorialing)
         {
             if (guidePanel.Length == 0) return;
@@ -46,7 +47,7 @@ public class N_222GuidePanelOff : MonoBehaviour
             {
                 Debug.Log("튜토리얼 종료");
                 StartResumeSequence();
-                CanSettingOn = true;
+                if(SettingPanel.Instance != null) CanSettingOn = true;
                 tutorialing = false;
             }
         }

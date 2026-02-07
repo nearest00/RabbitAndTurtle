@@ -8,6 +8,7 @@ public class N221_GameManager : MonoBehaviour
     public N_221Ending Ending;
     private bool isEnding=false;
     private N_221SFXList sfx;
+
     [Header("Timer Settings")]
     public TMP_Text timerText; // 시간을 표시할 UI 텍스트
     public float easyTimeLimit = 60f;
@@ -39,14 +40,29 @@ public class N221_GameManager : MonoBehaviour
 
     [Header("Player")]
     public N221_CharacterMove playerScript; // 플레이어 스크립트 연결
+    public string currentDifficulty
+    {
+        get => N_StageSellectButton.Instance.StageDifficulty;
+        set => N_StageSellectButton.Instance.StageDifficulty = value;
+    }
+    public bool isCounting
+    {
+        get => PauseCountDown.Instance.isCounting;
+        set => PauseCountDown.Instance.isCounting = value;
+    }
+    public float Max
+    {
+        get => N_221LifeSlider.Instance.Max;
+        set => N_221LifeSlider.Instance.Max = value;
+    }
+
     void Start()
     {
         sfx=Object.FindFirstObjectByType<N_221SFXList>();
-        SetDifficulty("easy");
+        SetDifficulty(currentDifficulty);
         // 게임 시작 시 플레이어 앞에 8개의 물고기를 미리 생성
         for (int i = 0; i < 8; i++)
         {
-            // 플레이어로부터 왼쪽으로 i칸 떨어진 위치 계산
             float targetX = playerX - ((i + 1) * moveStep);
             SpawnNewFish(targetX);
         }
@@ -54,7 +70,7 @@ public class N221_GameManager : MonoBehaviour
     public void SetDifficulty(string difficulty)
     {
         // 1. 목표 개수 설정
-        switch (difficulty.ToLower())
+        switch (currentDifficulty.ToLower())
         {
             case "easy": 
                 targetTotalCount = easyMaxCount;
@@ -70,13 +86,20 @@ public class N221_GameManager : MonoBehaviour
                 currentTimeLimit = hardTimeLimit;
                 break;
         }
+        N_221LifeSlider.Instance.Max = targetTotalCount * 10;
+        N_221LifeSlider.Instance.targetSlider.maxValue = Max;
         timeRemaining = currentTimeLimit;
         isTimerRunning = true;
+        Debug.Log(N_221LifeSlider.Instance.Max);
     }
 
     void Update()
     {
         if (isEnding) return;
+        if (PauseCountDown.Instance != null)
+        {
+            if (isCounting) return;
+        }
         if (Input.GetKeyDown(KeyCode.UpArrow)) ProcessStep(0);
         else if (Input.GetKeyDown(KeyCode.DownArrow)) ProcessStep(1);
         if (isTimerRunning)

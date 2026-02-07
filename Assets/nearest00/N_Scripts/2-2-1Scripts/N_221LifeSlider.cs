@@ -9,11 +9,11 @@ public class N_221LifeSlider : MonoBehaviour
     public float internalValue = 0f;
     public float Max;
     private string roundDifficulty;
+
     void Start()
     {
         if(Instance==null) Instance = this;
         if (targetSlider == null) targetSlider = GetComponent<Slider>();
-        
         if (roundDifficulty == "easy")
         {
             Max = 550;
