@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 // 채보 데이터를 읽어서 노트를 생성하는 클래스
@@ -25,6 +24,14 @@ public class RNoteSpawner : MonoBehaviour
     // 노트 이동 속도
     private float noteSpeed = 500f;
 
+    // 씬 전환 시에도 유지되도록 설정
+    void Awake()
+    {
+        // 부모에서 분리한 뒤 DontDestroyOnLoad 호출 (경고 방지)
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);
+    }
+
     // 채보 로드 및 노트 생성 시작
     public void StartSpawning(string chartFileName, float speed)
     {
@@ -43,7 +50,6 @@ public class RNoteSpawner : MonoBehaviour
             float currentTime = Time.time - startTime;
 
             // 다음 노트를 스폰해야 하는 시간
-            // 노트가 화면 상단에서 판정 라인까지 내려오는 데 걸리는 시간을 고려
             float spawnTime = chartData.notes[noteIndex].time - (500f / noteSpeed);
 
             // 스폰 시간이 되었으면 노트 생성
@@ -69,7 +75,8 @@ public class RNoteSpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Chart file not found: " + chartFileName);
+            Debug.LogError($"Chart file not found: {chartFileName}\n" +
+                           $"확인하세요: Assets/Resources/Charts/{chartFileName}.json");
         }
     }
 
