@@ -75,8 +75,7 @@ public class RNoteSpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Chart file not found: {chartFileName}\n" +
-                           $"확인하세요: Assets/Resources/Charts/{chartFileName}.json");
+            Debug.LogError($"Chart file not found: {chartFileName}\n" + $"확인하세요: Assets/Resources/Charts/{chartFileName}.json");
         }
     }
 
