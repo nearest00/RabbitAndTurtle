@@ -383,7 +383,6 @@ MonoBehaviour:
   previewLine: {fileID: 1227605198}
   lifeslider: {fileID: 2083168417}
   ending: {fileID: 30674616}
-  currentDifficulty: easy
   currentRoundIndex: -1
   MaxLife: 0
 --- !u!114 &30674615

@@ -1,0 +1,1157 @@
+fileFormatVersion: 2
+guid: 3db97b1135bbb9d479a7c0821f10cfe6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3414357735333265308
+    second: RabbitSwimming_0
+  - first:
+      213: 5579711218910679877
+    second: RabbitSwimming_1
+  - first:
+      213: 3619971009246159843
+    second: RabbitSwimming_2
+  - first:
+      213: 2956673238466415851
+    second: RabbitSwimming_3
+  - first:
+      213: -6585449292348831604
+    second: RabbitSwimming_4
+  - first:
+      213: 8587517098710600070
+    second: RabbitSwimming_5
+  - first:
+      213: 121772363144432726
+    second: RabbitSwimming_6
+  - first:
+      213: 4406983661470843981
+    second: RabbitSwimming_7
+  - first:
+      213: -5470001642269077769
+    second: RabbitSwimming_8
+  - first:
+      213: -5396460466249589358
+    second: RabbitSwimming_9
+  - first:
+      213: 9106914679151838607
+    second: RabbitSwimming_10
+  - first:
+      213: 8544821854385438364
+    second: RabbitSwimming_11
+  - first:
+      213: -2206261163949631597
+    second: RabbitSwimming_12
+  - first:
+      213: 1347625879845950031
+    second: RabbitSwimming_13
+  - first:
+      213: -1337007950872073600
+    second: RabbitSwimming_14
+  - first:
+      213: 4456721128855402322
+    second: RabbitSwimming_15
+  - first:
+      213: 7626950780752934574
+    second: RabbitSwimming_16
+  - first:
+      213: -6124064322507662151
+    second: RabbitSwimming_17
+  - first:
+      213: -6527966256878924702
+    second: RabbitSwimming_18
+  - first:
+      213: -8550118261284433337
+    second: RabbitSwimming_19
+  - first:
+      213: -7597753990649196182
+    second: RabbitSwimming_20
+  - first:
+      213: -5053919934443746872
+    second: RabbitSwimming_21
+  - first:
+      213: -3045913411205770919
+    second: RabbitSwimming_22
+  - first:
+      213: -2333351553354393068
+    second: RabbitSwimming_23
+  - first:
+      213: -5701161954273011013
+    second: RabbitSwimming_24
+  - first:
+      213: 7820555477819327140
+    second: RabbitSwimming_25
+  - first:
+      213: 164389210910786260
+    second: RabbitSwimming_26
+  - first:
+      213: -2009934873179618983
+    second: RabbitSwimming_27
+  - first:
+      213: 5480300743211907914
+    second: RabbitSwimming_28
+  - first:
+      213: -8572843688171749902
+    second: RabbitSwimming_29
+  - first:
+      213: -3087025104571054388
+    second: RabbitSwimming_30
+  - first:
+      213: -8250618288606671551
+    second: RabbitSwimming_31
+  - first:
+      213: 798275521064970795
+    second: RabbitSwimming_32
+  - first:
+      213: -9142147724300708797
+    second: RabbitSwimming_33
+  - first:
+      213: -198121243399620716
+    second: RabbitSwimming_34
+  - first:
+      213: -816141328028284873
+    second: RabbitSwimming_35
+  - first:
+      213: -6174281996547579825
+    second: RabbitSwimming_36
+  - first:
+      213: 7645978308137946993
+    second: RabbitSwimming_37
+  - first:
+      213: -635571588020276539
+    second: RabbitSwimming_38
+  - first:
+      213: 4538101114442658261
+    second: RabbitSwimming_39
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RabbitSwimming_0
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 3671
+        width: 634
+        height: 615
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9f75ae254c326f20800000000000000
+      internalID: 3414357735333265308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_1
+      rect:
+        serializedVersion: 2
+        x: 1614
+        y: 3668
+        width: 635
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 543de608acd1f6d40800000000000000
+      internalID: 5579711218910679877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_2
+      rect:
+        serializedVersion: 2
+        x: 2893
+        y: 3663
+        width: 636
+        height: 612
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e364571478bc3230800000000000000
+      internalID: 3619971009246159843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_3
+      rect:
+        serializedVersion: 2
+        x: 4172
+        y: 3658
+        width: 633
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: becc1bf25a6380920800000000000000
+      internalID: 2956673238466415851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_4
+      rect:
+        serializedVersion: 2
+        x: 5451
+        y: 3654
+        width: 631
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88433382c8cb94a0800000000000000
+      internalID: -6585449292348831604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_5
+      rect:
+        serializedVersion: 2
+        x: 6730
+        y: 3653
+        width: 630
+        height: 602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6890d3b7d4dfc2770800000000000000
+      internalID: 8587517098710600070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_6
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 3654
+        width: 633
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c0fa0b15f90b100800000000000000
+      internalID: 121772363144432726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_7
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 2936
+        width: 636
+        height: 594
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d448be87a40c82d30800000000000000
+      internalID: 4406983661470843981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_8
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 2939
+        width: 637
+        height: 591
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fe8fb7dc76a614b0800000000000000
+      internalID: -5470001642269077769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_9
+      rect:
+        serializedVersion: 2
+        x: 2891
+        y: 2944
+        width: 636
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29d11c03ccbeb15b0800000000000000
+      internalID: -5396460466249589358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_10
+      rect:
+        serializedVersion: 2
+        x: 4172
+        y: 2950
+        width: 633
+        height: 585
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f85c2a276a2426e70800000000000000
+      internalID: 9106914679151838607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_11
+      rect:
+        serializedVersion: 2
+        x: 5454
+        y: 2958
+        width: 632
+        height: 584
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e73a3443e459670800000000000000
+      internalID: 8544821854385438364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_12
+      rect:
+        serializedVersion: 2
+        x: 6736
+        y: 2967
+        width: 630
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397da012929c161e0800000000000000
+      internalID: -2206261163949631597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_13
+      rect:
+        serializedVersion: 2
+        x: 8018
+        y: 2976
+        width: 627
+        height: 582
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f425752099ab3b210800000000000000
+      internalID: 1347625879845950031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_14
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 2261
+        width: 624
+        height: 584
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08aa56a3a5ef17de0800000000000000
+      internalID: -1337007950872073600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_15
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 2257
+        width: 621
+        height: 595
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2577764014479dd30800000000000000
+      internalID: 4456721128855402322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_16
+      rect:
+        serializedVersion: 2
+        x: 2904
+        y: 2272
+        width: 619
+        height: 584
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea6ba26635f58d960800000000000000
+      internalID: 7626950780752934574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_17
+      rect:
+        serializedVersion: 2
+        x: 4185
+        y: 2281
+        width: 618
+        height: 579
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bc994302f3f20ba0800000000000000
+      internalID: -6124064322507662151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_18
+      rect:
+        serializedVersion: 2
+        x: 5467
+        y: 2278
+        width: 615
+        height: 586
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26ccef8a6410865a0800000000000000
+      internalID: -6527966256878924702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_19
+      rect:
+        serializedVersion: 2
+        x: 6748
+        y: 2276
+        width: 610
+        height: 591
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7429f88edb0e75980800000000000000
+      internalID: -8550118261284433337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_20
+      rect:
+        serializedVersion: 2
+        x: 8029
+        y: 2274
+        width: 606
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a615c88000b5f8690800000000000000
+      internalID: -7597753990649196182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_21
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 1553
+        width: 607
+        height: 601
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c90730b89edcd9b0800000000000000
+      internalID: -5053919934443746872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_22
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 1551
+        width: 610
+        height: 606
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9515b74f3edbab5d0800000000000000
+      internalID: -3045913411205770919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_23
+      rect:
+        serializedVersion: 2
+        x: 2912
+        y: 1550
+        width: 609
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41a9436ff154e9fd0800000000000000
+      internalID: -2333351553354393068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_24
+      rect:
+        serializedVersion: 2
+        x: 4193
+        y: 1550
+        width: 606
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbad59c986761e0b0800000000000000
+      internalID: -5701161954273011013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_25
+      rect:
+        serializedVersion: 2
+        x: 5473
+        y: 1550
+        width: 605
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a208a1a5c1388c60800000000000000
+      internalID: 7820555477819327140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_26
+      rect:
+        serializedVersion: 2
+        x: 6754
+        y: 1551
+        width: 604
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d28e39cd17084200800000000000000
+      internalID: 164389210910786260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_27
+      rect:
+        serializedVersion: 2
+        x: 8033
+        y: 1553
+        width: 607
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9518576c1e64b14e0800000000000000
+      internalID: -2009934873179618983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_28
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 836
+        width: 609
+        height: 605
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4b74757d70fd0c40800000000000000
+      internalID: 5480300743211907914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_29
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 839
+        width: 610
+        height: 602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fdb2932614270980800000000000000
+      internalID: -8572843688171749902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_30
+      rect:
+        serializedVersion: 2
+        x: 2909
+        y: 843
+        width: 612
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc6445de50fa825d0800000000000000
+      internalID: -3087025104571054388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_31
+      rect:
+        serializedVersion: 2
+        x: 4187
+        y: 844
+        width: 616
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d0242516aef7d80800000000000000
+      internalID: -8250618288606671551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_32
+      rect:
+        serializedVersion: 2
+        x: 5465
+        y: 837
+        width: 620
+        height: 604
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2aa7f16b5b041b00800000000000000
+      internalID: 798275521064970795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_33
+      rect:
+        serializedVersion: 2
+        x: 6743
+        y: 830
+        width: 619
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34419e8f411902180800000000000000
+      internalID: -9142147724300708797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_34
+      rect:
+        serializedVersion: 2
+        x: 8021
+        y: 813
+        width: 618
+        height: 619
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 497f4b067c1204df0800000000000000
+      internalID: -198121243399620716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_35
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 80
+        width: 618
+        height: 626
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 738cb5849cb7ca4f0800000000000000
+      internalID: -816141328028284873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_36
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 87
+        width: 622
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4021b4ac3b805aa0800000000000000
+      internalID: -6174281996547579825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_37
+      rect:
+        serializedVersion: 2
+        x: 2896
+        y: 83
+        width: 628
+        height: 613
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17f87e8d2c8fb1a60800000000000000
+      internalID: 7645978308137946993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_38
+      rect:
+        serializedVersion: 2
+        x: 4175
+        y: 78
+        width: 633
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c278b2120ffd27f0800000000000000
+      internalID: -635571588020276539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RabbitSwimming_39
+      rect:
+        serializedVersion: 2
+        x: 5455
+        y: 74
+        width: 634
+        height: 615
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1b8217be29afe30800000000000000
+      internalID: 4538101114442658261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RabbitSwimming_0: 3414357735333265308
+      RabbitSwimming_1: 5579711218910679877
+      RabbitSwimming_10: 9106914679151838607
+      RabbitSwimming_11: 8544821854385438364
+      RabbitSwimming_12: -2206261163949631597
+      RabbitSwimming_13: 1347625879845950031
+      RabbitSwimming_14: -1337007950872073600
+      RabbitSwimming_15: 4456721128855402322
+      RabbitSwimming_16: 7626950780752934574
+      RabbitSwimming_17: -6124064322507662151
+      RabbitSwimming_18: -6527966256878924702
+      RabbitSwimming_19: -8550118261284433337
+      RabbitSwimming_2: 3619971009246159843
+      RabbitSwimming_20: -7597753990649196182
+      RabbitSwimming_21: -5053919934443746872
+      RabbitSwimming_22: -3045913411205770919
+      RabbitSwimming_23: -2333351553354393068
+      RabbitSwimming_24: -5701161954273011013
+      RabbitSwimming_25: 7820555477819327140
+      RabbitSwimming_26: 164389210910786260
+      RabbitSwimming_27: -2009934873179618983
+      RabbitSwimming_28: 5480300743211907914
+      RabbitSwimming_29: -8572843688171749902
+      RabbitSwimming_3: 2956673238466415851
+      RabbitSwimming_30: -3087025104571054388
+      RabbitSwimming_31: -8250618288606671551
+      RabbitSwimming_32: 798275521064970795
+      RabbitSwimming_33: -9142147724300708797
+      RabbitSwimming_34: -198121243399620716
+      RabbitSwimming_35: -816141328028284873
+      RabbitSwimming_36: -6174281996547579825
+      RabbitSwimming_37: 7645978308137946993
+      RabbitSwimming_38: -635571588020276539
+      RabbitSwimming_39: 4538101114442658261
+      RabbitSwimming_4: -6585449292348831604
+      RabbitSwimming_5: 8587517098710600070
+      RabbitSwimming_6: 121772363144432726
+      RabbitSwimming_7: 4406983661470843981
+      RabbitSwimming_8: -5470001642269077769
+      RabbitSwimming_9: -5396460466249589358
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
