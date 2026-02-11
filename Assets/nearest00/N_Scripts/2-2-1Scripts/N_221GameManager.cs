@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using static System.Net.Mime.MediaTypeNames;
 
 public class N221_GameManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class N221_GameManager : MonoBehaviour
     public float[] laneY = { 2.0f, -2.0f };
     public float moveStep = 2.5f;
     public float playerX = 7.0f;
+    float nextSpawnX;
 
     [Header("Difficulty Count Settings")]
     public int easyMaxCount = 55;
@@ -65,8 +67,18 @@ public class N221_GameManager : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
         {
-            float targetX = playerX - ((i + 1) * moveStep);
-            SpawnNewFish(targetX);
+            if (activeFishes.Count > 0)
+            {
+                // 리스트의 마지막 물고기 X좌표에서 moveStep만큼 왼쪽으로
+                nextSpawnX = activeFishes[activeFishes.Count - 1].transform.position.x - moveStep;
+                Debug.Log(activeFishes[activeFishes.Count - 1].transform.position.x - moveStep);
+            }
+            else
+            {
+                // 아예 처음 만드는 한 마리는 기준점에서 한 칸 떨어진 곳
+                nextSpawnX = playerX - moveStep;
+            }
+            SpawnNewFish(nextSpawnX);
         }
     }
 
@@ -138,14 +150,20 @@ public class N221_GameManager : MonoBehaviour
             Destroy(frontFish.gameObject);
             currentClearedCount++;
         }
-
+        float lastFishXBeforeMove = playerX;
+        if (activeFishes.Count > 0)
+        {
+            // 리스트의 마지막 물고기(가장 왼쪽)의 현재 위치
+            lastFishXBeforeMove = activeFishes[activeFishes.Count - 1].transform.position.x;
+        }
         foreach (Fish f in activeFishes) f.MoveRight(moveStep);
 
         if (currentSpawnedCount < targetTotalCount)
         {
-            float nextSpawnX;
             if (activeFishes.Count > 0)
-                nextSpawnX = activeFishes[activeFishes.Count - 1].transform.position.x - moveStep;
+            {
+                nextSpawnX = lastFishXBeforeMove;
+            }
             else
                 nextSpawnX = playerX - moveStep;
 

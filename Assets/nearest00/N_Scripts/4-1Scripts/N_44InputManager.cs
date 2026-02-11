@@ -6,6 +6,7 @@ public class N_44InputManager : MonoBehaviour
 {
     public N_44GameManager gameManager;
     public N_44JudgementManager judgeManager;
+    public N_44JudgeEffectManager judgeEffectManager;
 
     // 각 라인별로 생성된 노트들을 관리하는 리스트 (0:Left, 1:Down, 2:Up, 3:Right)
     public List<N_44Note>[] activeNotes = new List<N_44Note>[4];
@@ -24,30 +25,44 @@ public class N_44InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow)) ProcessInput(2);
         if (Input.GetKeyDown(KeyCode.RightArrow)) ProcessInput(3);
 
-        // 롱노트 떼기 판정 (Hold 체크)
         if (Input.GetKeyUp(KeyCode.LeftArrow)) CheckRelease(0);
-        // ... 다른 키도 동일하게 처리
+        if (Input.GetKeyUp(KeyCode.DownArrow)) CheckRelease(1);
+        if (Input.GetKeyUp(KeyCode.UpArrow)) CheckRelease(2);
+        if (Input.GetKeyUp(KeyCode.RightArrow)) CheckRelease(3);
     }
 
-    void ProcessInput(int line)
+    private void ProcessInput(int direction)
+{
+    if (activeNotes[direction].Count > 0)
     {
-        if (activeNotes[line].Count == 0) return;
+        N_44Note note = activeNotes[direction][0];
+        float currentBeat = gameManager.GetBeatTime();
+        
+        // 1. 박자 차이 계산
+        float beatDiff = note.Data.hitTime - currentBeat;
 
-        N_44Note targetNote = activeNotes[line][0];
-        float currentTime = gameManager.GetMusicTime();
-        float diff = targetNote.Data.hitTime - currentTime;
+        // 2. JudgementManager를 통해 실제 판정 결과 가져오기
+        N_44JudgementManager.Judge result = judgeManager.GetJudgement(beatDiff);
 
-        var result = judgeManager.GetJudgement(diff);
-
-        if (targetNote.Data.type == NoteType.Single)
+        // 3. Miss가 아닐 때만 처리
+        if (result != N_44JudgementManager.Judge.Miss && result != N_44JudgementManager.Judge.None)
         {
-            HandleSingleNote(targetNote, result, line);
-        }
-        else
-        {
-            HandleLongNoteHead(targetNote, result, line);
+            if (note.Data.duration > 0)
+            {
+                // 롱노트 시작
+                note.StartHolding();
+                activeNotes[direction].RemoveAt(0);
+                // Tip: 롱노트 유지 점수는 Note의 Update에서 처리하는 것이 프나펑 방식입니다.
+            }
+            else
+            {
+                // 단타 완료
+                activeNotes[direction].RemoveAt(0);
+                RemoveNote(note, direction);
+            }
         }
     }
+}
 
     void HandleSingleNote(N_44Note note, N_44JudgementManager.Judge result, int line)
     {
@@ -69,9 +84,36 @@ public class N_44InputManager : MonoBehaviour
         }
     }
 
-    void CheckRelease(int line)
+    void CheckRelease(int direction)
     {
-        // 롱노트 도중 떼었을 때 미스 처리 로직
+        // 1. 현재 씬에 있는 모든 N_44Note 중, 
+        //    '홀딩 중'이면서 '해당 방향'인 노트를 찾습니다.
+        N_44Note[] allNotes = Object.FindObjectsByType<N_44Note>(FindObjectsSortMode.None);
+
+        foreach (var note in allNotes)
+        {
+            if (note.IsHolding && (int)note.Data.direction == direction)
+            {
+                float currentBeat = gameManager.GetBeatTime();
+                float endBeat = note.Data.hitTime + note.Data.duration;
+
+                // 2. 판정: 꼬리 끝이 오기 전(약 0.1박자 여유)에 뗐다면 실패!
+                if (currentBeat < endBeat - 0.1f)
+                {
+                    Debug.Log("Too Early Release! Miss!");
+
+                    // 판정 이펙트 표시
+                    if (judgeEffectManager != null) judgeEffectManager.ShowJudge("miss");
+
+                    // 라이프 감소
+                    N_44LifeSlider.Instance.AddValue(-50f);
+
+                    // 노트 실패 처리 (파괴)
+                    note.FailLongNote();
+                }
+                // (참고: 끝까지 잘 눌렀다면 Note 본인의 Update에서 알아서 삭제됩니다.)
+            }
+        }
     }
 
     public void RemoveNote(N_44Note note, int line)

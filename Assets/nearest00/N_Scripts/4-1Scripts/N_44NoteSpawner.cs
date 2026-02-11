@@ -4,10 +4,14 @@ using System.Collections.Generic;
 public class N_44NoteSpawner : MonoBehaviour
 {
     public GameObject notePrefab;
-    public RectTransform[] playerReceptors; // 오른쪽 판정선 위치들
-    public RectTransform[] opponentReceptors; // 왼쪽 판정선 위치들
-    public float noteSpeed = 500f; // 노트가 올라가는 속도
+    public RectTransform[] playerReceptors;
+    public RectTransform[] opponentReceptors;
+    public float noteSpeed = 500f;
     public Sprite[] noteSprites;
+
+    // [추가] 롱노트 몸통으로 사용할 스프라이트를 인스펙터에서 넣어주세요
+    public Sprite longBodySprite;
+
     public float pixelsPerBeat = 600f;
     private List<NoteInfo> remainingNotes;
     private N_44GameManager gameManager;
@@ -22,15 +26,11 @@ public class N_44NoteSpawner : MonoBehaviour
     {
         if (gameManager == null) return;
 
-        // 현재 박자(Beat)를 가져옵니다.
         float currentBeat = gameManager.GetBeatTime();
-
-        // 미리 생성할 박자 수 (예: 현재 0박자인데 4박자 뒤에 나올 노트를 미리 스폰)
         float spawnThreshold = currentBeat + 4.0f;
 
         for (int i = remainingNotes.Count - 1; i >= 0; i--)
         {
-            // 여기서 spawnThreshold를 사용하여 에러를 해결합니다.
             if (remainingNotes[i].hitTime <= spawnThreshold)
             {
                 SpawnNote(remainingNotes[i]);
@@ -47,16 +47,29 @@ public class N_44NoteSpawner : MonoBehaviour
             selectedSprite = noteSprites[(int)info.direction];
         }
 
-        // 2. 노트 생성
         GameObject go = Instantiate(notePrefab);
         N_44Note note = go.GetComponent<N_44Note>();
 
-        // 3. 타겟 판정선 설정
         RectTransform targetReceptor = info.isPlayerNote ?
             playerReceptors[(int)info.direction] : opponentReceptors[(int)info.direction];
 
-        // 4. Setup 호출 (인자 순서 확인: 데이터, 속도, 판정선, 이미지)
-        note.Setup(info, pixelsPerBeat, targetReceptor, selectedSprite);
+        // --- [여기서부터 수정] ---
+
+        // 1. 롱노트인지 확인 (duration이 0보다 큰지 체크)
+        // 만약 NoteInfo에 duration 변수가 없다면 차트 구조에 맞춰 수정이 필요합니다.
+        if (info.duration > 0)
+        {
+            // 롱노트 전용 셋업 호출 (데이터, 속도, 판정선, 머리이미지, 몸통이미지, 길이박자)
+            note.SetupLongNote(info, pixelsPerBeat, targetReceptor, selectedSprite, longBodySprite, info.duration);
+        }
+        else
+        {
+            // 일반 노트 셋업 호출
+            note.Setup(info, pixelsPerBeat, targetReceptor, selectedSprite);
+        }
+
+        // --- [수정 끝] ---
+
         if (info.isPlayerNote)
         {
             var inputManager = Object.FindFirstObjectByType<N_44InputManager>();

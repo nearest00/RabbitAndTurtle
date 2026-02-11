@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b750cf3a45a0bac44bf75106ba409c5e
+guid: 9c66213679341794a9d1d948e7728162
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2864450935571011549
-    second: 222JudgeLine_0
+      213: 5544731005987123374
+    second: 222Miss_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 222JudgeLine_0
+      name: 222Miss_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 3
-        width: 244
-        height: 244
+        width: 310
+        height: 131
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32821c4fc0d6f38d0800000000000000
-      internalID: -2864450935571011549
+      spriteID: ea0f4f20977d2fc40800000000000000
+      internalID: 5544731005987123374
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      222JudgeLine_0: -2864450935571011549
+      222Miss_0: 5544731005987123374
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

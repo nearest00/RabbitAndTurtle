@@ -9,7 +9,7 @@ public class N_44JudgementManager : MonoBehaviour
     public const float BAD_WINDOW = 0.20f;
     public const float MISS_WINDOW = 0.25f;
     N_44LifeSlider Lifeslider;
-
+    public N_44JudgeEffectManager judgeEffectManager;
     public enum Judge { Perfect, Great, Good, Bad, Miss, None }
 
     public Judge GetJudgement(float diff)
@@ -19,25 +19,30 @@ public class N_44JudgementManager : MonoBehaviour
         if (absDiff <= PERFECT_WINDOW)
         {            
             N_44LifeSlider.Instance.AddValue(10);
+            judgeEffectManager.ShowJudge("perfect");
             return Judge.Perfect;
         }
         if (absDiff <= GREAT_WINDOW)
         {
+            judgeEffectManager.ShowJudge("great");
             N_44LifeSlider.Instance.AddValue(7);
             return Judge.Great;
         }
         if (absDiff <= GOOD_WINDOW)
         {
+            judgeEffectManager.ShowJudge("good");
             N_44LifeSlider.Instance.AddValue(4);
             return Judge.Good;
         }
         if (absDiff <= BAD_WINDOW)
         {
+            judgeEffectManager.ShowJudge("bad");
             N_44LifeSlider.Instance.AddValue(1);
             return Judge.Bad;
         }
         else
         {
+            judgeEffectManager.ShowJudge("miss");
             N_44LifeSlider.Instance.AddValue(-50f);
             return Judge.Miss;
         }

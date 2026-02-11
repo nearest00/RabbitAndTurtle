@@ -30,3 +30,8 @@ MonoBehaviour:
     direction: 0
     duration: 2
     isPlayerNote: 1
+  - hitTime: 8
+    type: 1
+    direction: 3
+    duration: 2
+    isPlayerNote: 1

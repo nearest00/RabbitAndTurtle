@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c50b96d75a885914cabefc42b9a97a74
+guid: 3558828aae682454680c193b916c6209
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3462614485454024961
-    second: uprightTap_0
+      213: -7598484376945924110
+    second: 222Bad_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: uprightTap_0
+      name: 222Bad_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 270
-        height: 271
+        width: 217
+        height: 129
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ffe0460a87252ffc0800000000000000
-      internalID: -3462614485454024961
+      spriteID: 2f768c8b7b2cc8690800000000000000
+      internalID: -7598484376945924110
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      uprightTap_0: -3462614485454024961
+      222Bad_0: -7598484376945924110
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

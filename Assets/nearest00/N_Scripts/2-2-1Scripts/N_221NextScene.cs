@@ -22,7 +22,7 @@ public class N_221NextScene : MonoBehaviour
         isTransitioning = true;
         if (SoundManager.Instance != null)
         {
-            SoundManager.Instance.FadeAndLoadScene("2-2-2Game", 1.5f);
+            SoundManager.Instance.FadeAndLoadScene("StageSellect", 1.5f);
         }
     }
 }
