@@ -653,14 +653,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1024583632}
-        m_TargetAssemblyTypeName: N_222NextScene, Assembly-CSharp
+      - m_Target: {fileID: 1024583635}
+        m_TargetAssemblyTypeName: SceneClear, Assembly-CSharp
         m_MethodName: ButtonClick
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1024583632}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: N_222NextScene, Assembly-CSharp
         m_MethodName: ButtonClick
         m_Mode: 1
@@ -1515,7 +1515,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426090464}
-  - component: {fileID: 426090463}
+  - component: {fileID: 426090465}
   m_Layer: 5
   m_Name: GuideManager
   m_TagString: Untagged
@@ -1523,22 +1523,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &426090463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426090462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50313468d9b8b8a40878b67edeac70ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidePanel:
-  - {fileID: 1342603965}
-  - {fileID: 1880141773}
-  - {fileID: 997357359}
 --- !u!224 &426090464
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1558,6 +1542,23 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 540}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &426090465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426090462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b98e699040e8594d80f9e19cb13332b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guidePanel:
+  - {fileID: 1342603965}
+  - {fileID: 1880141773}
+  - {fileID: 997357359}
+  tutorialing: 0
 --- !u!1 &436050214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,7 +2168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462c225f801da7c4ab5280acf6445cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBGM: {fileID: 8300000, guid: d6d631559be20f04fb6847ba1708d84a, type: 3}
+  easyBGM: {fileID: 8300000, guid: d6d631559be20f04fb6847ba1708d84a, type: 3}
+  normalBGM: {fileID: 8300000, guid: 00865d74edd83994e80bd1ba4a4af9bc, type: 3}
+  hardBGM: {fileID: 8300000, guid: ca7cb434387411f45bbd7e4d203a2d3f, type: 3}
 --- !u!4 &875612737
 Transform:
   m_ObjectHideFlags: 0
@@ -2302,8 +2305,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1024583633}
-  - component: {fileID: 1024583632}
   - component: {fileID: 1024583634}
+  - component: {fileID: 1024583635}
   m_Layer: 0
   m_Name: scenemanager
   m_TagString: Untagged
@@ -2311,18 +2314,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1024583632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024583631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1b049b3bba60d42bbc59456d4c61fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1024583633
 Transform:
   m_ObjectHideFlags: 0
@@ -2348,6 +2339,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38bb923dc06a3ef4db3a81a509711108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1024583635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024583631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5868c9e1a3da7419327daef36133aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1026558773

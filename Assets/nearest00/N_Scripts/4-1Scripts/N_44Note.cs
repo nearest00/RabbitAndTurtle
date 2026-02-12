@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +8,18 @@ public class N_44Note : MonoBehaviour
     public NoteInfo Data;
     public bool IsFailed = false;
     public bool IsHolding = false;
+    public bool IsFinished = false;
 
     public RectTransform targetReceptor;
     public float noteSpeed;
+    private float holdScoreTimer = 0f;
+    private float lastCheckedBeat = 0f;
+    private int longNoteTickCount = 0;
+
     private RectTransform rectTransform;
     private N_44GameManager gameManager;
     private N_44InputManager inputManager;
+    private N_44JudgeEffectManager judgeEffectManager;
 
     // 롱노트 꼬리 이미지를 참조하기 위한 변수
     private RectTransform bodyRect;
@@ -21,6 +29,7 @@ public class N_44Note : MonoBehaviour
         // 1. 매니저 참조를 가장 먼저 수행 (NullReferenceException 방지)
         gameManager = Object.FindFirstObjectByType<N_44GameManager>();
         inputManager = Object.FindFirstObjectByType<N_44InputManager>();
+        judgeEffectManager =Object.FindFirstObjectByType<N_44JudgeEffectManager>();
 
         // 2. 기본 데이터 설정
         Data = info;
@@ -84,35 +93,67 @@ public class N_44Note : MonoBehaviour
         float currentBeat = gameManager.GetBeatTime();
         float beatDiff = Data.hitTime - currentBeat;
 
-        // 롱노트 홀딩 중일 때 처리
         if (IsHolding)
         {
-            N_44LifeSlider.Instance.AddValue(Time.deltaTime * 5f);
             // 1. 머리 위치를 판정선에 고정
             rectTransform.anchoredPosition = targetReceptor.anchoredPosition;
 
-            // 2. 꼬리 연출: 현재 박자가 노트 시작 박자보다 커질수록 꼬리를 줄임
+            float endBeat = Data.hitTime + Data.duration;
+
+            // 2. 꼬리 연출 (남은 길이에 비례해 줄어듦)
             if (bodyRect != null)
             {
-                // 남은 박자 계산 = (시작박자 + 총길이) - 현재박자
-                float remainingBeat = (Data.hitTime + Data.duration) - currentBeat;
+                // 남은 박자 계산 = 종료 박자 - 현재 박자
+                float remainingBeat = endBeat - currentBeat;
 
-                // 꼬리 높이 재계산
-                float newHeight = remainingBeat * noteSpeed;
+                // 꼬리 높이 업데이트 (최솟값 0 유지)
+                float newHeight = Mathf.Max(0, remainingBeat * noteSpeed);
+                bodyRect.sizeDelta = new Vector2(bodyRect.sizeDelta.x, newHeight);
+            }
 
-                if (newHeight <= 0)
+            float beatDelta = currentBeat - lastCheckedBeat;
+            holdScoreTimer += beatDelta;
+            lastCheckedBeat = currentBeat;
+
+            if (holdScoreTimer >= 1.0f)
+            {
+                int ticks = Mathf.FloorToInt(holdScoreTimer);
+                holdScoreTimer -= ticks;
+                longNoteTickCount += ticks;
+                N_44LifeSlider.Instance.AddValue(10);
+                judgeEffectManager.ShowJudge("perfect");
+                Debug.Log($"+10점 (롱노트 유지 중)");
+            }
+
+            if (currentBeat >= endBeat)
+            {
+                if (!IsFinished)
                 {
-                    inputManager.RemoveNote(this, (int)Data.direction);
-                    return;
+                    IsFinished = true;
                 }
 
-                // 세로 길이를 실시간으로 업데이트 (가로 폭은 유지)
-                bodyRect.sizeDelta = new Vector2(bodyRect.sizeDelta.x, newHeight);
+                if (currentBeat > endBeat + 0.2f)
+                {
+					float diff = Data.duration - GetTickCount(); // 여기서도 diff 계산 적용
+					if (diff <= 0.6f)
+					{
+						Debug.Log("롱노트 엔딩 미스(약간느림)");
+						N_44LifeSlider.Instance.AddValue(-40);
+					}
+					else
+					{
+						Debug.Log("롱노트 엔딩 미스(느림)");
+						N_44LifeSlider.Instance.AddValue(-50);
+					}
+
+					if (judgeEffectManager != null) judgeEffectManager.ShowJudge("miss");
+					FailLongNote();
+					return;
+				}
             }
             return;
         }
 
-        // 미스 판정
         if (beatDiff < -0.5f && !IsFailed)
         {
             FailLongNote();
@@ -127,8 +168,11 @@ public class N_44Note : MonoBehaviour
 
         UpdatePosition(beatDiff);
     }
-
-    private void UpdatePosition(float beatDiff)
+	public int GetTickCount()
+	{
+		return longNoteTickCount;
+	}
+	private void UpdatePosition(float beatDiff)
     {
         if (targetReceptor != null)
         {
@@ -137,7 +181,13 @@ public class N_44Note : MonoBehaviour
         }
     }
 
-    public void StartHolding() { IsHolding = true; }
+    public void StartHolding() 
+    { 
+        IsHolding = true;
+        lastCheckedBeat = Data.hitTime;
+        Image headImage = GetComponent<Image>();
+        if (headImage != null) headImage.enabled = false;
+    }
 
     public void FailLongNote()
     {

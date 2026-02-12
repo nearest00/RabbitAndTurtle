@@ -17,31 +17,36 @@ public class N_44JudgementManager : MonoBehaviour
         float absDiff = Mathf.Abs(diff);
 
         if (absDiff <= PERFECT_WINDOW)
-        {            
+        {
+            Debug.Log("ÆÛÆåÆ®");
             N_44LifeSlider.Instance.AddValue(10);
             judgeEffectManager.ShowJudge("perfect");
             return Judge.Perfect;
         }
         if (absDiff <= GREAT_WINDOW)
         {
+            Debug.Log("±×·¿");
             judgeEffectManager.ShowJudge("great");
             N_44LifeSlider.Instance.AddValue(7);
             return Judge.Great;
         }
         if (absDiff <= GOOD_WINDOW)
         {
+            Debug.Log("±Â");
             judgeEffectManager.ShowJudge("good");
             N_44LifeSlider.Instance.AddValue(4);
             return Judge.Good;
         }
         if (absDiff <= BAD_WINDOW)
         {
+            Debug.Log("¹èµå");
             judgeEffectManager.ShowJudge("bad");
             N_44LifeSlider.Instance.AddValue(1);
             return Judge.Bad;
         }
         else
         {
+            Debug.Log("¹Ì½º");
             judgeEffectManager.ShowJudge("miss");
             N_44LifeSlider.Instance.AddValue(-50f);
             return Judge.Miss;

@@ -13,6 +13,7 @@ public class N_StageSellectButton : MonoBehaviour
         get => SettingPanel.Instance.CanSettingOn;
         set => SettingPanel.Instance.CanSettingOn = value;
     }
+    private bool isTransitioning = false;
     void Start()
     {
         CanSettingOn = false;
@@ -60,7 +61,12 @@ public class N_StageSellectButton : MonoBehaviour
     }
     void GotoScene()
     {
+        if (isTransitioning) return;
         CanSettingOn = false;
-        EditorSceneManager.LoadScene(Stage);
+        isTransitioning = true;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StageFadeAndLoadScene(Stage, 1.5f);
+        }
     }
 }

@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 public class N_44InputManager : MonoBehaviour
 {
     public N_44GameManager gameManager;
     public N_44JudgementManager judgeManager;
     public N_44JudgeEffectManager judgeEffectManager;
-
     // 각 라인별로 생성된 노트들을 관리하는 리스트 (0:Left, 1:Down, 2:Up, 3:Right)
     public List<N_44Note>[] activeNotes = new List<N_44Note>[4];
     void Awake() // Start보다 먼저 실행되는 Awake에서 리스트 초기화
@@ -86,34 +86,41 @@ public class N_44InputManager : MonoBehaviour
 
     void CheckRelease(int direction)
     {
-        // 1. 현재 씬에 있는 모든 N_44Note 중, 
-        //    '홀딩 중'이면서 '해당 방향'인 노트를 찾습니다.
-        N_44Note[] allNotes = Object.FindObjectsByType<N_44Note>(FindObjectsSortMode.None);
+        N_44Note holdNote = Object.FindObjectsByType<N_44Note>(FindObjectsSortMode.None)
+            .FirstOrDefault(n => n.IsHolding && (int)n.Data.direction == direction);
 
-        foreach (var note in allNotes)
+        if (holdNote != null)
         {
-            if (note.IsHolding && (int)note.Data.direction == direction)
-            {
-                float currentBeat = gameManager.GetBeatTime();
-                float endBeat = note.Data.hitTime + note.Data.duration;
+            float currentBeat = gameManager.GetBeatTime();
+            float endBeat = holdNote.Data.hitTime + holdNote.Data.duration;
+            float releaseDiff = Mathf.Abs(currentBeat - endBeat);
 
-                // 2. 판정: 꼬리 끝이 오기 전(약 0.1박자 여유)에 뗐다면 실패!
-                if (currentBeat < endBeat - 0.1f)
-                {
-                    Debug.Log("Too Early Release! Miss!");
+			if (currentBeat < endBeat - 0.1f)
+			{
+				// [추가] 얼마나 채웠는지 Note에게 물어봄 (longNoteTickCount 활용)
+				float diff = holdNote.Data.duration - holdNote.GetTickCount(); // GetTickCount()는 public으로 선언 필요
 
-                    // 판정 이펙트 표시
-                    if (judgeEffectManager != null) judgeEffectManager.ShowJudge("miss");
+				if (diff <= 0.6f)
+				{
+					Debug.Log("까비~");
+					N_44LifeSlider.Instance.AddValue(-40);
+				}
+				else
+				{
+					Debug.Log("롱노트 엔딩 미스(빠름)");
+					N_44LifeSlider.Instance.AddValue(-50);
+				}
 
-                    // 라이프 감소
-                    N_44LifeSlider.Instance.AddValue(-50f);
-
-                    // 노트 실패 처리 (파괴)
-                    note.FailLongNote();
-                }
-                // (참고: 끝까지 잘 눌렀다면 Note 본인의 Update에서 알아서 삭제됩니다.)
-            }
-        }
+				judgeEffectManager.ShowJudge("miss");
+				holdNote.FailLongNote();
+			}
+			else
+			{
+                Debug.Log("롱노트 엔딩 퍼펙트");
+				judgeEffectManager.ShowJudge("perfect");
+				RemoveNote(holdNote, direction);
+			}
+		}
     }
 
     public void RemoveNote(N_44Note note, int line)
@@ -124,7 +131,6 @@ public class N_44InputManager : MonoBehaviour
             activeNotes[line].Remove(note);
         }
 
-        // 하이러키에서 실제 오브젝트 삭제
         if (note != null && note.gameObject != null)
         {
             Destroy(note.gameObject);

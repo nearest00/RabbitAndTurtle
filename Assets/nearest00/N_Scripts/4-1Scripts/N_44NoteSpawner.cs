@@ -13,13 +13,31 @@ public class N_44NoteSpawner : MonoBehaviour
     public Sprite longBodySprite;
 
     public float pixelsPerBeat = 600f;
+    private int totalNoteCount = 0;       // 전체 노트 개수
+    private int spawnedNoteCount = 0;    // 지금까지 소환한 노트 개수
+    private float lastNoteEndTime = 0f;
+    private bool allNotesSpawned = false;
+    private bool gameEnded = false;
     private List<NoteInfo> remainingNotes;
     private N_44GameManager gameManager;
+    public Ending Ending;
 
     public void Initialize(N_44Chart chart)
     {
         gameManager = FindFirstObjectByType<N_44GameManager>();
+        if (chart == null || chart.noteList.Count == 0) return;
+
         remainingNotes = new List<NoteInfo>(chart.noteList);
+
+        // [수정] 전체 개수를 미리 저장
+        totalNoteCount = remainingNotes.Count;
+        spawnedNoteCount = 0;
+        allNotesSpawned = false;
+        gameEnded = false;
+
+        // 마지막 노트 종료 시간 저장
+        NoteInfo lastNote = chart.noteList[chart.noteList.Count - 1];
+        lastNoteEndTime = lastNote.hitTime + lastNote.duration;
     }
 
     void Update()
@@ -35,8 +53,32 @@ public class N_44NoteSpawner : MonoBehaviour
             {
                 SpawnNote(remainingNotes[i]);
                 remainingNotes.RemoveAt(i);
+                spawnedNoteCount++;
             }
         }
+
+        // 2. 모든 노트 소환 완료 체크
+        if (!allNotesSpawned && spawnedNoteCount >= totalNoteCount && totalNoteCount > 0)
+        {
+            allNotesSpawned = true;
+            Debug.Log("스폰끝");
+        }
+
+        // 3. 종료 체크 로직 (8박자 후)
+        if (allNotesSpawned && !gameEnded)
+        {
+            // 꼬리가 끝난 박자(lastNoteEndTime)로부터 8박자 체크
+            if (currentBeat >= lastNoteEndTime + 8f)
+            {
+                gameEnded = true;
+                OnGameComplete();
+            }
+        }
+    }
+    void OnGameComplete()
+    {
+        if (N_44LifeSlider.Instance.internalValue / N_44LifeSlider.Instance.Max >= 0.6) Ending.StageClear();
+        else Ending.StageFailed();
     }
 
     void SpawnNote(NoteInfo info)
@@ -53,22 +95,15 @@ public class N_44NoteSpawner : MonoBehaviour
         RectTransform targetReceptor = info.isPlayerNote ?
             playerReceptors[(int)info.direction] : opponentReceptors[(int)info.direction];
 
-        // --- [여기서부터 수정] ---
-
-        // 1. 롱노트인지 확인 (duration이 0보다 큰지 체크)
-        // 만약 NoteInfo에 duration 변수가 없다면 차트 구조에 맞춰 수정이 필요합니다.
         if (info.duration > 0)
         {
-            // 롱노트 전용 셋업 호출 (데이터, 속도, 판정선, 머리이미지, 몸통이미지, 길이박자)
             note.SetupLongNote(info, pixelsPerBeat, targetReceptor, selectedSprite, longBodySprite, info.duration);
         }
         else
         {
-            // 일반 노트 셋업 호출
             note.Setup(info, pixelsPerBeat, targetReceptor, selectedSprite);
         }
 
-        // --- [수정 끝] ---
 
         if (info.isPlayerNote)
         {

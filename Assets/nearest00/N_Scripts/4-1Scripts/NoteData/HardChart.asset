@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HardChart
   m_EditorClassIdentifier: 
   songName: 
-  bpm: 250
+  bpm: 100
   noteList:
   - hitTime: 4
     type: 0

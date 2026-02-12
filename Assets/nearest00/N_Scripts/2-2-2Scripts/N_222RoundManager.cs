@@ -61,7 +61,7 @@ public class N_222RoundManager : MonoBehaviour
     [SerializeField] private N_222JudgeLine mainLine;
     [SerializeField] private N_222PrevJudgeLine previewLine;
     [SerializeField] private N_222LifeSlider lifeslider;
-    [SerializeField] private N_222Ending ending;
+    [SerializeField] private Ending ending;
     public string currentDifficulty
     {
         get => N_StageSellectButton.Instance.StageDifficulty;
@@ -72,7 +72,22 @@ public class N_222RoundManager : MonoBehaviour
         get => (lifeslider != null) ? lifeslider.Max : 0;
         set { if (lifeslider != null) lifeslider.Max = value; }
     }
-    public static N_222RoundManager Instance;
+	public bool tutorialing
+	{
+		get => GuidePanelOff.Instance.tutorialing;
+		set => GuidePanelOff.Instance.tutorialing = value;
+	}
+	public bool isCountingDown
+	{
+		get => PauseCountDown.Instance.isCounting;
+		set => PauseCountDown.Instance.isCounting = value;
+	}
+	public bool CanSettingOn
+	{
+		get => SettingPanel.Instance.CanSettingOn;
+		set => SettingPanel.Instance.CanSettingOn = value;
+	}
+	public static N_222RoundManager Instance;
     public int currentRoundIndex = -1;
     private float currentBPM;
     public int MaxLife;
@@ -130,6 +145,9 @@ public class N_222RoundManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (tutorialing) return;
+            if (isCountingDown) return;
+            if (!CanSettingOn) return;
             if (rabbitAnimation != null) rabbitAnimation.StopTalking();
             NextRound();
         }
@@ -144,6 +162,7 @@ public class N_222RoundManager : MonoBehaviour
 
     public void NextRound()
     {
+        
         List<RoundPattern> targetList = GetList(currentDifficulty);
         if (targetList == null || targetList.Count == 0) return;
 

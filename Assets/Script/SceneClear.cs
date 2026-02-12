@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class N_221NextScene : MonoBehaviour
+public class SceneClear : MonoBehaviour
 {
     private bool isTransitioning = false;
     public bool isCountingDown
@@ -10,9 +10,10 @@ public class N_221NextScene : MonoBehaviour
         get => PauseCountDown.Instance.isCounting;
         set => PauseCountDown.Instance.isCounting = value;
     }
-    public void ButtonClick()
+    public void ButtonClick(int sceneName)
     {
-        Destroy(N_221LifeSlider.Instance);
+        Destroy(N_222LifeSlider.Instance);
+        Destroy(N_222RoundManager.Instance);
         if (isTransitioning) return;
         if (isCountingDown) return;
         if (SettingPanel.Instance != null && SettingPanel.Instance.IsAnyPanelOpen())
@@ -22,7 +23,7 @@ public class N_221NextScene : MonoBehaviour
         isTransitioning = true;
         if (SoundManager.Instance != null)
         {
-            SoundManager.Instance.FadeAndLoadScene("StageSellect", 1.5f);
+            SoundManager.Instance.StageFadeAndLoadScene(sceneName, 1.5f);
         }
     }
 }

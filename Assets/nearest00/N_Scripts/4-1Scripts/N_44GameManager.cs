@@ -55,7 +55,7 @@ public class N_44GameManager : MonoBehaviour
         }
         if (N_44LifeSlider.Instance != null)
         {
-            N_44LifeSlider.Instance.Max = Max; // <-- 이 줄이 빠져있었습니다.
+            N_44LifeSlider.Instance.Max = Max;
             N_44LifeSlider.Instance.targetSlider.maxValue = Max;
         }
         Debug.Log(N_44LifeSlider.Instance.targetSlider.maxValue);

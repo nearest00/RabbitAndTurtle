@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class N_222Ending : MonoBehaviour
+public class Ending : MonoBehaviour
 {
     public bool CanSettingOn
     {

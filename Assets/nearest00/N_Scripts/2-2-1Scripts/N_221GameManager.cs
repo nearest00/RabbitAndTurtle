@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using static System.Net.Mime.MediaTypeNames;
+using Unity.VisualScripting;
 
 public class N221_GameManager : MonoBehaviour
 {
-    public N_221Ending Ending;
+    public Ending Ending;
     private bool isEnding = false;
     private N_221SFXList sfx;
 
     [Header("Timer Settings")]
     public TMP_Text timerText;
+    public UnityEngine.UI.Image timerGauge;
     public float easyTimeLimit = 60f;
     public float normalTimeLimit = 70f;
     public float hardTimeLimit = 80f;
@@ -39,7 +41,7 @@ public class N221_GameManager : MonoBehaviour
     private int targetTotalCount = 0;
 
     [Header("State")]
-    private List<Fish> activeFishes = new List<Fish>(); // UI_Fish -> Fish
+    private List<Fish> activeFishes = new List<Fish>();
 
     [Header("Player")]
     public N221_CharacterMove playerScript;
@@ -59,8 +61,17 @@ public class N221_GameManager : MonoBehaviour
         get => N_221LifeSlider.Instance.Max;
         set => N_221LifeSlider.Instance.Max = value;
     }
-
-    void Start()
+	public bool tutorialing
+	{
+		get => GuidePanelOff.Instance.tutorialing;
+		set => GuidePanelOff.Instance.tutorialing = value;
+	}
+	public bool CanSettingOn
+	{
+		get => SettingPanel.Instance.CanSettingOn;
+		set => SettingPanel.Instance.CanSettingOn = value;
+	}
+	void Start()
     {
         sfx = Object.FindFirstObjectByType<N_221SFXList>();
         SetDifficulty(currentDifficulty);
@@ -99,6 +110,9 @@ public class N221_GameManager : MonoBehaviour
     void Update()
     {
         if (isEnding) return;
+        if (isCounting) return;
+        if (tutorialing) return;
+        if (!CanSettingOn) return;
         if (PauseCountDown.Instance != null && isCounting) return;
 
         if (Input.GetKeyDown(KeyCode.UpArrow)) ProcessStep(0);
@@ -127,7 +141,14 @@ public class N221_GameManager : MonoBehaviour
             int minutes = Mathf.FloorToInt(timeRemaining / 60);
             int seconds = Mathf.FloorToInt(timeRemaining % 60);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            if (timeRemaining <= 10f) timerText.color = Color.red;
+        }
+        if (timerGauge != null)
+        {
+            // 12시 방향부터 시계방향으로 줄어들게 함 (1.0 -> 0.0)
+            timerGauge.fillAmount = timeRemaining / currentTimeLimit;
+
+            // 보너스: 시간이 촉박하면 게이지 색상도 변경
+            if (timeRemaining <= 10f) timerGauge.color = new Color(1, 0, 0, 0.8f); // 약간 투명한 빨강
         }
     }
 

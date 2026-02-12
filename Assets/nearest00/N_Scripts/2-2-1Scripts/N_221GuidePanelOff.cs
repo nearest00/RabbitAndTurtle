@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class N_221GuidePanelOff : MonoBehaviour
 {
-    [SerializeField] private GameObject[] guidePanel;
+	public static N_221GuidePanelOff Instance { get; private set; }
+	[SerializeField] private GameObject[] guidePanel;
     int i = 0;
     public bool isCountingDown
     {
@@ -18,8 +19,14 @@ public class N_221GuidePanelOff : MonoBehaviour
         get => SettingPanel.Instance.CanSettingOn;
         set => SettingPanel.Instance.CanSettingOn = value;
     }
-    private bool tutorialing;
-    private IEnumerator Start()
+    public bool tutorialing;
+
+	private void Awake()
+	{
+		if (Instance == null) Instance = this;
+		else Destroy(gameObject);
+	}
+	private IEnumerator Start()
     {
         yield return null;
         CanSettingOn = false;
