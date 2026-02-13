@@ -1,28 +1,33 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Infint : MonoBehaviour
 {
     [Header("Settings")]
-    public float scrollSpeed = 5f;
-    public float backgroundWidth; // 이미지의 가로 길이
+    public float scrollSpeed = 200f; // UI는 px 단위
+    public float backgroundWidth = 0f;
+
+    private RectTransform rectTransform;
 
     void Start()
     {
-        // SpriteRenderer에서 자동으로 가로 길이를 가져오기
+        rectTransform = GetComponent<RectTransform>();
+
         if (backgroundWidth <= 0)
         {
-            backgroundWidth = GetComponent<SpriteRenderer>().bounds.size.x;
+            backgroundWidth = rectTransform.rect.width;
         }
     }
 
     void Update()
     {
-        // 1. 오른쪽으로 이동
-        transform.Translate(Vector3.right * scrollSpeed * Time.deltaTime);
+        // 왼쪽으로 이동
+        rectTransform.anchoredPosition += Vector2.left * scrollSpeed * Time.deltaTime;
 
-        if (transform.position.x >= 30)
+        // 화면 왼쪽으로 완전히 나갔으면 오른쪽으로 이동
+        if (rectTransform.anchoredPosition.x <= -backgroundWidth)
         {
-            transform.position -= new Vector3(backgroundWidth * 2f, 0, 0);
+            rectTransform.anchoredPosition += new Vector2(backgroundWidth * 2f, 0f);
         }
     }
 }
