@@ -1,43 +1,48 @@
-// Note.cs
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RRNote : MonoBehaviour
 {
     public RRNoteData data;
+
     private RRGameManager gm;
     private RectTransform rt;
-    private float hitY;
+    private RectTransform hitLineRect;
     private float spawnY;
     private double travelTime;
+    private float judgeRadius;
     private bool judged = false;
     private bool isHoldActive = false;
-    private double holdEndTime = 0;
+    private double holdEndTime = 0.0;
 
-    // 판정 윈도 (ms)
+    // ms windows
     const double PERFECT_MS = 15.0;
     const double GREAT_MS_MAX = 35.0;
     const double GOOD_MS_MAX = 60.0;
     const double BAD_MS_MAX = 90.0;
 
-    public void Init(RRNoteData nd, RRGameManager manager, float hitY, float spawnY, double travelTime)
+    public void Init(RRNoteData nd, RRGameManager manager, RectTransform hitLineRect, float spawnY, double travelTime, float judgeRadius)
     {
-        data = nd;
-        gm = manager;
-        rt = GetComponent<RectTransform>();
-        this.hitY = hitY;
+        this.data = nd;
+        this.gm = manager;
+        this.rt = GetComponent<RectTransform>();
+        this.hitLineRect = hitLineRect;
         this.spawnY = spawnY;
         this.travelTime = travelTime;
+        this.judgeRadius = judgeRadius;
+
         UpdateVisual();
     }
 
     void UpdateVisual()
     {
-        var img = GetComponent<UnityEngine.UI.Image>();
+        var img = GetComponent<Image>();
         if (img != null)
         {
             if (data.lane == "up") img.color = Color.cyan;
             else img.color = Color.magenta;
-            if (data.type == "long") img.color *= 0.8f;
+
+            if (data.type == "long") img.color *= 0.85f;
         }
     }
 
@@ -49,10 +54,11 @@ public class RRNote : MonoBehaviour
         double timeToHit = data.time - curSongTime;
         double progress = 1.0 - (timeToHit / travelTime);
         progress = Mathf.Clamp01((float)progress);
-        float y = Mathf.Lerp(spawnY, hitY, (float)progress);
+
+        float y = Mathf.Lerp(spawnY, hitLineRect.anchoredPosition.y, (float)progress);
         rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, y);
 
-        // Miss 자동 판정: 판정 윈을 완전히 지난 경우
+        // auto-miss if passed judge window
         if (!judged && curSongTime - data.time > (BAD_MS_MAX / 1000.0 + 0.05))
         {
             judged = true;
@@ -61,9 +67,23 @@ public class RRNote : MonoBehaviour
         }
     }
 
+    // Called by InputHandler when player presses key
     public void OnHitAttempt(double inputSongTime)
     {
         if (judged) return;
+
+        // check if inside circle judge area at this frame
+        Vector2 notePos = rt.anchoredPosition;
+        Vector2 hitPos = hitLineRect.anchoredPosition;
+        float distance = Vector2.Distance(notePos, hitPos);
+
+        if (distance > judgeRadius)
+        {
+            // outside judge circle, treat as miss or ignore
+            // we choose to ignore here (no penalty). Optionally give small penalty.
+            return;
+        }
+
         double diffMs = (inputSongTime - data.time) * 1000.0;
         double absMs = System.Math.Abs(diffMs);
 
@@ -76,20 +96,20 @@ public class RRNote : MonoBehaviour
         }
 
         string label;
-        int scoreAdd;
-        if (absMs <= PERFECT_MS) { label = "Perfect"; scoreAdd = 10; }
-        else if (absMs <= GREAT_MS_MAX) { label = "Great"; scoreAdd = 7; }
-        else if (absMs <= GOOD_MS_MAX) { label = "Good"; scoreAdd = 4; }
-        else { label = "Bad"; scoreAdd = 1; }
+        int add;
+        if (absMs <= PERFECT_MS) { label = "Perfect"; add = 10; }
+        else if (absMs <= GREAT_MS_MAX) { label = "Great"; add = 7; }
+        else if (absMs <= GOOD_MS_MAX) { label = "Good"; add = 4; }
+        else { label = "Bad"; add = 1; }
 
         judged = true;
-        ApplyJudge(label, scoreAdd);
+        ApplyJudge(label, add);
 
-        if (data.type == "long" && data.holdDuration > 0)
+        if (data.type == "long" && data.holdDuration > 0.0)
         {
             holdEndTime = data.time + data.holdDuration;
             isHoldActive = true;
-            Destroy(gameObject, (float)(data.holdDuration + 0.5)); // 안전하게 지연 파괴
+            Destroy(gameObject, (float)(data.holdDuration + 0.5));
         }
         else
         {
@@ -101,21 +121,26 @@ public class RRNote : MonoBehaviour
     {
         if (!isHoldActive) return;
         isHoldActive = false;
+
         if (releaseSongTime + 0.001 < holdEndTime - 0.05)
-            ApplyJudge("Miss (Hold)", -50);
+            ApplyJudge("Miss", -50);
         else
             ApplyJudge("Hold Complete", 0);
     }
 
     void ApplyJudge(string label, int scoreDelta)
     {
-        gm.AddScore(scoreDelta);
+        if (gm != null)
+        {
+            gm.AddScore(scoreDelta);
 
-        Vector2 anchored = gm.hitLine.anchoredPosition;
-        float xOffset = (data.lane == "up") ? -120f : 120f;
-        Vector2 showPos = new Vector2(anchored.x + xOffset, anchored.y + 30f);
-        gm.ShowJudgeAt(label, showPos);
+            Vector2 showPos = hitLineRect.anchoredPosition;
+            // offset to left or right so popup not overlap center
+            float xOffset = (data.lane == "up") ? 80f : -80f;
+            Vector2 anchored = new Vector2(showPos.x + xOffset, showPos.y + 20f);
+            gm.ShowJudgeAt(label, anchored);
+        }
 
-        Debug.Log($"Judge: {label} ({scoreDelta}) at note {data.time:F3}s");
+        Debug.Log("Judge: " + label + " scoreDelta: " + scoreDelta + " noteTime: " + data.time);
     }
 }

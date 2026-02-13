@@ -1,47 +1,63 @@
-// JudgePopup.cs
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class RRJudgePopup : MonoBehaviour
 {
-    public float moveUpDistance = 60f;
-    public float duration = 0.9f;
-    public AnimationCurve alphaCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
-    private Text txt;
-    private RectTransform rt;
+    public Image image; // assign via inspector (Image component)
+    public Sprite perfectSprite;
+    public Sprite greatSprite;
+    public Sprite goodSprite;
+    public Sprite badSprite;
+    public Sprite missSprite;
 
-    void Awake()
+    public float moveUp = 40f;
+    public float duration = 0.7f;
+
+    public void Play(string judge)
     {
-        txt = GetComponent<Text>();
-        rt = GetComponent<RectTransform>();
+        if (image == null) image = GetComponent<Image>();
+
+        switch (judge)
+        {
+            case "Perfect":
+                image.sprite = perfectSprite;
+                break;
+            case "Great":
+                image.sprite = greatSprite;
+                break;
+            case "Good":
+                image.sprite = goodSprite;
+                break;
+            case "Bad":
+                image.sprite = badSprite;
+                break;
+            default:
+                image.sprite = missSprite;
+                break;
+        }
+
+        image.SetNativeSize();
+        StartCoroutine(PopupRoutine());
     }
 
-    public void Play(string label)
+    IEnumerator PopupRoutine()
     {
-        if (txt != null) txt.text = label;
-        StartCoroutine(DoPopup());
-    }
+        CanvasGroup cg = GetComponent<CanvasGroup>();
+        if (cg == null) cg = gameObject.AddComponent<CanvasGroup>();
 
-    IEnumerator DoPopup()
-    {
         float t = 0f;
-        Vector2 start = rt.anchoredPosition;
-        Color baseColor = txt != null ? txt.color : Color.white;
-
+        Vector3 start = transform.localPosition;
         while (t < duration)
         {
             t += Time.deltaTime;
             float p = Mathf.Clamp01(t / duration);
-            rt.anchoredPosition = start + new Vector2(0, moveUpDistance * p);
-            if (txt != null)
-            {
-                Color c = baseColor;
-                c.a = alphaCurve.Evaluate(p);
-                txt.color = c;
-            }
+            // move up and fade out
+            transform.localPosition = start + Vector3.up * (moveUp * p);
+            cg.alpha = 1.0f - p;
             yield return null;
         }
+
         Destroy(gameObject);
     }
 }

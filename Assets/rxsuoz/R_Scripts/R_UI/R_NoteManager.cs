@@ -5,45 +5,57 @@ using UnityEngine;
 public class R_NoteManager : MonoBehaviour
 {
     [Header("Tap Note Prefabs")]
-    public GameObject upTapPrefab;      //  
-    public GameObject downTapPrefab;    //  
+    public GameObject upTapPrefab;
+    public GameObject downTapPrefab;
 
     [Header("Long Note Prefabs")]
-    public GameObject upLongPrefab;     //  
-    public GameObject downLongPrefab;   //  
+    public GameObject upLongPrefab;
+    public GameObject downLongPrefab;
 
     [Header("Main Layers")]
-    public RectTransform playArea;      //   
-    public RectTransform hitLine;       // 
+    public RectTransform playArea;
+    public RectTransform hitLine; // used for position reference
 
     [Header("External References")]
-    public RRGameManager judgeManager;    // GameManager  ( )
+    public RRGameManager judgeManager;
 
     [Header("Note Settings")]
-    public float travelTime = 1.5f;     //    ()
-    public float spawnY = 350f;         //   Y
+    public float travelTime = 1.8f;   // seconds from spawn to hit
+    public float spawnYOffset = 100f; // extra offset above playArea top
+    public float laneXOffset = 150f;  // horizontal separation for lanes
+    public float judgeRadius = 60f;   // pixel radius for circular judge area
 
-    //   
     private List<RRNoteData> noteList = new List<RRNoteData>();
     private int nextIndex = 0;
     private bool spawning = false;
+    private float computedSpawnY = 600f;
 
-    //  GameManager :     
     public void StartNotes(List<RRNoteData> notes)
     {
         noteList = notes;
         nextIndex = 0;
         spawning = true;
+
+        ComputeSpawnY();
+    }
+
+    void ComputeSpawnY()
+    {
+        if (playArea != null)
+        {
+            // PlayArea rect height / 2 is center in anchored coordinates.
+            // top y = rect.height/2. We add spawnYOffset so spawn above visible top.
+            computedSpawnY = playArea.rect.height * 0.5f + spawnYOffset;
+        }
     }
 
     void Update()
     {
-        if (!spawning || noteList == null || noteList.Count == 0)
-            return;
+        if (!spawning || noteList == null || noteList.Count == 0) return;
+        if (judgeManager == null) return;
 
         double songTime = judgeManager.GetSongTime();
 
-        //        
         while (nextIndex < noteList.Count)
         {
             var note = noteList[nextIndex];
@@ -54,47 +66,38 @@ public class R_NoteManager : MonoBehaviour
                 SpawnNote(note);
                 nextIndex++;
             }
-            else
-            {
-                break; //       
-            }
+            else break;
         }
     }
 
-    //   
     void SpawnNote(RRNoteData data)
     {
         GameObject prefab = null;
-
-        //     
         if (data.type == "tap")
-        {
             prefab = (data.lane == "up") ? upTapPrefab : downTapPrefab;
-        }
         else if (data.type == "long")
-        {
             prefab = (data.lane == "up") ? upLongPrefab : downLongPrefab;
-        }
 
         if (prefab == null)
         {
-            Debug.LogWarning($" NoteManager: {data.type}/{data.lane}   .");
+            Debug.LogWarning("NoteManager: prefab not assigned for " + data.type + "/" + data.lane);
             return;
         }
 
-        //   
         GameObject go = Instantiate(prefab, playArea);
         RectTransform rt = go.GetComponent<RectTransform>();
+        if (rt == null) rt = go.AddComponent<RectTransform>();
 
-        // /   X  
-        float x = (data.lane == "up") ? -100f : 100f;
-        rt.anchoredPosition = new Vector2(x, spawnY);
+        float x = 0f;
+        if (data.lane == "up") x = laneXOffset;
+        else x = -laneXOffset;
 
-        // Note  
+        rt.anchoredPosition = new Vector2(x, computedSpawnY);
+
         RRNote noteComp = go.GetComponent<RRNote>();
-        if (noteComp == null)
-            noteComp = go.AddComponent<RRNote>();
+        if (noteComp == null) noteComp = go.AddComponent<RRNote>();
 
-        noteComp.Init(data, judgeManager, hitLine.anchoredPosition.y, spawnY, travelTime);
+        // pass hitLine RectTransform and judgeRadius
+        noteComp.Init(data, judgeManager, hitLine, computedSpawnY, travelTime, judgeRadius);
     }
 }

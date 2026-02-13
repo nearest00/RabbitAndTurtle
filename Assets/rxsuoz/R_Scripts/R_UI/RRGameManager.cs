@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,14 +12,14 @@ public class RRGameManager : MonoBehaviour
     [Header("Main UI References")]
     public RectTransform playArea;      //   
     public RectTransform hitLine;       // 
-    public Text scoreText;              //   
+    public TextMeshProUGUI scoreText;              //   
 
     [Header("Judge Popup UI")]
     public GameObject judgeTextPrefab;  // Perfect/Great    
     public RectTransform judgeParent;   //    (Canvas)
 
     [Header("Managers")]
-    public RRNoteManager noteManager;     //   
+    public R_NoteManager noteManager;     //   
     public Transform noteParent => playArea; // InputHandler 
 
     //  
