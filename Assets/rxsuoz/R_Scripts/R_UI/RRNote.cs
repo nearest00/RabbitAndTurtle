@@ -38,13 +38,13 @@ public class RRNote : MonoBehaviour
     void UpdateVisual()
     {
         var img = GetComponent<Image>();
-        if (img != null)
+        /*if (img != null)
         {
             if (data.lane == "up") img.color = Color.cyan;
             else img.color = Color.magenta;
 
             if (data.type == "long") img.color *= 0.85f;
-        }
+        }*/
     }
 
     void Update()

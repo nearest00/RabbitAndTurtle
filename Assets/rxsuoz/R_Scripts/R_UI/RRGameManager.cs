@@ -6,6 +6,9 @@ public class RRGameManager : MonoBehaviour
 {
     [Header("Song and Data")]
     public RRSongData song;
+    
+    [Header("Managers")]
+    public RRGuideNoteManager guideManager;
     public R_NoteManager noteManager;
 
     [Header("UI")]
@@ -39,6 +42,14 @@ public class RRGameManager : MonoBehaviour
 
         // CSV -> NoteData 파싱
         notes = LoadChart(song.chartCsv);
+
+        // LoadChart 이후
+        notes = LoadChart(song.chartCsv);
+
+        // guide 노트 매니저 초기화
+        if (guideManager != null)
+            guideManager.Init(this, notes);
+
 
         // 곡 길이 설정
         if (musicSource != null && musicSource.clip != null)
