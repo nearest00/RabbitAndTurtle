@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3064954949863053386
+--- !u!1 &4633415381607950206
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7972681412427416149}
-  - component: {fileID: 774606351831123594}
-  - component: {fileID: 3671830735651455160}
-  - component: {fileID: 7256921675439135322}
-  m_Layer: 5
-  m_Name: RapidNoteU
+  - component: {fileID: 5348602123973792435}
+  - component: {fileID: 408302951703735235}
+  - component: {fileID: 1675743118609066285}
+  - component: {fileID: -36817871274861880}
+  m_Layer: 0
+  m_Name: DownTapNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &7972681412427416149
+--- !u!224 &5348602123973792435
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3064954949863053386}
+  m_GameObject: {fileID: 4633415381607950206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,21 +38,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &774606351831123594
+--- !u!222 &408302951703735235
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3064954949863053386}
+  m_GameObject: {fileID: 4633415381607950206}
   m_CullTransparentMesh: 1
---- !u!114 &3671830735651455160
+--- !u!114 &1675743118609066285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3064954949863053386}
+  m_GameObject: {fileID: 4633415381607950206}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7137179805908077444, guid: 6e1116045ee072d4ebc34f861059dc36, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,20 +76,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7256921675439135322
+--- !u!114 &-36817871274861880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3064954949863053386}
+  m_GameObject: {fileID: 4633415381607950206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf1c4f408bcb314fbee6b1ec75029a6, type: 3}
+  m_Script: {fileID: 11500000, guid: a64cc02c8456486408b6a6985ef05f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteSpeed: 500
-  noteType: 0
-  exactTime: 0
-  duration: 1.5
-  requiredTaps: 10
+  data:
+    time: 0
+    lane: 
+    type: 
+    holdDuration: 0
