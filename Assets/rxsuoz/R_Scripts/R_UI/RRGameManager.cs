@@ -1,77 +1,129 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RRGameManager : MonoBehaviour
 {
-    [Header("Song & Audio Settings")]
-    public RRSongData song;               //  (ScriptableObject)
-    public AudioSource musicSource;     // BGM (     )
+    [Header("Song and Data")]
+    public RRSongData song;
+    public R_NoteManager noteManager;
 
-    [Header("Main UI References")]
-    public RectTransform playArea;      //   
-    public RectTransform hitLine;       // 
-    public TextMeshProUGUI scoreText;              //   
+    [Header("UI")]
+    public Slider scoreSlider;   // 점수 표시용 슬라이더
 
-    [Header("Judge Popup UI")]
-    public GameObject judgeTextPrefab;  // Perfect/Great    
-    public RectTransform judgeParent;   //    (Canvas)
+    [Header("Judge Popup")]
+    public GameObject judgeTextPrefab;
+    public RectTransform judgeParent;
 
-    [Header("Managers")]
-    public R_NoteManager noteManager;     //   
-    public Transform noteParent => playArea; // InputHandler 
+    [Header("Audio")]
+    public AudioSource musicSource;
 
-    //  
-    private List<RRNoteData> notes = new List<RRNoteData>();
-    private double dspSongStartTime;
+    [Header("Score Settings")]
+    public int maxScore = 550;
+    public float clearRate = 0.6f; // (현재 미사용, 향후 사용 가능)
+
+    // 내부 상태 관리
     private int score = 0;
+    private double dspStartTime = 0.0;
+    private bool started = false;
+    private List<RRNoteData> notes = new List<RRNoteData>();
+    private double songLength = 0.0;
 
     void Start()
     {
-        // 1. SongData   
         if (song == null)
         {
-            Debug.LogError(" SongData   !");
+            Debug.LogError("GameManager: SongData not assigned.");
             return;
         }
 
-        // 2.  
-        LoadChartFromCsv();
+        // CSV -> NoteData 파싱
+        notes = LoadChart(song.chartCsv);
 
-        // 3. NoteManager 
+        // 곡 길이 설정
+        if (musicSource != null && musicSource.clip != null)
+        {
+            songLength = musicSource.clip.length;
+        }
+        else
+        {
+            double last = 0.0;
+            foreach (var n in notes)
+                if (n.time > last)
+                    last = n.time;
+            songLength = last + 1.0;
+        }
+
+        // UI 초기화
+        if (scoreSlider != null)
+        {
+            scoreSlider.minValue = 0;
+            scoreSlider.maxValue = maxScore;
+            scoreSlider.value = 0;
+        }
+
+        // NoteManager 초기화
         if (noteManager != null)
         {
             noteManager.judgeManager = this;
-            noteManager.playArea = playArea;
-            noteManager.hitLine = hitLine;
             noteManager.StartNotes(notes);
         }
 
-        // 4.  
-        if (scoreText != null)
-            scoreText.text = "Score: 0";
-
-        // 5.   
-        StartSong();
-    }
-
-    //  CSV   
-    void LoadChartFromCsv()
-    {
-        notes.Clear();
-
-        if (song.chartCsv == null)
+        // 오디오 재생
+        dspStartTime = AudioSettings.dspTime + 0.1;
+        if (musicSource != null && song.musicClip != null)
         {
-            Debug.LogWarning(" chartCsv  .");
-            return;
+            musicSource.clip = song.musicClip;
+            musicSource.PlayScheduled(dspStartTime);
         }
 
-        var lines = song.chartCsv.text.Split(
-            new char[] { '\n', '\r' },
-            System.StringSplitOptions.RemoveEmptyEntries
-        );
+        started = true;
+        score = 0;
 
+        Debug.Log("GameManager started, songLength=" + songLength);
+    }
+
+    void Update()
+    {
+        if (!started) return;
+
+        double cur = GetSongTime();
+
+        // 필요 시, 여기서 자동으로 게임 종료 로직 추가 가능
+        // 현재는 점수 표시만 유지
+    }
+
+    // 점수 추가 (노트 판정 시 호출됨)
+    public void AddScore(int delta)
+    {
+        score += delta;
+
+        if (score < 0)
+            score = 0; // 음수 점수 방지
+
+        if (score > maxScore)
+            score = maxScore;
+
+        if (scoreSlider != null)
+            scoreSlider.value = score;
+
+        Debug.Log("GameManager: score = " + score);
+    }
+
+    // 현재 곡 진행 시간 반환
+    public double GetSongTime()
+    {
+        if (!started) return 0.0;
+        return AudioSettings.dspTime - dspStartTime;
+    }
+
+    // CSV 읽기
+    List<RRNoteData> LoadChart(TextAsset csv)
+    {
+        var list = new List<RRNoteData>();
+        if (csv == null) return list;
+
+        var lines = csv.text.Split(new char[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
         foreach (var raw in lines)
         {
             var line = raw.Trim();
@@ -80,83 +132,31 @@ public class RRGameManager : MonoBehaviour
             var cols = line.Split(',');
             if (cols.Length < 3) continue;
 
-            double time = 0;
-            double hold = 0;
-            double.TryParse(cols[0].Trim(), out time);   // ()
-            string lane = cols[1].Trim().ToLower();      // "up" / "down"
-            string type = cols[2].Trim().ToLower();      // "tap" / "long"
+            double t = 0.0;
+            double h = 0.0;
+            double.TryParse(cols[0].Trim(), out t);
+            string lane = cols[1].Trim().ToLower();
+            string type = cols[2].Trim().ToLower();
+            if (cols.Length >= 4) double.TryParse(cols[3].Trim(), out h);
 
-            if (cols.Length >= 4)
-                double.TryParse(cols[3].Trim(), out hold); //  ()
-
-            notes.Add(new RRNoteData()
-            {
-                time = time,
-                lane = lane,
-                type = type,
-                holdDuration = hold
-            });
+            list.Add(new RRNoteData() { time = t, lane = lane, type = type, holdDuration = h });
         }
 
-        //   ()
-        notes.Sort((a, b) => a.time.CompareTo(b.time));
-
-        Debug.Log($"    ({notes.Count} )");
+        list.Sort((a, b) => a.time.CompareTo(b.time));
+        return list;
     }
 
-    //   
-    public void StartSong()
+    // 판정 텍스트 표시
+    public void ShowJudgeAt(string label, Vector2 anchoredPos)
     {
-        dspSongStartTime = AudioSettings.dspTime + 0.1f;
-
-        // BGM   (   )
-        if (musicSource != null && song.musicClip != null)
-        {
-            musicSource.clip = song.musicClip;
-            musicSource.PlayScheduled(dspSongStartTime);
-        }
-
-        Debug.Log("  !");
-    }
-
-    //    ()  ( )
-    public double GetSongTime()
-    {
-        return AudioSettings.dspTime - dspSongStartTime;
-    }
-
-    //   
-    public void AddScore(int delta)
-    {
-        score += delta;
-        if (scoreText != null)
-            scoreText.text = $"Score: {score}";
-    }
-
-    //     (Perfect, Great )
-    public void ShowJudgeAt(string judgeLabel, Vector2 anchoredPos)
-    {
-        if (judgeTextPrefab == null || judgeParent == null)
-        {
-            Debug.LogWarning(" JudgeTextPrefab  JudgeParent  .");
-            return;
-        }
+        if (judgeTextPrefab == null || judgeParent == null) return;
 
         GameObject go = Instantiate(judgeTextPrefab, judgeParent);
         RectTransform rt = go.GetComponent<RectTransform>();
-        rt.anchoredPosition = anchoredPos;
+        if (rt != null) rt.anchoredPosition = anchoredPos;
 
         RRJudgePopup popup = go.GetComponent<RRJudgePopup>();
         if (popup != null)
-        {
-            popup.Play(judgeLabel);
-        }
-        else
-        {
-            //  JudgePopup    
-            var txt = go.GetComponent<Text>();
-            if (txt != null) txt.text = judgeLabel;
-            Destroy(go, 1.0f);
-        }
+            popup.Play(label);
     }
 }

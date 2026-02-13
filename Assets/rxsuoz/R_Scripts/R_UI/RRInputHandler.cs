@@ -1,14 +1,43 @@
-// InputHandler.cs
-using UnityEditor.Experimental.GraphView;
+// RRInputHandler.cs
+using System;
 using UnityEngine;
 
 public class RRInputHandler : MonoBehaviour
 {
+    // 기존 게임 매니저(네 프로젝트에 맞는 타입)
     public RRGameManager gm;
+
+    // 명시적으로 노트들이 부모로 들어있는 Transform을 연결하세요.
+    // 예: Canvas_Play/PlayArea (Transform)
+    public Transform noteParent;
+
+    // 자동 발견용: NoteManager나 PlayArea 이름으로 찾아본다.
+    public string fallbackNoteParentName = "PlayArea";
+
+    void Start()
+    {
+        // 만약 inspector에서 noteParent를 연결하지 않았다면 시도해서 찾아본다.
+        if (noteParent == null)
+        {
+            // 1) 먼저 NoteManager가 있으면 그 자식(생성된 노트)의 부모를 사용해본다.
+            var nm = FindObjectOfType<R_NoteManager>();
+            if (nm != null && nm.playArea != null)
+            {
+                noteParent = nm.playArea;
+            }
+            else
+            {
+                // 2) fallback 이름으로 Hierarchy에서 찾아본다.
+                var go = GameObject.Find(fallbackNoteParentName);
+                if (go != null) noteParent = go.transform;
+            }
+        }
+    }
 
     void Update()
     {
         if (gm == null) return;
+
         double cur = gm.GetSongTime();
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -24,15 +53,26 @@ public class RRInputHandler : MonoBehaviour
 
     void TryHitLane(string lane, double time)
     {
+        if (noteParent == null)
+        {
+            Debug.LogWarning("RRInputHandler: noteParent is not assigned and could not be found.");
+            return;
+        }
+
+        // 가장 근접한 노트(시간 차 기준)를 찾는다.
         RRNote best = null;
         double bestDiff = double.MaxValue;
 
-        foreach (Transform t in gm.noteParent) // noteParent는 playArea의 transform (GameManager에서 제공)
+        foreach (Transform t in noteParent)
         {
             RRNote n = t.GetComponent<RRNote>();
             if (n == null) continue;
-            if (n.data.lane != lane) continue;
-            double diffMs = System.Math.Abs((time - n.data.time) * 1000.0);
+            if (string.IsNullOrEmpty(n.data.lane)) continue;
+
+            // lane 비교: 소문자/대문자 허용
+            if (!string.Equals(n.data.lane, lane, StringComparison.OrdinalIgnoreCase)) continue;
+
+            double diffMs = Math.Abs((time - n.data.time) * 1000.0);
             if (diffMs < bestDiff)
             {
                 bestDiff = diffMs;
@@ -40,17 +80,27 @@ public class RRInputHandler : MonoBehaviour
             }
         }
 
-        if (best != null) best.OnHitAttempt(time);
+        if (best != null)
+        {
+            best.OnHitAttempt(time);
+        }
     }
 
     void TryReleaseLane(string lane, double time)
     {
-        foreach (Transform t in gm.noteParent)
+        if (noteParent == null)
+        {
+            Debug.LogWarning("RRInputHandler: noteParent is not assigned and could not be found.");
+            return;
+        }
+
+        foreach (Transform t in noteParent)
         {
             RRNote n = t.GetComponent<RRNote>();
             if (n == null) continue;
-            if (n.data.lane != lane) continue;
-            if (n.data.type != "long") continue;
+            if (!string.Equals(n.data.lane, lane, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!string.Equals(n.data.type, "long", StringComparison.OrdinalIgnoreCase)) continue;
+
             n.OnHoldRelease(time);
         }
     }

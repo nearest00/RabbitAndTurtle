@@ -1,6 +1,14 @@
 0.5,up,tap,0
 1.2,down,tap,0
-1.8,up,long,0.65
+1.8,up,long,2
 2.9,down,tap,0
-4.2,down,long,1
+4.2,down,long,2
 5.8,up,tap,0
+7,up,tap,0
+9,down,tap,0
+11,up,long,2
+13,down,tap,0
+15,down,long,2
+17,up,tap,0
+19,up,tap,0
+20,down,tap,0

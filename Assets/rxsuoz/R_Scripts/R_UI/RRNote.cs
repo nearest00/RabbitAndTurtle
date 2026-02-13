@@ -15,11 +15,12 @@ public class RRNote : MonoBehaviour
     private bool isHoldActive = false;
     private double holdEndTime = 0.0;
 
-    // ms windows
-    const double PERFECT_MS = 15.0;
-    const double GREAT_MS_MAX = 35.0;
-    const double GOOD_MS_MAX = 60.0;
-    const double BAD_MS_MAX = 90.0;
+    // Judge timing in milliseconds
+    const double PERFECT_MS = 35.0;
+    const double GREAT_MS_MAX = 70.0;
+    const double GOOD_MS_MAX = 110.0;
+    const double BAD_MS_MAX = 160.0;
+    const double MISS_MS_MAX = 200.0;
 
     public void Init(RRNoteData nd, RRGameManager manager, RectTransform hitLineRect, float spawnY, double travelTime, float judgeRadius)
     {
@@ -58,8 +59,8 @@ public class RRNote : MonoBehaviour
         float y = Mathf.Lerp(spawnY, hitLineRect.anchoredPosition.y, (float)progress);
         rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, y);
 
-        // auto-miss if passed judge window
-        if (!judged && curSongTime - data.time > (BAD_MS_MAX / 1000.0 + 0.05))
+        // Auto miss if way too late
+        if (!judged && curSongTime - data.time > (MISS_MS_MAX / 1000.0))
         {
             judged = true;
             ApplyJudge("Miss", -50);
@@ -67,40 +68,22 @@ public class RRNote : MonoBehaviour
         }
     }
 
-    // Called by InputHandler when player presses key
     public void OnHitAttempt(double inputSongTime)
     {
         if (judged) return;
 
-        // check if inside circle judge area at this frame
-        Vector2 notePos = rt.anchoredPosition;
-        Vector2 hitPos = hitLineRect.anchoredPosition;
-        float distance = Vector2.Distance(notePos, hitPos);
-
-        if (distance > judgeRadius)
-        {
-            // outside judge circle, treat as miss or ignore
-            // we choose to ignore here (no penalty). Optionally give small penalty.
-            return;
-        }
-
         double diffMs = (inputSongTime - data.time) * 1000.0;
         double absMs = System.Math.Abs(diffMs);
 
-        if (absMs > BAD_MS_MAX)
-        {
-            judged = true;
-            ApplyJudge("Miss", -50);
-            Destroy(gameObject, 0.02f);
-            return;
-        }
-
+        // Time-based judge (no distance condition)
         string label;
         int add;
+
         if (absMs <= PERFECT_MS) { label = "Perfect"; add = 10; }
         else if (absMs <= GREAT_MS_MAX) { label = "Great"; add = 7; }
         else if (absMs <= GOOD_MS_MAX) { label = "Good"; add = 4; }
-        else { label = "Bad"; add = 1; }
+        else if (absMs <= BAD_MS_MAX) { label = "Bad"; add = 1; }
+        else { label = "Miss"; add = -50; }
 
         judged = true;
         ApplyJudge(label, add);
@@ -135,12 +118,10 @@ public class RRNote : MonoBehaviour
             gm.AddScore(scoreDelta);
 
             Vector2 showPos = hitLineRect.anchoredPosition;
-            // offset to left or right so popup not overlap center
             float xOffset = (data.lane == "up") ? 80f : -80f;
             Vector2 anchored = new Vector2(showPos.x + xOffset, showPos.y + 20f);
             gm.ShowJudgeAt(label, anchored);
         }
-
-        Debug.Log("Judge: " + label + " scoreDelta: " + scoreDelta + " noteTime: " + data.time);
+        Debug.Log("Judge: " + label + " (" + data.lane + ") " + " diff=" + label);
     }
 }
