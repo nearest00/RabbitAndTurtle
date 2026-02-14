@@ -4,7 +4,13 @@ using UnityEngine;
 public class RRSongData : ScriptableObject
 {
     public string songTitle;
-    public AudioClip musicClip;     // 음악 파일
-    public TextAsset chartCsv;      // 채보 파일
-    public string difficulty;       // "easy", "normal", "hard"
+    public AudioClip musicClip;
+
+    // 난이도별 채보 파일 (TextAsset CSV)
+    public TextAsset chartEasy;
+    public TextAsset chartNormal;
+    public TextAsset chartHard;
+
+    // "easy", "normal", "hard" 중 하나로 설정
+    public string difficulty;
 }

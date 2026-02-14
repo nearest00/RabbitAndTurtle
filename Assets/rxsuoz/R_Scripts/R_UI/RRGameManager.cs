@@ -6,13 +6,13 @@ public class RRGameManager : MonoBehaviour
 {
     [Header("Song and Data")]
     public RRSongData song;
-    
+
     [Header("Managers")]
-    public RRGuideNoteManager guideManager;
     public R_NoteManager noteManager;
+    public RRGuideNoteManager guideManager;
 
     [Header("UI")]
-    public Slider scoreSlider;   // 점수 표시용 슬라이더
+    public Slider scoreSlider;   // optional, will be synced with N_221LifeSlider if present
 
     [Header("Judge Popup")]
     public GameObject judgeTextPrefab;
@@ -21,11 +21,7 @@ public class RRGameManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource musicSource;
 
-    [Header("Score Settings")]
-    public int maxScore = 550;
-    public float clearRate = 0.6f; // (현재 미사용, 향후 사용 가능)
-
-    // 내부 상태 관리
+    // score is delegated to N_221LifeSlider if present
     private int score = 0;
     private double dspStartTime = 0.0;
     private bool started = false;
@@ -40,47 +36,41 @@ public class RRGameManager : MonoBehaviour
             return;
         }
 
-        // CSV -> NoteData 파싱
-        notes = LoadChart(song.chartCsv);
-
-        // LoadChart 이후
-        notes = LoadChart(song.chartCsv);
-
-        // guide 노트 매니저 초기화
-        if (guideManager != null)
-            guideManager.Init(this, notes);
-
-
-        // 곡 길이 설정
-        if (musicSource != null && musicSource.clip != null)
+        // 1) Set difficulty to slider singleton first (so slider max is ready)
+        if (RLifeSlider.Instance != null)
         {
-            songLength = musicSource.clip.length;
-        }
-        else
-        {
-            double last = 0.0;
-            foreach (var n in notes)
-                if (n.time > last)
-                    last = n.time;
-            songLength = last + 1.0;
+            RLifeSlider.Instance.SetDifficulty(song.difficulty);
+            // optional: sync our scoreSlider (if assigned) to the same max
+            if (scoreSlider != null)
+            {
+                scoreSlider.maxValue = RLifeSlider.Instance.Max; //
+                scoreSlider.value = RLifeSlider.Instance.internalValue; //
+            }
         }
 
-        // UI 초기화
-        if (scoreSlider != null)
-        {
-            scoreSlider.minValue = 0;
-            scoreSlider.maxValue = maxScore;
-            scoreSlider.value = 0;
-        }
+        // 2) Load appropriate CSV based on difficulty
+        TextAsset chosenCsv = GetCsvForDifficulty(song);
+        notes = LoadChart(chosenCsv);
 
-        // NoteManager 초기화
+        // 3) Init guide manager and note manager
+        if (guideManager != null) guideManager.Init(this, notes);
         if (noteManager != null)
         {
             noteManager.judgeManager = this;
             noteManager.StartNotes(notes);
         }
 
-        // 오디오 재생
+        // 4) determine song length
+        if (musicSource != null && musicSource.clip != null)
+            songLength = musicSource.clip.length;
+        else
+        {
+            double last = 0.0;
+            foreach (var n in notes) if (n.time > last) last = n.time;
+            songLength = last + 1.0;
+        }
+
+        // 5) audio start
         dspStartTime = AudioSettings.dspTime + 0.1;
         if (musicSource != null && song.musicClip != null)
         {
@@ -89,46 +79,70 @@ public class RRGameManager : MonoBehaviour
         }
 
         started = true;
-        score = 0;
+        score = (int)RLifeSlider.Instance.internalValue; // sync
 
-        Debug.Log("GameManager started, songLength=" + songLength);
+        Debug.Log("GameManager started. difficulty=" + song.difficulty + " notes=" + notes.Count);
+    }
+
+    // Helper: choose csv based on SongData difficulty
+    TextAsset GetCsvForDifficulty(RRSongData s)
+    {
+        if (s == null) return null;
+        string d = (s.difficulty == null) ? "easy" : s.difficulty.Trim().ToLower();
+
+        if (d == "easy" && s.chartEasy != null) return s.chartEasy;
+        if (d == "normal" && s.chartNormal != null) return s.chartNormal;
+        if (d == "hard" && s.chartHard != null) return s.chartHard;
+
+        // fallback priority: easy -> normal -> hard (any non-null)
+        if (s.chartEasy != null) return s.chartEasy;
+        if (s.chartNormal != null) return s.chartNormal;
+        if (s.chartHard != null) return s.chartHard;
+        return null;
     }
 
     void Update()
     {
         if (!started) return;
-
-        double cur = GetSongTime();
-
-        // 필요 시, 여기서 자동으로 게임 종료 로직 추가 가능
-        // 현재는 점수 표시만 유지
+        // nothing special here; score is handled via N_221LifeSlider.AddValue from Note.ApplyJudge
+        // but if you also keep scoreSlider, sync it
+        if (scoreSlider != null && RLifeSlider.Instance != null)
+        {
+            scoreSlider.value = RLifeSlider.Instance.internalValue;
+        }
     }
 
-    // 점수 추가 (노트 판정 시 호출됨)
+    // Called by Note when judged
+    // We route score changes through N_221LifeSlider singleton for consistent UI + limits
     public void AddScore(int delta)
     {
-        score += delta;
-
-        if (score < 0)
-            score = 0; // 음수 점수 방지
-
-        if (score > maxScore)
-            score = maxScore;
-
-        if (scoreSlider != null)
-            scoreSlider.value = score;
-
-        Debug.Log("GameManager: score = " + score);
+        if (RLifeSlider.Instance != null)
+        {
+            RLifeSlider.Instance.AddValue(delta);
+            // optional: update internal score var
+            score = (int)RLifeSlider.Instance.internalValue;
+        }
+        else
+        {
+            // fallback behavior: update local score and optional slider
+            score += delta;
+            if (score < 0) score = 0;
+            if (scoreSlider != null)
+            {
+                if (scoreSlider.maxValue <= 0) scoreSlider.maxValue = 550f;
+                score = Mathf.Clamp(score, 0, (int)scoreSlider.maxValue);
+                scoreSlider.value = score;
+            }
+        }
     }
 
-    // 현재 곡 진행 시간 반환
     public double GetSongTime()
     {
         if (!started) return 0.0;
         return AudioSettings.dspTime - dspStartTime;
     }
 
-    // CSV 읽기
+    // CSV parsing (unchanged)
     List<RRNoteData> LoadChart(TextAsset csv)
     {
         var list = new List<RRNoteData>();
@@ -150,14 +164,19 @@ public class RRGameManager : MonoBehaviour
             string type = cols[2].Trim().ToLower();
             if (cols.Length >= 4) double.TryParse(cols[3].Trim(), out h);
 
-            list.Add(new RRNoteData() { time = t, lane = lane, type = type, holdDuration = h });
+            list.Add(new RRNoteData()
+            {
+                time = t,
+                lane = lane,
+                type = type,
+                holdDuration = h
+            });
         }
 
         list.Sort((a, b) => a.time.CompareTo(b.time));
         return list;
     }
 
-    // 판정 텍스트 표시
     public void ShowJudgeAt(string label, Vector2 anchoredPos)
     {
         if (judgeTextPrefab == null || judgeParent == null) return;
@@ -166,8 +185,7 @@ public class RRGameManager : MonoBehaviour
         RectTransform rt = go.GetComponent<RectTransform>();
         if (rt != null) rt.anchoredPosition = anchoredPos;
 
-        RRJudgePopup popup = go.GetComponent<RRJudgePopup>();
-        if (popup != null)
-            popup.Play(label);
+        var popup = go.GetComponent<RRJudgePopup>();
+        if (popup != null) popup.Play(label);
     }
 }

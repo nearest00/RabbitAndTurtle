@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: c54a8051da04ee7488b73b9e1e428d77
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6938326700269143131
+    second: Sliding_Bit_0
+  - first:
+      213: -4028876203137058752
+    second: Sliding_Bit_1
+  - first:
+      213: -1983248808960480505
+    second: Sliding_Bit_2
+  - first:
+      213: 5155479791549454790
+    second: Sliding_Bit_3
+  - first:
+      213: -8927153092286548398
+    second: Sliding_Bit_4
+  - first:
+      213: -148484075655658104
+    second: Sliding_Bit_5
+  - first:
+      213: -9072732381550306536
+    second: Sliding_Bit_6
+  - first:
+      213: -7027255462497995024
+    second: Sliding_Bit_7
+  - first:
+      213: -2295482574252060708
+    second: Sliding_Bit_8
+  - first:
+      213: -7000900944422548993
+    second: Sliding_Bit_9
+  - first:
+      213: -4318404331860290886
+    second: Sliding_Bit_10
+  - first:
+      213: 3009994390222714403
+    second: Sliding_Bit_11
+  - first:
+      213: -2252600540563647934
+    second: Sliding_Bit_12
+  - first:
+      213: 1131764963685429602
+    second: Sliding_Bit_13
+  - first:
+      213: -6331640010761609128
+    second: Sliding_Bit_14
+  - first:
+      213: 2124656369526944892
+    second: Sliding_Bit_15
+  - first:
+      213: 3448114670744947773
+    second: Sliding_Bit_16
+  - first:
+      213: -881574741659500854
+    second: Sliding_Bit_17
+  - first:
+      213: -2517240327592423158
+    second: Sliding_Bit_18
+  - first:
+      213: 8942373160956360202
+    second: Sliding_Bit_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sliding_Bit_0
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 2299
+        width: 549
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5486218f53e94060800000000000000
+      internalID: 6938326700269143131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_1
+      rect:
+        serializedVersion: 2
+        x: 1653
+        y: 2301
+        width: 552
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 048bdfb607e8618c0800000000000000
+      internalID: -4028876203137058752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_2
+      rect:
+        serializedVersion: 2
+        x: 2932
+        y: 2303
+        width: 555
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ba1b847b51a74e0800000000000000
+      internalID: -1983248808960480505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_3
+      rect:
+        serializedVersion: 2
+        x: 4211
+        y: 2303
+        width: 558
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c992063e81fb8740800000000000000
+      internalID: 5155479791549454790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_4
+      rect:
+        serializedVersion: 2
+        x: 5491
+        y: 2302
+        width: 558
+        height: 439
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 256fab68f816c1480800000000000000
+      internalID: -8927153092286548398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_5
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 1580
+        width: 556
+        height: 458
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8850eb7158a70fdf0800000000000000
+      internalID: -148484075655658104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_6
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 1579
+        width: 553
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81b9287e7fd271280800000000000000
+      internalID: -9072732381550306536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_7
+      rect:
+        serializedVersion: 2
+        x: 2938
+        y: 1576
+        width: 549
+        height: 476
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f632eb836c2a7e90800000000000000
+      internalID: -7027255462497995024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_8
+      rect:
+        serializedVersion: 2
+        x: 4221
+        y: 1573
+        width: 544
+        height: 476
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdf4b9db2cec420e0800000000000000
+      internalID: -2295482574252060708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_9
+      rect:
+        serializedVersion: 2
+        x: 5503
+        y: 1569
+        width: 541
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff94ff3feadc7de90800000000000000
+      internalID: -7000900944422548993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_10
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 846
+        width: 537
+        height: 460
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab295fad322f114c0800000000000000
+      internalID: -4318404331860290886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_11
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 844
+        width: 533
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 326b42543f5a5c920800000000000000
+      internalID: 3009994390222714403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_12
+      rect:
+        serializedVersion: 2
+        x: 2948
+        y: 843
+        width: 530
+        height: 446
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 242d9de3eb72db0e0800000000000000
+      internalID: -2252600540563647934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_13
+      rect:
+        serializedVersion: 2
+        x: 4229
+        y: 842
+        width: 528
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 261f3b5fc36d4bf00800000000000000
+      internalID: 1131764963685429602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_14
+      rect:
+        serializedVersion: 2
+        x: 5509
+        y: 842
+        width: 527
+        height: 464
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85067e8e4fe7128a0800000000000000
+      internalID: -6331640010761609128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_15
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 124
+        width: 527
+        height: 474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c74bc6f06bb4c7d10800000000000000
+      internalID: 2124656369526944892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_16
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 125
+        width: 529
+        height: 481
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3cc09e260a2adf20800000000000000
+      internalID: 3448114670744947773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_17
+      rect:
+        serializedVersion: 2
+        x: 2944
+        y: 128
+        width: 533
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acebd68717404c3f0800000000000000
+      internalID: -881574741659500854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_18
+      rect:
+        serializedVersion: 2
+        x: 4222
+        y: 131
+        width: 536
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01d09b4247f01dd0800000000000000
+      internalID: -2517240327592423158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sliding_Bit_19
+      rect:
+        serializedVersion: 2
+        x: 5498
+        y: 135
+        width: 542
+        height: 455
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a067acbd201b91c70800000000000000
+      internalID: 8942373160956360202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Sliding_Bit_0: 6938326700269143131
+      Sliding_Bit_1: -4028876203137058752
+      Sliding_Bit_10: -4318404331860290886
+      Sliding_Bit_11: 3009994390222714403
+      Sliding_Bit_12: -2252600540563647934
+      Sliding_Bit_13: 1131764963685429602
+      Sliding_Bit_14: -6331640010761609128
+      Sliding_Bit_15: 2124656369526944892
+      Sliding_Bit_16: 3448114670744947773
+      Sliding_Bit_17: -881574741659500854
+      Sliding_Bit_18: -2517240327592423158
+      Sliding_Bit_19: 8942373160956360202
+      Sliding_Bit_2: -1983248808960480505
+      Sliding_Bit_3: 5155479791549454790
+      Sliding_Bit_4: -8927153092286548398
+      Sliding_Bit_5: -148484075655658104
+      Sliding_Bit_6: -9072732381550306536
+      Sliding_Bit_7: -7027255462497995024
+      Sliding_Bit_8: -2295482574252060708
+      Sliding_Bit_9: -7000900944422548993
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

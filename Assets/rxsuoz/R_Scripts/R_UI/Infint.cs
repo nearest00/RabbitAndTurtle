@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Infint : MonoBehaviour
+public class InfiniteBackgroundUI : MonoBehaviour
 {
     [Header("Settings")]
     public float scrollSpeed = 200f; // UI´Â px ´ÜÀ§
