@@ -13,6 +13,10 @@ public class RRGameManager : MonoBehaviour
     public R_NoteManager noteManager;
     public RRGuideNoteManager guideManager;
 
+    [Header("Guide Panel")]
+    public RRGuidePanelManager guidePanelManager;
+
+
     [Header("UI")]
     public Slider scoreSlider;
     public GameObject clearPanel;
@@ -24,6 +28,9 @@ public class RRGameManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource musicSource;
+
+    [Header("Panel Settings")]
+    public float panelFadeDuration = 0.4f; // Fade-in duration for panels
 
     private int score = 0;
     private double dspStartTime = 0.0;
@@ -51,10 +58,20 @@ public class RRGameManager : MonoBehaviour
 
     private IEnumerator InitializeAfterSliderReady()
     {
-        // Wait until LifeSlider is fully initialized
+        // LifeSlider 준비 대기
         while (N_221LifeSlider.Instance == null || N_221LifeSlider.Instance.targetSlider == null)
             yield return null;
 
+        // ✅ Guide Panel이 있다면 표시하고 끝날 때까지 대기
+        if (guidePanelManager != null)
+        {
+            guidePanelManager.StartGuide();
+
+            while (!guidePanelManager.IsFinished)
+                yield return null; // 가이드 패널이 끝날 때까지 대기
+        }
+
+        // 이후 기존 코드 실행
         string diff = string.IsNullOrEmpty(currentDifficulty)
             ? "easy"
             : currentDifficulty.ToLower();
@@ -96,15 +113,16 @@ public class RRGameManager : MonoBehaviour
         resultShown = false;
     }
 
+
     void Update()
     {
         if (!started) return;
 
-        // Sync slider with score
+        // Sync slider value
         if (scoreSlider != null && N_221LifeSlider.Instance != null)
             scoreSlider.value = N_221LifeSlider.Instance.internalValue;
 
-        // Check if music is finished
+        // Check if song finished
         if (!resultShown && AudioSettings.dspTime - dspStartTime >= songLength)
         {
             ShowResultPanel();
@@ -125,7 +143,6 @@ public class RRGameManager : MonoBehaviour
 
         if (currentScore < 0)
         {
-            // immediate fail
             ShowPanel(failPanel);
         }
         else if (percent >= 60f)
@@ -143,8 +160,14 @@ public class RRGameManager : MonoBehaviour
         if (panel == null) return;
 
         var fade = panel.GetComponent<RRPanelFade>();
-        if (fade != null) fade.FadeIn();
-        else panel.SetActive(true);
+        if (fade != null)
+        {
+            fade.FadeIn(panelFadeDuration); // ✅ duration 전달로 수정
+        }
+        else
+        {
+            panel.SetActive(true);
+        }
     }
 
     private void SetSliderMaxByDifficulty(string diff)
@@ -250,14 +273,14 @@ public class RRGameManager : MonoBehaviour
             popup.Play(label);
     }
 
-    //  Button Events
+    // Button Events
     public void OnClearButton()
     {
-        SceneManager.LoadScene("StageSellect"); // <-- Change to your next scene name
+        SceneManager.LoadScene("StageSellect"); // 클리어 후 다음 씬
     }
 
     public void OnRetryButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 재시도
     }
 }
