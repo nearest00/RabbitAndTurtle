@@ -681,7 +681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &399441075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -818,6 +818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 533832107}
   - component: {fileID: 533832106}
+  - component: {fileID: 533832108}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -838,15 +839,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   song: {fileID: 11400000, guid: 30645e4e961a3e744b8989cb106830d6, type: 2}
+  manualSongLength: 60
   noteManager: {fileID: 875212134}
   guideManager: {fileID: 1795540824}
-  guidePanelManager: {fileID: 0}
   scoreSlider: {fileID: 1799517402}
-  clearPanel: {fileID: 531839547}
-  failPanel: {fileID: 1196571164}
   judgeTextPrefab: {fileID: 6603378925275860982, guid: 5e5626afdd8e2924795692dc0ac5961c, type: 3}
   judgeParent: {fileID: 1959880254}
-  musicSource: {fileID: 0}
   panelFadeDuration: 0.4
 --- !u!4 &533832107
 Transform:
@@ -863,6 +861,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 144861739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &533832108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533832105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7214814de7e821a4ea5ed76abd01384f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClearPanel: {fileID: 531839547}
+  FailedPanel: {fileID: 1196571164}
 --- !u!1 &565568812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,7 +1098,6 @@ GameObject:
   - component: {fileID: 726389737}
   - component: {fileID: 726389739}
   - component: {fileID: 726389738}
-  - component: {fileID: 726389740}
   m_Layer: 0
   m_Name: 3_Panel
   m_TagString: Untagged
@@ -1151,19 +1162,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726389736}
   m_CullTransparentMesh: 1
---- !u!114 &726389740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726389736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e736d2a85927b49a4ef6d745df03cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useScale: 1
 --- !u!1 &763518873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,12 +1506,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1054289176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb9a1dbf1c981d4ea839c89eec55f30, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b98e699040e8594d80f9e19cb13332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panels: []
-  fadeDuration: 0.4
-  allowClickAnywhere: 1
+  guidePanel:
+  - {fileID: 1344501846}
+  - {fileID: 1920852455}
+  - {fileID: 726389736}
+  tutorialing: 0
 --- !u!1 &1110622152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,7 +2231,6 @@ GameObject:
   - component: {fileID: 1344501847}
   - component: {fileID: 1344501849}
   - component: {fileID: 1344501848}
-  - component: {fileID: 1344501850}
   m_Layer: 0
   m_Name: 1_Panel
   m_TagString: Untagged
@@ -2296,19 +2295,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344501846}
   m_CullTransparentMesh: 1
---- !u!114 &1344501850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344501846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e736d2a85927b49a4ef6d745df03cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useScale: 1
 --- !u!1 &1357028866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,7 +2659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799517401}
   - component: {fileID: 1799517402}
-  - component: {fileID: 1799517404}
+  - component: {fileID: 1799517403}
   m_Layer: 5
   m_Name: Life
   m_TagString: Untagged
@@ -2754,7 +2740,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1799517404
+--- !u!114 &1799517403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2763,7 +2749,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799517400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35a3fa496be5bc142925fb5564b5ca2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 87a3f0dbc35130d4d9872218f9e34527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetSlider: {fileID: 1799517402}
@@ -2780,7 +2766,6 @@ GameObject:
   - component: {fileID: 1920852456}
   - component: {fileID: 1920852458}
   - component: {fileID: 1920852457}
-  - component: {fileID: 1920852459}
   m_Layer: 0
   m_Name: 2_Panel
   m_TagString: Untagged
@@ -2845,19 +2830,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920852455}
   m_CullTransparentMesh: 1
---- !u!114 &1920852459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920852455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e736d2a85927b49a4ef6d745df03cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useScale: 1
 --- !u!1 &1959880253
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,18 +22,23 @@ public class RRJudgePopup : MonoBehaviour
         {
             case "Perfect":
                 image.sprite = perfectSprite;
+                RLifeSlider.Instance.AddValue(100); //10
                 break;
             case "Great":
                 image.sprite = greatSprite;
+                RLifeSlider.Instance.AddValue(7);
                 break;
             case "Good":
                 image.sprite = goodSprite;
+                RLifeSlider.Instance.AddValue(4);
                 break;
             case "Bad":
                 image.sprite = badSprite;
+                RLifeSlider.Instance.AddValue(1);
                 break;
             default:
                 image.sprite = missSprite;
+                RLifeSlider.Instance.AddValue(-50);
                 break;
         }
 

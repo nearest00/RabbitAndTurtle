@@ -38,13 +38,6 @@ public class RRNote : MonoBehaviour
     void UpdateVisual()
     {
         var img = GetComponent<Image>();
-        /*if (img != null)
-        {
-            if (data.lane == "up") img.color = Color.cyan;
-            else img.color = Color.magenta;
-
-            if (data.type == "long") img.color *= 0.85f;
-        }*/
     }
 
     void Update()
@@ -63,7 +56,7 @@ public class RRNote : MonoBehaviour
         if (!judged && curSongTime - data.time > (MISS_MS_MAX / 1000.0))
         {
             judged = true;
-            ApplyJudge("Miss", -50);
+            ApplyJudge("Miss", 0); // 점수 변화를 주지 않기 위해 add를 0으로 전달
             Destroy(gameObject, 0.02f);
         }
     }
@@ -75,18 +68,18 @@ public class RRNote : MonoBehaviour
         double diffMs = (inputSongTime - data.time) * 1000.0;
         double absMs = System.Math.Abs(diffMs);
 
-        // Time-based judge (no distance condition)
         string label;
-        int add;
+        // int add; // 점수 변수 사용 안 함
 
-        if (absMs <= PERFECT_MS) { label = "Perfect"; add = 100; } //원래10
-        else if (absMs <= GREAT_MS_MAX) { label = "Great"; add = 7; }
-        else if (absMs <= GOOD_MS_MAX) { label = "Good"; add = 4; }
-        else if (absMs <= BAD_MS_MAX) { label = "Bad"; add = 1; }
-        else { label = "Miss"; add = -50; }
+        // 판정 레이블만 결정 (점수 가산 수치 주석 처리)
+        if (absMs <= PERFECT_MS) { label = "Perfect"; /* add = 100; */ }
+        else if (absMs <= GREAT_MS_MAX) { label = "Great"; /* add = 7; */ }
+        else if (absMs <= GOOD_MS_MAX) { label = "Good"; /* add = 4; */ }
+        else if (absMs <= BAD_MS_MAX) { label = "Bad"; /* add = 1; */ }
+        else { label = "Miss"; /* add = -50; */ }
 
         judged = true;
-        ApplyJudge(label, add);
+        ApplyJudge(label, 0); // 항상 0점을 전달하도록 수정
 
         if (data.type == "long" && data.holdDuration > 0.0)
         {
@@ -106,7 +99,7 @@ public class RRNote : MonoBehaviour
         isHoldActive = false;
 
         if (releaseSongTime + 0.001 < holdEndTime - 0.05)
-            ApplyJudge("Miss", -50);
+            ApplyJudge("Miss", 0); // 점수 감점 주석화(0점)
         else
             ApplyJudge("Hold Complete", 0);
     }
@@ -115,12 +108,12 @@ public class RRNote : MonoBehaviour
     {
         if (gm != null)
         {
-            gm.AddScore(scoreDelta);
+            // gm.AddScore(scoreDelta); // 실제 게임 매니저의 점수 변화 함수 호출 주석 처리
 
             Vector2 showPos = hitLineRect.anchoredPosition;
             float xOffset = (data.lane == "up") ? 80f : -80f;
             Vector2 anchored = new Vector2(showPos.x + xOffset, showPos.y + 20f);
-            gm.ShowJudgeAt(label, anchored);
+            gm.ShowJudgeAt(label, anchored); // 판정 텍스트 팝업은 유지
         }
         Debug.Log("Judge: " + label + " (" + data.lane + ") " + " diff=" + label);
     }

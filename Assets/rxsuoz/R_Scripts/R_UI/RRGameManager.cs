@@ -8,36 +8,31 @@ public class RRGameManager : MonoBehaviour
 {
     [Header("Song and Data")]
     public RRSongData song;
+    [Tooltip("노래의 총 길이를 초 단위로 입력하세요 (예: 90.5)")]
+    public float manualSongLength;
 
     [Header("Managers")]
     public R_NoteManager noteManager;
     public RRGuideNoteManager guideManager;
 
-    [Header("Guide Panel")]
-    public RRGuidePanelManager guidePanelManager;
-
-
     [Header("UI")]
     public Slider scoreSlider;
-    public GameObject clearPanel;
-    public GameObject failPanel;
+    // public GameObject clearPanel; // 주석 처리
+    // public GameObject failPanel;  // 주석 처리
 
     [Header("Judge Popup")]
     public GameObject judgeTextPrefab;
     public RectTransform judgeParent;
 
-    [Header("Audio")]
-    public AudioSource musicSource;
-
     [Header("Panel Settings")]
-    public float panelFadeDuration = 0.4f; // Fade-in duration for panels
+    public float panelFadeDuration = 0.4f;
 
     private int score = 0;
-    private double dspStartTime = 0.0;
     private bool started = false;
     private bool resultShown = false;
     private List<RRNoteData> notes = new List<RRNoteData>();
-    private double songLength = 0.0;
+
+    private float gameTimer = 0f;
 
     public string currentDifficulty
     {
@@ -49,87 +44,65 @@ public class RRGameManager : MonoBehaviour
     {
         if (song == null)
         {
-            Debug.LogError("GameManager: SongData not assigned.");
+            Debug.LogError("GameManager: SongData가 할당되지 않았습니다.");
             return;
         }
 
-        StartCoroutine(InitializeAfterSliderReady());
+        InitializeGame();
     }
 
-    private IEnumerator InitializeAfterSliderReady()
+    private void InitializeGame()
     {
-        // LifeSlider 준비 대기
-        while (N_221LifeSlider.Instance == null || N_221LifeSlider.Instance.targetSlider == null)
-            yield return null;
-
-        // ✅ Guide Panel이 있다면 표시하고 끝날 때까지 대기
-        if (guidePanelManager != null)
-        {
-            guidePanelManager.StartGuide();
-
-            while (!guidePanelManager.IsFinished)
-                yield return null; // 가이드 패널이 끝날 때까지 대기
-        }
-
-        // 이후 기존 코드 실행
-        string diff = string.IsNullOrEmpty(currentDifficulty)
-            ? "easy"
-            : currentDifficulty.ToLower();
-
+        string diff = string.IsNullOrEmpty(currentDifficulty) ? "easy" : currentDifficulty.ToLower();
         SetSliderMaxByDifficulty(diff);
 
         TextAsset csv = GetCsvForDifficulty(song, diff);
         notes = LoadChart(csv);
 
-        if (guideManager != null)
-            guideManager.Init(this, notes);
-
+        if (guideManager != null) guideManager.Init(this, notes);
         if (noteManager != null)
         {
             noteManager.judgeManager = this;
             noteManager.StartNotes(notes);
         }
 
-        if (musicSource != null && musicSource.clip != null)
-            songLength = musicSource.clip.length;
-        else
-        {
-            double last = 0.0;
-            foreach (var n in notes)
-                if (n.time > last)
-                    last = n.time;
-            songLength = last + 1.0;
-        }
-
-        dspStartTime = AudioSettings.dspTime + 0.1;
-        if (musicSource != null && song.musicClip != null)
-        {
-            musicSource.clip = song.musicClip;
-            musicSource.PlayScheduled(dspStartTime);
-        }
-
         started = true;
         score = 0;
         resultShown = false;
-    }
+        gameTimer = 0f;
 
+        Debug.Log($"게임 시작! 설정된 노래 길이: {manualSongLength}초");
+    }
 
     void Update()
     {
+        if (Time.timeScale <= 0 || (PauseCountDown.Instance != null && PauseCountDown.Instance.isCounting))
+        {
+            return;
+        }
+
         if (!started) return;
 
-        // Sync slider value
-        if (scoreSlider != null && N_221LifeSlider.Instance != null)
-            scoreSlider.value = N_221LifeSlider.Instance.internalValue;
+        gameTimer += Time.deltaTime;
 
-        // Check if song finished
-        if (!resultShown && AudioSettings.dspTime - dspStartTime >= songLength)
+        if (scoreSlider != null && RLifeSlider.Instance != null)
+            scoreSlider.value = RLifeSlider.Instance.internalValue;
+
+        // 종료 조건 체크 (패널 표시 함수 호출 부분 주석 처리)
+        if (!resultShown && gameTimer >= manualSongLength)
         {
-            ShowResultPanel();
+            // ShowResultPanel(); // 결과 패널 표시 중단
             resultShown = true;
+            Debug.Log("노래가 종료되었습니다.");
         }
     }
 
+    public double GetSongTime()
+    {
+        return (double)gameTimer;
+    }
+
+    /* 패널 관련 함수들 전체 주석 처리
     private void ShowResultPanel()
     {
         N_221LifeSlider lifeSlider = N_221LifeSlider.Instance;
@@ -139,45 +112,23 @@ public class RRGameManager : MonoBehaviour
         float maxScore = lifeSlider.Max;
         float percent = (currentScore / maxScore) * 100f;
 
-        Debug.Log($"[Result] Score={currentScore}/{maxScore} ({percent:F1}%)");
-
-        if (currentScore < 0)
-        {
-            ShowPanel(failPanel);
-        }
-        else if (percent >= 60f)
-        {
-            ShowPanel(clearPanel);
-        }
-        else
-        {
-            ShowPanel(failPanel);
-        }
+        if (currentScore >= 0 && percent >= 60f) ShowPanel(clearPanel);
+        else ShowPanel(failPanel);
     }
 
     private void ShowPanel(GameObject panel)
     {
         if (panel == null) return;
-
         var fade = panel.GetComponent<RRPanelFade>();
-        if (fade != null)
-        {
-            fade.FadeIn(panelFadeDuration); // ✅ duration 전달로 수정
-        }
-        else
-        {
-            panel.SetActive(true);
-        }
+        if (fade != null) fade.FadeIn(panelFadeDuration);
+        else panel.SetActive(true);
     }
+    */
 
     private void SetSliderMaxByDifficulty(string diff)
     {
-        N_221LifeSlider lifeSlider = N_221LifeSlider.Instance;
-        if (lifeSlider == null)
-        {
-            Debug.LogWarning("[GameManager] N_221LifeSlider instance not found!");
-            return;
-        }
+        RLifeSlider lifeSlider = RLifeSlider.Instance;
+        if (lifeSlider == null) return;
 
         float maxVal = 550f;
         if (diff == "normal") maxVal = 800f;
@@ -188,74 +139,40 @@ public class RRGameManager : MonoBehaviour
             lifeSlider.targetSlider.maxValue = maxVal;
             lifeSlider.Max = maxVal;
         }
-
         lifeSlider.internalValue = 0f;
-        Debug.Log($"[GameManager] Slider maxValue set to {maxVal} for difficulty {diff}");
     }
 
     public void AddScore(int delta)
     {
-        if (N_221LifeSlider.Instance != null)
+        if (RLifeSlider.Instance != null)
         {
-            N_221LifeSlider.Instance.AddValue(delta);
-            score = (int)N_221LifeSlider.Instance.internalValue;
-
-            if (scoreSlider != null)
-                scoreSlider.value = N_221LifeSlider.Instance.internalValue;
+            RLifeSlider.Instance.AddValue(delta);
+            score = (int)RLifeSlider.Instance.internalValue;
         }
-    }
-
-    public double GetSongTime()
-    {
-        if (!started) return 0.0;
-        return AudioSettings.dspTime - dspStartTime;
     }
 
     private TextAsset GetCsvForDifficulty(RRSongData s, string diff)
     {
         if (s == null) return null;
-
         if (diff == "easy" && s.chartEasy != null) return s.chartEasy;
         if (diff == "normal" && s.chartNormal != null) return s.chartNormal;
         if (diff == "hard" && s.chartHard != null) return s.chartHard;
-
-        if (s.chartEasy != null) return s.chartEasy;
-        if (s.chartNormal != null) return s.chartNormal;
-        if (s.chartHard != null) return s.chartHard;
-
-        return null;
+        return s.chartEasy;
     }
 
     private List<RRNoteData> LoadChart(TextAsset csv)
     {
         var list = new List<RRNoteData>();
         if (csv == null) return list;
-
         var lines = csv.text.Split(new char[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
         foreach (var raw in lines)
         {
-            var line = raw.Trim();
-            if (string.IsNullOrEmpty(line)) continue;
-
-            var cols = line.Split(',');
+            var cols = raw.Trim().Split(',');
             if (cols.Length < 3) continue;
-
-            double t = 0.0;
-            double h = 0.0;
-            double.TryParse(cols[0].Trim(), out t);
-            string lane = cols[1].Trim().ToLower();
-            string type = cols[2].Trim().ToLower();
-            if (cols.Length >= 4) double.TryParse(cols[3].Trim(), out h);
-
-            list.Add(new RRNoteData()
-            {
-                time = t,
-                lane = lane,
-                type = type,
-                holdDuration = h
-            });
+            double t = 0.0; double.TryParse(cols[0], out t);
+            double h = 0.0; if (cols.Length >= 4) double.TryParse(cols[3], out h);
+            list.Add(new RRNoteData() { time = t, lane = cols[1].Trim().ToLower(), type = cols[2].Trim().ToLower(), holdDuration = h });
         }
-
         list.Sort((a, b) => a.time.CompareTo(b.time));
         return list;
     }
@@ -263,24 +180,13 @@ public class RRGameManager : MonoBehaviour
     public void ShowJudgeAt(string label, Vector2 anchoredPos)
     {
         if (judgeTextPrefab == null || judgeParent == null) return;
-
         GameObject go = Instantiate(judgeTextPrefab, judgeParent);
         RectTransform rt = go.GetComponent<RectTransform>();
         if (rt != null) rt.anchoredPosition = anchoredPos;
-
         RRJudgePopup popup = go.GetComponent<RRJudgePopup>();
-        if (popup != null)
-            popup.Play(label);
+        if (popup != null) popup.Play(label);
     }
 
-    // Button Events
-    public void OnClearButton()
-    {
-        SceneManager.LoadScene("StageSellect"); // 클리어 후 다음 씬
-    }
-
-    public void OnRetryButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 재시도
-    }
+    public void OnClearButton() => SceneManager.LoadScene("StageSellect");
+    public void OnRetryButton() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 }
