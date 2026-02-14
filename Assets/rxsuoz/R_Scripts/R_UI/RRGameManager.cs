@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class RRGameManager : MonoBehaviour
 {
+    public Ending Ending;
+
     [Header("Song and Data")]
     public RRSongData song;
     [Tooltip("노래의 총 길이를 초 단위로 입력하세요 (예: 90.5)")]
@@ -92,6 +94,8 @@ public class RRGameManager : MonoBehaviour
         if (!resultShown && gameTimer >= manualSongLength)
         {
             // ShowResultPanel(); // 결과 패널 표시 중단
+            if (RLifeSlider.Instance.internalValue / RLifeSlider.Instance.Max >= 0.6) Ending.StageClear();
+            else Ending.StageFailed();
             resultShown = true;
             Debug.Log("노래가 종료되었습니다.");
         }
