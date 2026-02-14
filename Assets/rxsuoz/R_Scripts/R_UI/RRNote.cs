@@ -79,7 +79,7 @@ public class RRNote : MonoBehaviour
         string label;
         int add;
 
-        if (absMs <= PERFECT_MS) { label = "Perfect"; add = 10; } //원래10
+        if (absMs <= PERFECT_MS) { label = "Perfect"; add = 100; } //원래10
         else if (absMs <= GREAT_MS_MAX) { label = "Great"; add = 7; }
         else if (absMs <= GOOD_MS_MAX) { label = "Good"; add = 4; }
         else if (absMs <= BAD_MS_MAX) { label = "Bad"; add = 1; }

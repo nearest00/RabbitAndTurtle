@@ -1,87 +1,84 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RRGuideNoteManager : MonoBehaviour
 {
-    [Header("Tap Note Prefabs")]
-    public GameObject upGuidePrefab;
-    public GameObject downGuidePrefab;
+    [Header("Settings")]
+    public GameObject guideNotePrefab;
+    public RectTransform guideParent;     // 생성될 부모 (Canvas 내)
+    public RectTransform upLanePos;       // Up 노트 생성 위치
+    public RectTransform downLanePos;     // Down 노트 생성 위치
+    public RectTransform judgeLine;       // 판정선 위치
 
-    [Header("Long Note Prefabs")]
-    public GameObject upLongPrefab;
-    public GameObject downLongPrefab;
+    public float guideOffsetTime = 0.7f;  // 실제 노트보다 몇 초 먼저 생성할지
+    public float fallSpeed = 500f;
 
-    [Header("Main UI")]
-    public RectTransform playArea;
-    public RectTransform hitLine;
-
-    [Header("Timing")]
-    public float travelTime = 1.8f;
-
+    private double songStartTime;
     private List<RRNoteData> guideNotes = new List<RRNoteData>();
     private int nextIndex = 0;
-    private bool active = false;
-    private RRGameManager gm;
 
-    public void Init(RRGameManager manager, List<RRNoteData> allNotes)
+    void Start()
     {
-        gm = manager;
-        guideNotes.Clear();
-        nextIndex = 0;
+        // GameManager에서 Init()로 초기화되므로 비워둠
+    }
 
-        // CSV에서 guide 타입만 필터링
-        foreach (var n in allNotes)
+    public void Init(RRGameManager gm, List<RRNoteData> notes)
+    {
+        guideNotes.Clear();
+        foreach (var n in notes)
         {
-            if (n.type == "guide")
-                guideNotes.Add(n);
+            // 플레이어가 직접 누르는 노트만 가이드 노트 생성
+            if (n.type == "tap" || n.type == "long")
+            {
+                var copy = new RRNoteData()
+                {
+                    time = n.time - guideOffsetTime,
+                    lane = n.lane,
+                    type = n.type
+                };
+                guideNotes.Add(copy);
+            }
         }
 
-        active = guideNotes.Count > 0;
+        guideNotes.Sort((a, b) => a.time.CompareTo(b.time));
+
+        nextIndex = 0;
+        songStartTime = AudioSettings.dspTime;
     }
 
     void Update()
     {
-        if (!active || gm == null || guideNotes.Count == 0) return;
+        double currentTime = AudioSettings.dspTime - songStartTime;
 
-        double songTime = gm.GetSongTime();
-
-        // spawn 시점 계산
-        while (nextIndex < guideNotes.Count)
+        // 생성 조건: 현재 시간 >= guideNote.time
+        while (nextIndex < guideNotes.Count && currentTime >= guideNotes[nextIndex].time)
         {
-            var n = guideNotes[nextIndex];
-            double spawnTime = n.time - travelTime;
-            if (songTime >= spawnTime)
-            {
-                SpawnGuideNote(n);
-                nextIndex++;
-            }
-            else break;
+            SpawnGuideNote(guideNotes[nextIndex]);
+            nextIndex++;
         }
     }
 
     void SpawnGuideNote(RRNoteData data)
     {
-        if (data == null) return;
+        RectTransform lanePos = (data.lane == "up") ? upLanePos : downLanePos;
+        if (guideNotePrefab == null || guideParent == null || lanePos == null) return;
 
-        GameObject prefab = null;
+        GameObject obj = Instantiate(guideNotePrefab, guideParent);
+        RectTransform rt = obj.GetComponent<RectTransform>();
+        rt.anchoredPosition = lanePos.anchoredPosition + new Vector2(0, 600f);
 
-        if (data.lane == "up") prefab = upGuidePrefab;
-        else if (data.lane == "down") prefab = downGuidePrefab;
+        RRGuideNote gNote = obj.GetComponent<RRGuideNote>();
+        gNote.Init(data.lane, judgeLine, fallSpeed);
+    }
 
-        if (prefab == null)
+    // 특정 라인의 가이드 노트를 제거 (Perfect 시 호출)
+    public void HideGuideForLane(string lane)
+    {
+        RRGuideNote[] notes = guideParent.GetComponentsInChildren<RRGuideNote>();
+        foreach (var note in notes)
         {
-            Debug.LogWarning("GuideNoteManager: prefab missing for " + data.lane);
-            return;
+            if (note.lane == lane)
+                note.Hide();
         }
-
-        GameObject go = Instantiate(prefab, playArea);
-        RectTransform rt = go.GetComponent<RectTransform>();
-        if (rt == null) rt = go.AddComponent<RectTransform>();
-        rt.anchoredPosition = new Vector2(0f, 600f);
-
-        // 단순하게 위→아래 이동 (입력 반응 없음)
-        RRGuideNote gNote = go.AddComponent<RRGuideNote>();
-        gNote.Init(data, hitLine, travelTime);
     }
 }

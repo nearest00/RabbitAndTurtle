@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RRGameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class RRGameManager : MonoBehaviour
 
     [Header("UI")]
     public Slider scoreSlider;
+    public GameObject clearPanel;
+    public GameObject failPanel;
 
     [Header("Judge Popup")]
     public GameObject judgeTextPrefab;
@@ -25,6 +28,7 @@ public class RRGameManager : MonoBehaviour
     private int score = 0;
     private double dspStartTime = 0.0;
     private bool started = false;
+    private bool resultShown = false;
     private List<RRNoteData> notes = new List<RRNoteData>();
     private double songLength = 0.0;
 
@@ -42,29 +46,21 @@ public class RRGameManager : MonoBehaviour
             return;
         }
 
-        //     
         StartCoroutine(InitializeAfterSliderReady());
     }
 
     private IEnumerator InitializeAfterSliderReady()
     {
-        //  N_221LifeSlider    
+        // Wait until LifeSlider is fully initialized
         while (N_221LifeSlider.Instance == null || N_221LifeSlider.Instance.targetSlider == null)
-        {
             yield return null;
-        }
 
-        //    
         string diff = string.IsNullOrEmpty(currentDifficulty)
             ? "easy"
             : currentDifficulty.ToLower();
 
-        Debug.Log($"[GameManager] Detected difficulty from StageSelect: {diff}");
-
-        //   
         SetSliderMaxByDifficulty(diff);
 
-        //   
         TextAsset csv = GetCsvForDifficulty(song, diff);
         notes = LoadChart(csv);
 
@@ -77,7 +73,6 @@ public class RRGameManager : MonoBehaviour
             noteManager.StartNotes(notes);
         }
 
-        //    
         if (musicSource != null && musicSource.clip != null)
             songLength = musicSource.clip.length;
         else
@@ -89,7 +84,6 @@ public class RRGameManager : MonoBehaviour
             songLength = last + 1.0;
         }
 
-        //   
         dspStartTime = AudioSettings.dspTime + 0.1;
         if (musicSource != null && song.musicClip != null)
         {
@@ -99,16 +93,58 @@ public class RRGameManager : MonoBehaviour
 
         started = true;
         score = 0;
+        resultShown = false;
     }
 
     void Update()
     {
         if (!started) return;
 
+        // Sync slider with score
         if (scoreSlider != null && N_221LifeSlider.Instance != null)
-        {
             scoreSlider.value = N_221LifeSlider.Instance.internalValue;
+
+        // Check if music is finished
+        if (!resultShown && AudioSettings.dspTime - dspStartTime >= songLength)
+        {
+            ShowResultPanel();
+            resultShown = true;
         }
+    }
+
+    private void ShowResultPanel()
+    {
+        N_221LifeSlider lifeSlider = N_221LifeSlider.Instance;
+        if (lifeSlider == null) return;
+
+        float currentScore = lifeSlider.internalValue;
+        float maxScore = lifeSlider.Max;
+        float percent = (currentScore / maxScore) * 100f;
+
+        Debug.Log($"[Result] Score={currentScore}/{maxScore} ({percent:F1}%)");
+
+        if (currentScore < 0)
+        {
+            // immediate fail
+            ShowPanel(failPanel);
+        }
+        else if (percent >= 60f)
+        {
+            ShowPanel(clearPanel);
+        }
+        else
+        {
+            ShowPanel(failPanel);
+        }
+    }
+
+    private void ShowPanel(GameObject panel)
+    {
+        if (panel == null) return;
+
+        var fade = panel.GetComponent<RRPanelFade>();
+        if (fade != null) fade.FadeIn();
+        else panel.SetActive(true);
     }
 
     private void SetSliderMaxByDifficulty(string diff)
@@ -212,5 +248,16 @@ public class RRGameManager : MonoBehaviour
         RRJudgePopup popup = go.GetComponent<RRJudgePopup>();
         if (popup != null)
             popup.Play(label);
+    }
+
+    //  Button Events
+    public void OnClearButton()
+    {
+        SceneManager.LoadScene("StageSellect"); // <-- Change to your next scene name
+    }
+
+    public void OnRetryButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
