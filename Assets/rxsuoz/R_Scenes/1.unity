@@ -1224,8 +1224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upTapPrefab: {fileID: 4496748210127504432, guid: 8ebab86dbeb176743911ab63bd325db2, type: 3}
   downTapPrefab: {fileID: 8938309851485284638, guid: b5204350356101e41a1a2f9846ad3d2a, type: 3}
-  upLongPrefab: {fileID: 6679751300452948084, guid: 794df1ca40915824b929139d139461e9, type: 3}
-  downLongPrefab: {fileID: 3295452930511832360, guid: 39fc410fe5d9aac4a87a87be02637a32, type: 3}
+  upLongPrefab: {fileID: 562569885592951983, guid: d463156c256176f43a0396b9d5634042, type: 3}
+  downLongPrefab: {fileID: 6372216144817854254, guid: 64bd0cee0fe5ddc4aad8afee8f026c1a, type: 3}
   playArea: {fileID: 1313714885}
   hitLine: {fileID: 1297853759}
   judgeManager: {fileID: 533832106}

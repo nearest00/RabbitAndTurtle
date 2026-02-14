@@ -74,38 +74,59 @@ public class R_NoteManager : MonoBehaviour
 
         GameObject prefab = null;
 
-        // Select prefab based on note type and lane
         if (data.type == "tap")
-        {
-            if (data.lane == "up") prefab = upTapPrefab;
-            else if (data.lane == "down") prefab = downTapPrefab;
-        }
+            prefab = (data.lane == "up") ? upTapPrefab : downTapPrefab;
         else if (data.type == "long")
-        {
-            if (data.lane == "up") prefab = upLongPrefab;
-            else if (data.lane == "down") prefab = downLongPrefab;
-        }
+            prefab = (data.lane == "up") ? upLongPrefab : downLongPrefab;
 
         if (prefab == null)
         {
-            Debug.LogWarning("NoteManager: prefab missing for lane=" + data.lane + " type=" + data.type);
+            Debug.LogWarning($"NoteManager: prefab missing for lane={data.lane}, type={data.type}");
             return;
         }
 
-        // Instantiate note
         GameObject go = Instantiate(prefab, playArea);
         RectTransform rt = go.GetComponent<RectTransform>();
         if (rt == null) rt = go.AddComponent<RectTransform>();
 
-        // Get spawn position for this lane
         Vector2 spawnPos = GetLaneSpawnPos(data.lane);
         rt.anchoredPosition = spawnPos;
 
         RRNote noteComp = go.GetComponent<RRNote>();
         if (noteComp == null) noteComp = go.AddComponent<RRNote>();
 
-        noteComp.Init(data, judgeManager, hitLine, spawnPos.y, travelTime, judgeRadius);
+        float spawnY = spawnPos.y;
+        float judgeY = hitLine.anchoredPosition.y;
+        float distance = spawnY - judgeY;
+        float fallSpeed = (travelTime > 0f) ? distance / travelTime : 500f;
+
+        // 수정된 부분 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        noteComp.Init(data, judgeManager, hitLine, spawnY, travelTime, judgeRadius);
+        if (data.type == "long")
+        {
+            float holdDuration = (float)data.holdDuration;
+            float holdPixels = (float)((spawnPos.y - hitLine.anchoredPosition.y) / travelTime * holdDuration);
+
+            holdPixels = Mathf.Clamp(holdPixels, 20f, 2000f);
+            noteComp.SetupLongVisual(holdPixels);
+        }
+
+
+        if (data.type == "long")
+        {
+            float holdDuration = (float)data.holdDuration;
+            float holdPixels = fallSpeed * holdDuration;
+
+            holdPixels = Mathf.Clamp(holdPixels, 20f, distance * 3f); //holdPixels = Mathf.Clamp(holdPixels, 20f, 2000f);
+            holdPixels = Mathf.Round(holdPixels);
+
+            noteComp.SetupLongVisual(holdPixels);
+
+            Debug.Log($"[LONG] {data.lane} | hold={data.holdDuration}s | px={fallSpeed * data.holdDuration}");
+        }
     }
+
+
 
     Vector2 GetLaneSpawnPos(string lane)
     {
