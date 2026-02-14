@@ -6,8 +6,7 @@ public class N_222LifeSlider : MonoBehaviour
     public static N_222LifeSlider Instance;
     public Slider targetSlider;
     private float internalValue = 0f;
-    public float Max;
-    private string roundDifficulty;
+    public float Max=1000;
     void Awake()
     {
         // 싱글톤 중복 방지 로직
@@ -19,21 +18,15 @@ public class N_222LifeSlider : MonoBehaviour
     void Start()
     {
         if (targetSlider == null) targetSlider = GetComponent<Slider>();
-        if (N_222RoundManager.Instance != null)
-        {
-            roundDifficulty = N_222RoundManager.Instance.currentDifficulty;
-        }
-        else
-        {
-            Debug.LogError("RoundManager가 씬에 없습니다!");
-            return;
-        }
+        
     }
-    private void UpdateSliderUI()
+    private void UpdateSliderUI(float internalValue)
     {
-        if (internalValue > 0)
+        Debug.Log(internalValue);
+        if (internalValue >= 0)
         {
             targetSlider.value = internalValue;
+            Debug.Log(targetSlider.value);
         }
         else
         {
@@ -42,15 +35,12 @@ public class N_222LifeSlider : MonoBehaviour
     }
     public void AddValue(float amount)
     {
+        Debug.Log(amount);
         internalValue += amount;
-
+        Debug.Log(internalValue);
         internalValue = Mathf.Min(internalValue, Max);
 
-        UpdateSliderUI();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UpdateSliderUI(internalValue);
+        Debug.Log("AddValue 실행");
     }
 }

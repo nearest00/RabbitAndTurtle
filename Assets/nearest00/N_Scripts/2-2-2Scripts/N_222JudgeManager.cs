@@ -4,16 +4,37 @@ using UnityEngine;
 public class N_222JudgeManager : MonoBehaviour
 {
     [SerializeField] private RectTransform judgeLine;
-    [SerializeField] private float perfectRange = 15f;
-    [SerializeField] private float greatRange = 35f;
-    [SerializeField] private float goodRange = 60f;
-    [SerializeField] private float badRange = 90f;
-    [SerializeField] private float missBoundary = 180f;
+    [SerializeField] private float basePerfect = 15f;
+    [SerializeField] private float baseGreat = 35f;
+    [SerializeField] private float baseGood = 60f;
+    [SerializeField] private float baseBad = 90f;
+    [SerializeField] private float baseMissBoundary = 100f;
 
-    private List<N_222NoteBase> activeNotes = new List<N_222NoteBase>();
+	private float perfectRange;
+	private float greatRange;
+	private float goodRange;
+	private float badRange;
+	private float missBoundary;
+
+	private List<N_222NoteBase> activeNotes = new List<N_222NoteBase>();
     private int holdingRoundID = -1;
 
-    public void RegisterNote(N_222NoteBase note) { if (note != null) activeNotes.Add(note); }
+	private void Awake()
+	{
+        AdjustJudgeRange(1.0f);
+	}
+	public void AdjustJudgeRange(float multiplier)
+	{
+		perfectRange = basePerfect * multiplier;
+		greatRange = baseGreat * multiplier;
+		goodRange = baseGood * multiplier;
+		badRange = baseBad * multiplier;
+		missBoundary = baseMissBoundary * multiplier;
+
+		Debug.Log($"<color=lime>[JudgeManager]</color> 판정 범위 조정됨 (배율: {multiplier:F2}) " +
+				  $"Perfect: {perfectRange:F1}");
+	}
+	public void RegisterNote(N_222NoteBase note) { if (note != null) activeNotes.Add(note); }
 
     public void ResetJudgeLine(Vector2 startPos)
     {
@@ -193,16 +214,17 @@ public class N_222JudgeManager : MonoBehaviour
         }
     }
 
-    private void Judge(N_222NoteBase note, float dist)
-    {
-        if (dist <= perfectRange) note.OnPerfect();
-        else if (dist <= greatRange) note.OnGreat();
-        else if (dist <= goodRange) note.OnGood();
-        else if (dist <= badRange) note.OnBad();
-        else note.OnMiss();
-    }
+	private void Judge(N_222NoteBase note, float dist)
+	{
+		// 이제 수정된(multiplier가 곱해진) Range 변수들을 사용합니다.
+		if (dist <= perfectRange) note.OnPerfect();
+		else if (dist <= greatRange) note.OnGreat();
+		else if (dist <= goodRange) note.OnGood();
+		else if (dist <= badRange) note.OnBad();
+		else note.OnMiss();
+	}
 
-    private void FailLongGroup(int rID, string reason)
+	private void FailLongGroup(int rID, string reason)
     {
         foreach (var n in activeNotes)
         {
@@ -229,4 +251,5 @@ public class N_222JudgeManager : MonoBehaviour
 
     private bool IsLongNote(N_222NoteBase.NoteType type) =>
         type == N_222NoteBase.NoteType.LongStart || type == N_222NoteBase.NoteType.LongHold || type == N_222NoteBase.NoteType.LongEnd;
+	
 }

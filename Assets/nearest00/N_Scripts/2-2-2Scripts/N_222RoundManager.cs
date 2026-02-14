@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ public class RoundPattern
 
 public class N_222RoundManager : MonoBehaviour
 {
-    [Header("Difficulty Lists")]
+	[Header("Difficulty Lists")]
     public List<RoundPattern> easyRounds = new List<RoundPattern>();
     public List<RoundPattern> normalRounds = new List<RoundPattern>();
     public List<RoundPattern> hardRounds = new List<RoundPattern>();
@@ -47,10 +48,10 @@ public class N_222RoundManager : MonoBehaviour
     [SerializeField] private float easyBPM = 120f;
     [SerializeField] private float normalBPM = 150f;
     [SerializeField] private float hardBPM = 180f;
-    [SerializeField] private float distancePerBeat = 300f; // 한 박자당 이동 거리
+    [SerializeField] private float distancePerBeat = 300f;
 
     [Header("Preview Layers (Decoration)")]
-    public RectTransform previewBodyLayer; // 새로 만든 Preview_Body 연결
+    public RectTransform previewBodyLayer;
     public RectTransform previewElseLayer;
 
     [SerializeField] private N_222NoteManager noteManager;
@@ -62,7 +63,11 @@ public class N_222RoundManager : MonoBehaviour
     [SerializeField] private N_222PrevJudgeLine previewLine;
     [SerializeField] private N_222LifeSlider lifeslider;
     [SerializeField] private Ending ending;
-    public string currentDifficulty
+
+	[Header("Speed Up Settings")]
+	[SerializeField] private float speedWeight = 30f;
+	[SerializeField] private float judgeRangeMultiplier = 0.9f;
+	public string currentDifficulty
     {
         get => N_StageSellectButton.Instance.StageDifficulty;
         set => N_StageSellectButton.Instance.StageDifficulty = value;
@@ -91,69 +96,64 @@ public class N_222RoundManager : MonoBehaviour
     public int currentRoundIndex = -1;
     private float currentBPM;
     public int MaxLife;
-
-    private void Awake()
+	private float timer = 0f;
+	private bool isTimerRunning = false;
+	private bool isPreviewFinished = false;
+	private bool lastCountingState = true;
+	private void Awake()
     {
         if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
-        SetDifficulty();
-    }
-    private void SetDifficulty()
-    {
-        float notes = 0;
-        // currentDifficulty가 null일 경우를 대비해 안전하게 처리
-        string diff = currentDifficulty?.ToLower() ?? "easy";
+		isTimerRunning = false;
+		isPreviewFinished = false;
+	}
+	private int GetSpeedStepInterval()
+	{
+		switch (currentDifficulty.ToLower())
+		{
+			case "easy": return 5;
+			case "normal": return 4;
+			case "hard": return 3;
+			default: return 5;
+		}
+	}
 
-        switch (diff)
-        {
-            case "easy": notes = 55; break;
-            case "normal": notes = 55; break;
-            case "hard": notes = 120; break;
-            default: notes = 55; break;
-        }
-
-        // [중요] N_222LifeSlider.Instance 대신, 이미 선언된 'lifeslider' 변수를 사용합니다.
-        if (lifeslider != null)
-        {
-            lifeslider.Max = notes;
-            if (lifeslider.targetSlider != null)
-            {
-                lifeslider.targetSlider.maxValue = notes;
-            }
-
-            // 로그에서도 Instance를 지우고 lifeslider 변수를 참조합니다.
-            Debug.Log("LifeSlider Max Set: " + lifeslider.Max);
-            if (lifeslider.targetSlider != null)
-                Debug.Log("Slider UI MaxValue: " + lifeslider.targetSlider.maxValue);
-        }
-        else
-        {
-            // 만약 인스펙터에 연결을 안 했다면 코드로라도 찾습니다.
-            lifeslider = FindFirstObjectByType<N_222LifeSlider>();
-            if (lifeslider != null)
-            {
-                lifeslider.Max = notes;
-                lifeslider.targetSlider.maxValue = notes;
-            }
-            else
-            {
-                Debug.LogError("N_222RoundManager: lifeslider가 인스펙터에 연결되지 않았고 씬에서도 찾을 수 없습니다!");
-            }
-        }
-    }
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (tutorialing) return;
-            if (isCountingDown) return;
-            if (!CanSettingOn) return;
-            if (rabbitAnimation != null) rabbitAnimation.StopTalking();
-            NextRound();
-        }
-    }
+	{
+		// 1. 카운트다운 체크 (true였다가 false가 되는 순간 감지)
+		if (lastCountingState == true && isCountingDown == false)
+		{
+			Debug.Log("<color=cyan>카운트다운 종료! 첫 라운드를 시작합니다.</color>");
+			StartRound(currentDifficulty, 0); // 여기서 첫 라운드 시작
+		}
+		lastCountingState = isCountingDown; // 현재 상태를 저장해서 다음 프레임에서 비교
 
-    public void StartRound(string difficulty, int index)
+		// 2. 기존 코루틴 종료 후 6박 대기 로직
+		if (isPreviewFinished && !isTimerRunning)
+		{
+			timer = (60f / currentBPM) * 6f;
+			isTimerRunning = true;
+			isPreviewFinished = false;
+		}
+
+		if (isTimerRunning)
+		{
+			timer -= Time.deltaTime;
+			if (timer <= 0)
+			{
+				if (tutorialing) return;
+				if (isCountingDown) return; // 카운트다운 중에는 실행 방지
+				if (!CanSettingOn) return;
+				if (rabbitAnimation != null) rabbitAnimation.StopTalking();
+
+				NextRound();
+				Debug.Log("6박자가 지났습니다! 다음 라운드 실행.");
+				isTimerRunning = false;
+			}
+		}
+	}
+
+	public void StartRound(string difficulty, int index)
     {
         currentDifficulty = difficulty.ToLower();
         currentRoundIndex = index;
@@ -192,6 +192,7 @@ public class N_222RoundManager : MonoBehaviour
 
     private void SpawnCurrent()
     {
+        
         // 1. 난이도 문자열에 따라 BPM 설정
         switch (currentDifficulty.ToLower())
         {
@@ -200,9 +201,12 @@ public class N_222RoundManager : MonoBehaviour
             case "hard": currentBPM = hardBPM; break;
             default: currentBPM = 120f; break;
         }
-
-        // 2. 미리보기(Decoration) 노트 초기화
-        ClearPreviewNotes();
+		int speedStep = (currentRoundIndex + 1) / GetSpeedStepInterval();
+		currentBPM = currentBPM + (speedStep * speedWeight);
+		float currentJudgeScale = Mathf.Pow(judgeRangeMultiplier, speedStep);
+		Debug.Log($"<color=cyan>[Round {currentRoundIndex + 1}]</color> 적용 BPM: {currentBPM}, 판정배율: {currentJudgeScale}");
+		// 2. 미리보기(Decoration) 노트 초기화
+		ClearPreviewNotes();
 
         // 3. 두 판정선 초기화 및 속도 설정
         if (mainLine != null && previewLine != null)
@@ -223,7 +227,8 @@ public class N_222RoundManager : MonoBehaviour
         if (judgeManager != null)
         {
             judgeManager.ResetJudgeLine(judgeLineStartPos);
-        }
+			judgeManager.AdjustJudgeRange(currentJudgeScale);
+		}
 
         // 5. 현재 난이도 리스트 및 패턴 가져오기
         List<RoundPattern> targetList = GetList(currentDifficulty);
@@ -281,6 +286,7 @@ public class N_222RoundManager : MonoBehaviour
         // [Step 4] 메인 판정선 출발
         mainLine.StartMoving();
         rabbitAnimation.PlayTalking();
-        Debug.Log("<color=orange>미리보기 종료, 메인 판정 시작!</color>");
+		isPreviewFinished = true;
+		Debug.Log("<color=orange>미리보기 종료, 메인 판정 시작!</color>");
     }
 }

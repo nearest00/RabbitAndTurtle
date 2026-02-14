@@ -9,6 +9,7 @@ public class N_222TapNote : N_222NoteBase
         gameObject.SetActive(false);
         N_222LifeSlider.Instance.AddValue(10f);
         N_222JudgeEffectManager.Instance.ShowJudge("Perfect");
+        Debug.Log("∆€∆Â∆Æ");
     }
     public override void OnGreat()
     {
