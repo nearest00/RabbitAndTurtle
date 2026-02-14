@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class RRGameManager : MonoBehaviour
     public RRGuideNoteManager guideManager;
 
     [Header("UI")]
-    public Slider scoreSlider;   // optional, will be synced with N_221LifeSlider if present
+    public Slider scoreSlider;
 
     [Header("Judge Popup")]
     public GameObject judgeTextPrefab;
@@ -21,12 +22,17 @@ public class RRGameManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource musicSource;
 
-    // score is delegated to N_221LifeSlider if present
     private int score = 0;
     private double dspStartTime = 0.0;
     private bool started = false;
     private List<RRNoteData> notes = new List<RRNoteData>();
     private double songLength = 0.0;
+
+    public string currentDifficulty
+    {
+        get => N_StageSellectButton.Instance.StageDifficulty;
+        set => N_StageSellectButton.Instance.StageDifficulty = value;
+    }
 
     void Start()
     {
@@ -36,41 +42,54 @@ public class RRGameManager : MonoBehaviour
             return;
         }
 
-        // 1) Set difficulty to slider singleton first (so slider max is ready)
-        if (RLifeSlider.Instance != null)
+        //     
+        StartCoroutine(InitializeAfterSliderReady());
+    }
+
+    private IEnumerator InitializeAfterSliderReady()
+    {
+        //  N_221LifeSlider    
+        while (N_221LifeSlider.Instance == null || N_221LifeSlider.Instance.targetSlider == null)
         {
-            RLifeSlider.Instance.SetDifficulty(song.difficulty);
-            // optional: sync our scoreSlider (if assigned) to the same max
-            if (scoreSlider != null)
-            {
-                scoreSlider.maxValue = RLifeSlider.Instance.Max; //
-                scoreSlider.value = RLifeSlider.Instance.internalValue; //
-            }
+            yield return null;
         }
 
-        // 2) Load appropriate CSV based on difficulty
-        TextAsset chosenCsv = GetCsvForDifficulty(song);
-        notes = LoadChart(chosenCsv);
+        //    
+        string diff = string.IsNullOrEmpty(currentDifficulty)
+            ? "easy"
+            : currentDifficulty.ToLower();
 
-        // 3) Init guide manager and note manager
-        if (guideManager != null) guideManager.Init(this, notes);
+        Debug.Log($"[GameManager] Detected difficulty from StageSelect: {diff}");
+
+        //   
+        SetSliderMaxByDifficulty(diff);
+
+        //   
+        TextAsset csv = GetCsvForDifficulty(song, diff);
+        notes = LoadChart(csv);
+
+        if (guideManager != null)
+            guideManager.Init(this, notes);
+
         if (noteManager != null)
         {
             noteManager.judgeManager = this;
             noteManager.StartNotes(notes);
         }
 
-        // 4) determine song length
+        //    
         if (musicSource != null && musicSource.clip != null)
             songLength = musicSource.clip.length;
         else
         {
             double last = 0.0;
-            foreach (var n in notes) if (n.time > last) last = n.time;
+            foreach (var n in notes)
+                if (n.time > last)
+                    last = n.time;
             songLength = last + 1.0;
         }
 
-        // 5) audio start
+        //   
         dspStartTime = AudioSettings.dspTime + 0.1;
         if (musicSource != null && song.musicClip != null)
         {
@@ -79,60 +98,51 @@ public class RRGameManager : MonoBehaviour
         }
 
         started = true;
-        score = (int)RLifeSlider.Instance.internalValue; // sync
-
-        Debug.Log("GameManager started. difficulty=" + song.difficulty + " notes=" + notes.Count);
-    }
-
-    // Helper: choose csv based on SongData difficulty
-    TextAsset GetCsvForDifficulty(RRSongData s)
-    {
-        if (s == null) return null;
-        string d = (s.difficulty == null) ? "easy" : s.difficulty.Trim().ToLower();
-
-        if (d == "easy" && s.chartEasy != null) return s.chartEasy;
-        if (d == "normal" && s.chartNormal != null) return s.chartNormal;
-        if (d == "hard" && s.chartHard != null) return s.chartHard;
-
-        // fallback priority: easy -> normal -> hard (any non-null)
-        if (s.chartEasy != null) return s.chartEasy;
-        if (s.chartNormal != null) return s.chartNormal;
-        if (s.chartHard != null) return s.chartHard;
-        return null;
+        score = 0;
     }
 
     void Update()
     {
         if (!started) return;
-        // nothing special here; score is handled via N_221LifeSlider.AddValue from Note.ApplyJudge
-        // but if you also keep scoreSlider, sync it
-        if (scoreSlider != null && RLifeSlider.Instance != null)
+
+        if (scoreSlider != null && N_221LifeSlider.Instance != null)
         {
-            scoreSlider.value = RLifeSlider.Instance.internalValue;
+            scoreSlider.value = N_221LifeSlider.Instance.internalValue;
         }
     }
 
-    // Called by Note when judged
-    // We route score changes through N_221LifeSlider singleton for consistent UI + limits
+    private void SetSliderMaxByDifficulty(string diff)
+    {
+        N_221LifeSlider lifeSlider = N_221LifeSlider.Instance;
+        if (lifeSlider == null)
+        {
+            Debug.LogWarning("[GameManager] N_221LifeSlider instance not found!");
+            return;
+        }
+
+        float maxVal = 550f;
+        if (diff == "normal") maxVal = 800f;
+        else if (diff == "hard") maxVal = 1200f;
+
+        if (lifeSlider.targetSlider != null)
+        {
+            lifeSlider.targetSlider.maxValue = maxVal;
+            lifeSlider.Max = maxVal;
+        }
+
+        lifeSlider.internalValue = 0f;
+        Debug.Log($"[GameManager] Slider maxValue set to {maxVal} for difficulty {diff}");
+    }
+
     public void AddScore(int delta)
     {
-        if (RLifeSlider.Instance != null)
+        if (N_221LifeSlider.Instance != null)
         {
-            RLifeSlider.Instance.AddValue(delta);
-            // optional: update internal score var
-            score = (int)RLifeSlider.Instance.internalValue;
-        }
-        else
-        {
-            // fallback behavior: update local score and optional slider
-            score += delta;
-            if (score < 0) score = 0;
+            N_221LifeSlider.Instance.AddValue(delta);
+            score = (int)N_221LifeSlider.Instance.internalValue;
+
             if (scoreSlider != null)
-            {
-                if (scoreSlider.maxValue <= 0) scoreSlider.maxValue = 550f;
-                score = Mathf.Clamp(score, 0, (int)scoreSlider.maxValue);
-                scoreSlider.value = score;
-            }
+                scoreSlider.value = N_221LifeSlider.Instance.internalValue;
         }
     }
 
@@ -142,8 +152,22 @@ public class RRGameManager : MonoBehaviour
         return AudioSettings.dspTime - dspStartTime;
     }
 
-    // CSV parsing (unchanged)
-    List<RRNoteData> LoadChart(TextAsset csv)
+    private TextAsset GetCsvForDifficulty(RRSongData s, string diff)
+    {
+        if (s == null) return null;
+
+        if (diff == "easy" && s.chartEasy != null) return s.chartEasy;
+        if (diff == "normal" && s.chartNormal != null) return s.chartNormal;
+        if (diff == "hard" && s.chartHard != null) return s.chartHard;
+
+        if (s.chartEasy != null) return s.chartEasy;
+        if (s.chartNormal != null) return s.chartNormal;
+        if (s.chartHard != null) return s.chartHard;
+
+        return null;
+    }
+
+    private List<RRNoteData> LoadChart(TextAsset csv)
     {
         var list = new List<RRNoteData>();
         if (csv == null) return list;
@@ -185,7 +209,8 @@ public class RRGameManager : MonoBehaviour
         RectTransform rt = go.GetComponent<RectTransform>();
         if (rt != null) rt.anchoredPosition = anchoredPos;
 
-        var popup = go.GetComponent<RRJudgePopup>();
-        if (popup != null) popup.Play(label);
+        RRJudgePopup popup = go.GetComponent<RRJudgePopup>();
+        if (popup != null)
+            popup.Play(label);
     }
 }
