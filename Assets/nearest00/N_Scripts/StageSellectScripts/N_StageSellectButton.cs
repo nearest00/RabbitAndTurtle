@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class N_StageSellectButton : MonoBehaviour
