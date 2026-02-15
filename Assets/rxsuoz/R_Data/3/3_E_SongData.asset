@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songTitle: plzplz
   musicClip: {fileID: 0}
-  chartEasy: {fileID: 4900000, guid: 637fd0bfc7dbeec4b850a7ff4913087c, type: 3}
+  chartEasy: {fileID: 4900000, guid: 85bffa7fcd6bd0d47abfef84b10ec609, type: 3}
   chartNormal: {fileID: 4900000, guid: a1afd85ad472e014e8df10dc364c4823, type: 3}
   chartHard: {fileID: 4900000, guid: 6e397df46c7860842a6a15542c745ce3, type: 3}
   difficulty: 

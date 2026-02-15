@@ -2,182 +2,86 @@ using UnityEngine;
 
 public class R3_Note : MonoBehaviour
 {
-    public R3_NoteData data;
-    public float fallSpeed;
+    public R3_NoteData Data { get; private set; }
+    private Vector2 _startPos;
+    private float _travelTime;
+    private bool _isJudged = false;
+    public bool isBeingHeld = false; // InputHandler에서 제어
 
-    private RectTransform rt;
-    private RectTransform hitLineRect;
-    private RRGameManager gm;
+    const double PERFECT = 0.035;
+    const double BAD = 0.160;
 
-    private float spawnPosPrimary;
-    private double travelTime;
-    private float judgeRadius;
-
-    private bool judged = false;
-    private bool isHoldActive = false;
-    private bool isBeingHeld = false;
-    private double holdEndTime = 0.0;
-
-    private RectTransform bodyRect;
-    private RectTransform headRect;
-    private float initialBodyLength = 0f;
-
-    // 판정 범위(ms)
-    const double PERFECT_MS = 15.0;
-    const double GREAT_MS_MAX = 35.0;
-    const double GOOD_MS_MAX = 60.0;
-    const double BAD_MS_MAX = 90.0;
-    const double MISS_MS_MAX = 200.0;
-
-    public void Init(R3_NoteData nd, RRGameManager manager, RectTransform hitLine, float spawnPrimary, double travelTimeSec, float judgeRadiusPx)
+    public void Initialize(R3_NoteData data, Vector2 startPos, float travelTime)
     {
-        data = nd;
-        gm = manager;
-        rt = GetComponent<RectTransform>();
-        hitLineRect = hitLine;
-        spawnPosPrimary = spawnPrimary;
-        travelTime = travelTimeSec;
-        judgeRadius = judgeRadiusPx;
-
-        var head = transform.Find("Head");
-        if (head != null) headRect = head.GetComponent<RectTransform>();
-        var body = transform.Find("Body");
-        if (body != null) bodyRect = body.GetComponent<RectTransform>();
+        Data = data;
+        _startPos = startPos;
+        _travelTime = travelTime;
+        GetComponent<RectTransform>().anchoredPosition = startPos;
     }
 
     void Update()
     {
-        if (gm == null || rt == null || data == null) return;
+        if (Time.timeScale <= 0) return;
 
-        double cur = gm.GetSongTime();
-        double timeToHit = data.time - cur;
-        double progress = 1.0 - (timeToHit / travelTime);
-        float p = Mathf.Clamp01((float)progress);
+        double currentTime = R3_GameManager.Instance.GetCurrentTime();
 
-        float hitX = hitLineRect.anchoredPosition.x;
-        float hitY = hitLineRect.anchoredPosition.y;
-
-        bool moveHorizontal = (data.lane == "left" || data.lane == "right");
-
-        if (moveHorizontal)
+        // 이동 처리
+        if (!_isJudged || (Data.noteType == "long" && isBeingHeld))
         {
-            float x = Mathf.Lerp(spawnPosPrimary, hitX, p);
-            rt.anchoredPosition = new Vector2(x, rt.anchoredPosition.y);
-        }
-        else
-        {
-            float y = Mathf.Lerp(spawnPosPrimary, hitY, p);
-            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, y);
+            float progress = 1f - (float)((Data.time - currentTime) / _travelTime);
+            GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(_startPos, Vector2.zero, progress);
         }
 
-        // 롱노트 길이 줄어들기
-        if (data.type == "long" && isHoldActive && isBeingHeld && bodyRect != null)
+        // 롱노트 유지 완료 체크
+        if (Data.noteType == "long" && isBeingHeld)
         {
-            double elapsed = cur - data.time;
-            float ratio = Mathf.Clamp01((float)(elapsed / (float)data.holdDuration));
-            float newLen = Mathf.Lerp(initialBodyLength, 0f, ratio);
-            Vector2 sz = bodyRect.sizeDelta;
-            sz.y = newLen;
-            bodyRect.sizeDelta = sz;
-        }
-
-        // 너무 늦은 노트 자동 Miss 처리
-        if (!judged && (gm.GetSongTime() - data.time) > (MISS_MS_MAX / 1000.0))
-        {
-            judged = true;
-            ApplyJudge("Miss");
-            Destroy(gameObject, 0.02f);
-        }
-    }
-
-    // 노트 눌렀을 때
-    public void OnHitAttempt(double inputSongTime)
-    {
-        if (judged || data == null) return;
-
-        double diffMs = (inputSongTime - data.time) * 1000.0;
-        double absMs = System.Math.Abs(diffMs);
-        string label;
-
-        if (absMs <= PERFECT_MS) label = "Perfect";
-        else if (absMs <= GREAT_MS_MAX) label = "Great";
-        else if (absMs <= GOOD_MS_MAX) label = "Good";
-        else if (absMs <= BAD_MS_MAX) label = "Bad";
-        else label = "Miss";
-
-        judged = true;
-        ApplyJudge(label);
-
-        if (data.type == "long" && data.holdDuration > 0.0)
-        {
-            holdEndTime = data.time + data.holdDuration;
-            isHoldActive = true;
-            isBeingHeld = true;
-
-            if (headRect != null) headRect.gameObject.SetActive(false);
-            if (bodyRect != null && initialBodyLength <= 0f)
-                initialBodyLength = bodyRect.sizeDelta.y;
-        }
-        else
-        {
-            Destroy(gameObject, 0.02f);
-        }
-    }
-
-    //키를 누르고 있을 때 유지
-    public void OnHoldMaintain(double curSongTime)
-    {
-        if (data == null || data.type != "long") return;
-
-        if (!isHoldActive)
-        {
-            if (curSongTime >= data.time)
+            if (currentTime >= Data.time + Data.holdDuration)
             {
-                isHoldActive = true;
-                isBeingHeld = true;
-                holdEndTime = data.time + data.holdDuration;
+                ApplyJudgment("Perfect");
             }
         }
+
+        // Miss 체크
+        if (!_isJudged && currentTime > Data.time + BAD)
+        {
+            ApplyJudgment("Miss");
+        }
+    }
+
+    public void OnHit(double hitTime)
+    {
+        if (_isJudged) return;
+
+        double diff = System.Math.Abs(hitTime - Data.time);
+        string res = diff <= PERFECT ? "Perfect" : (diff <= 0.07 ? "Great" : (diff <= 0.11 ? "Good" : (diff <= 0.16 ? "Bad" : "Miss")));
+
+        if (Data.noteType == "long" && res != "Miss")
+        {
+            isBeingHeld = true; // 롱노트 시작
+            // 롱노트 헤드 제거 혹은 투명화 연출 가능
+        }
         else
         {
-            isBeingHeld = true;
-            if (curSongTime >= holdEndTime)
-                HoldComplete();
+            ApplyJudgment(res);
         }
     }
 
-    //손을 뗐을 때
-    public void OnHoldRelease(double releaseTime)
+    public void OnRelease(double releaseTime)
     {
-        if (data == null || data.type != "long") return;
-        if (!isHoldActive) { Destroy(gameObject, 0.02f); return; }
-
-        isBeingHeld = false;
-
-        double holdRatio = (releaseTime - data.time) / data.holdDuration;
-
-        if (holdRatio >= 0.9) HoldComplete();
-        else
+        if (Data.noteType == "long" && isBeingHeld)
         {
-            isHoldActive = false;
-            Destroy(gameObject, 0.02f);
+            isBeingHeld = false;
+            if (releaseTime < Data.time + Data.holdDuration * 0.9) // 90% 이상 유지 못하면 실패
+            {
+                ApplyJudgment("Miss");
+            }
         }
     }
 
-    void HoldComplete()
+    private void ApplyJudgment(string label)
     {
-        ApplyJudge("Hold Complete");
-        isHoldActive = false;
-        isBeingHeld = false;
-        Destroy(gameObject, 0.02f);
-    }
-
-    void ApplyJudge(string label)
-    {
-        if (gm != null && hitLineRect != null)
-        {
-            Vector2 showPos = hitLineRect.anchoredPosition;
-            gm.ShowJudgeAt(label, showPos);
-        }
+        _isJudged = true;
+        R3_GameManager.Instance.CreateJudgePopup(label);
+        Destroy(gameObject, 0.05f);
     }
 }

@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class R3_InputHandler : MonoBehaviour
 {
-    public RRGameManager gm;
+    public Transform playArea;
 
     void Update()
     {
-        if (gm == null) return;
-        double cur = gm.GetSongTime();
+        if (Time.timeScale <= 0) return;
+        double cur = R3_GameManager.Instance.GetCurrentTime();
 
         HandleKey(KeyCode.UpArrow, "up", cur);
         HandleKey(KeyCode.DownArrow, "down", cur);
@@ -15,69 +15,37 @@ public class R3_InputHandler : MonoBehaviour
         HandleKey(KeyCode.RightArrow, "right", cur);
     }
 
-    void HandleKey(KeyCode key, string lane, double cur)
+    void HandleKey(KeyCode key, string dir, double cur)
     {
-        if (Input.GetKeyDown(key))
-            TryHitLane(lane, cur);
-
-        if (Input.GetKey(key))
-            TryHoldLane(lane, cur);
-
-        if (Input.GetKeyUp(key))
-            TryReleaseLane(lane, cur);
+        if (Input.GetKeyDown(key)) TryHit(dir, cur);
+        if (Input.GetKeyUp(key)) TryRelease(dir, cur);
     }
 
-    void TryHitLane(string lane, double time)
+    void TryHit(string dir, double cur)
     {
-        if (gm == null || gm.noteParent == null) return;
-
         R3_Note best = null;
-        double bestDiff = double.MaxValue;
-
-        foreach (Transform t in gm.noteParent)
+        double min = 0.2;
+        foreach (Transform t in playArea)
         {
             R3_Note n = t.GetComponent<R3_Note>();
-            if (n == null || n.data == null) continue;
-            if (n.data.lane != lane) continue;
-
-            double diffMs = System.Math.Abs((time - n.data.time) * 1000.0);
-            if (diffMs < bestDiff)
+            if (n != null && n.Data.noteDirection == dir)
             {
-                bestDiff = diffMs;
-                best = n;
+                double d = System.Math.Abs(cur - n.Data.time);
+                if (d < min) { min = d; best = n; }
             }
         }
-
-        if (best != null) best.OnHitAttempt(time);
+        if (best != null) best.OnHit(cur);
     }
 
-    void TryHoldLane(string lane, double time)
+    void TryRelease(string dir, double cur)
     {
-        if (gm == null || gm.noteParent == null) return;
-
-        foreach (Transform t in gm.noteParent)
+        foreach (Transform t in playArea)
         {
             R3_Note n = t.GetComponent<R3_Note>();
-            if (n == null || n.data == null) continue;
-            if (n.data.lane != lane) continue;
-            if (n.data.type != "long") continue;
-
-            n.OnHoldMaintain(time);
-        }
-    }
-
-    void TryReleaseLane(string lane, double time)
-    {
-        if (gm == null || gm.noteParent == null) return;
-
-        foreach (Transform t in gm.noteParent)
-        {
-            R3_Note n = t.GetComponent<R3_Note>();
-            if (n == null || n.data == null) continue;
-            if (n.data.lane != lane) continue;
-            if (n.data.type != "long") continue;
-
-            n.OnHoldRelease(time);
+            if (n != null && n.Data.noteDirection == dir && n.isBeingHeld)
+            {
+                n.OnRelease(cur);
+            }
         }
     }
 }

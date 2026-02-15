@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5709225183714787731
+--- !u!1 &2081515176659216706
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8073101773311862518}
-  - component: {fileID: 4542415189005417639}
-  - component: {fileID: 606247306165020315}
-  - component: {fileID: 137724915481447806}
+  - component: {fileID: 1456528376999264482}
+  - component: {fileID: 4147742270018659}
+  - component: {fileID: 2418130357977546300}
+  - component: {fileID: 6507547442480519181}
+  - component: {fileID: 8228203132326200387}
   m_Layer: 5
-  m_Name: DownTapNote
+  m_Name: Judge_Text_ima
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8073101773311862518
+--- !u!224 &1456528376999264482
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709225183714787731}
+  m_GameObject: {fileID: 2081515176659216706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,21 +39,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4542415189005417639
+--- !u!222 &4147742270018659
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709225183714787731}
+  m_GameObject: {fileID: 2081515176659216706}
   m_CullTransparentMesh: 1
---- !u!114 &606247306165020315
+--- !u!114 &2418130357977546300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709225183714787731}
+  m_GameObject: {fileID: 2081515176659216706}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7137179805908077444, guid: 6e1116045ee072d4ebc34f861059dc36, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,15 +77,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &137724915481447806
+--- !u!114 &6507547442480519181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709225183714787731}
+  m_GameObject: {fileID: 2081515176659216706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0034341ae37e5c45b80161f149aac40, type: 3}
+  m_Script: {fileID: 11500000, guid: 25b9c2c9cbef7ac48905aab031b6c92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  judgeImage: {fileID: 2418130357977546300}
+  perfectSprite: {fileID: -8941403592575329396, guid: a3dd26543b51c034280af274b39eb40a, type: 3}
+  greatSprite: {fileID: 1971176675982931341, guid: adcb2cd275e1875459c36831b53c2e25, type: 3}
+  goodSprite: {fileID: 946560937660859776, guid: b1b63f438723160478fa179e2be8ca92, type: 3}
+  badSprite: {fileID: 4936846687800524128, guid: 0ec7f5c87e8be36439cae2dfc685dc30, type: 3}
+  missSprite: {fileID: -6663209737471825673, guid: f6bac7bca29225b408de7f28395344f1, type: 3}
+  moveUpAmount: 50
+  duration: 0.6
+--- !u!225 &8228203132326200387
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081515176659216706}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

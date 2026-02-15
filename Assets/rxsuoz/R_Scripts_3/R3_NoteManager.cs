@@ -3,117 +3,84 @@ using UnityEngine;
 
 public class R3_NoteManager : MonoBehaviour
 {
-    [Header("Tap Note Prefabs")]
-    public GameObject upTapPrefab;
-    public GameObject downTapPrefab;
-    public GameObject leftTapPrefab;
-    public GameObject rightTapPrefab;
-
-    [Header("Long Note Prefabs")]
-    public GameObject upLongPrefab;
-    public GameObject downLongPrefab;
-    public GameObject leftLongPrefab;
-    public GameObject rightLongPrefab;
-
-    [Header("Main")]
-    public RectTransform playArea;
-    public RectTransform hitLine;
-    public RRGameManager judgeManager;
+    [Header("Prefabs")]
+    public GameObject noteUpPrefab;
+    public GameObject noteDownPrefab;
+    public GameObject noteLeftPrefab;
+    public GameObject noteRightPrefab;
 
     [Header("Settings")]
-    public float travelTime = 1.8f;
-    public float judgeRadius = 60f;
+    public RectTransform playArea;
+    public float travelTime = 2.0f;
+    public float spawnDistanceX = 900f;
 
-    [System.Serializable]
-    public class LanePosition { public string laneName; public Vector2 spawnPos; }
+    private List<R3_NoteData> _noteQueue = new List<R3_NoteData>();
+    private int _nextIndex = 0;
 
-    [Header("Lane Positions")]
-    public LanePosition[] lanePositions = new LanePosition[4]
+    void Start()
     {
-        new LanePosition(){ laneName="up", spawnPos=new Vector2(0f,600f)},
-        new LanePosition(){ laneName="down", spawnPos=new Vector2(0f,-600f)},
-        new LanePosition(){ laneName="left", spawnPos=new Vector2(-600f,0f)},
-        new LanePosition(){ laneName="right", spawnPos=new Vector2(600f,0f)}
-    };
+        // 초기화 로직 (CSV 로드 후 호출)
+        string diff = N_StageSellectButton.Instance?.StageDifficulty.ToLower() ?? "easy";
+        LoadAndPrepare(diff);
+    }
 
-    private List<R3_NoteData> noteList = new List<R3_NoteData>();
-    private int nextIndex = 0;
-    private bool spawning = false;
-
-    public void StartNotes(List<R3_NoteData> notes)
+    private void LoadAndPrepare(string diff)
     {
-        noteList = notes;
-        nextIndex = 0;
-        spawning = true;
+        TextAsset csv = GetCsv(diff);
+        if (csv == null) return;
+
+        string[] lines = csv.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        foreach (string line in lines)
+        {
+            string[] cols = line.Trim().Split(',');
+            if (cols.Length < 3) continue;
+            _noteQueue.Add(new R3_NoteData
+            {
+                time = double.Parse(cols[0]),
+                noteDirection = cols[1].Trim().ToLower(),
+                noteType = cols[2].Trim().ToLower(),
+                holdDuration = cols.Length > 3 ? double.Parse(cols[3]) : 0
+            });
+        }
+        _noteQueue.Sort((a, b) => a.time.CompareTo(b.time));
+    }
+
+    private TextAsset GetCsv(string diff)
+    {
+        RRSongData s = R3_GameManager.Instance.songData;
+        if (diff == "normal") return s.chartNormal;
+        if (diff == "hard") return s.chartHard;
+        return s.chartEasy;
     }
 
     void Update()
     {
-        if (!spawning || noteList == null || noteList.Count == 0) return;
-        if (judgeManager == null) return;
+        if (Time.timeScale <= 0 || _nextIndex >= _noteQueue.Count) return;
 
-        double time = judgeManager.GetSongTime();
-
-        while (nextIndex < noteList.Count)
+        double currentTime = R3_GameManager.Instance.GetCurrentTime();
+        if (currentTime >= _noteQueue[_nextIndex].time - travelTime)
         {
-            var data = noteList[nextIndex];
-            double spawnTime = data.time - travelTime;
-
-            if (time >= spawnTime)
-            {
-                SpawnNote(data);
-                nextIndex++;
-            }
-            else break;
+            Spawn(_noteQueue[_nextIndex]);
+            _nextIndex++;
         }
     }
 
-    void SpawnNote(R3_NoteData data)
+    void Spawn(R3_NoteData data)
     {
-        if (data == null) return;
-        GameObject prefab = null;
-
-        if (data.type == "tap")
-        {
-            if (data.lane == "up") prefab = upTapPrefab;
-            else if (data.lane == "down") prefab = downTapPrefab;
-            else if (data.lane == "left") prefab = leftTapPrefab;
-            else if (data.lane == "right") prefab = rightTapPrefab;
-        }
-        else if (data.type == "long")
-        {
-            if (data.lane == "up") prefab = upLongPrefab;
-            else if (data.lane == "down") prefab = downLongPrefab;
-            else if (data.lane == "left") prefab = leftLongPrefab;
-            else if (data.lane == "right") prefab = rightLongPrefab;
-        }
-
-        if (prefab == null)
-        {
-            Debug.LogWarning($"Prefab missing for {data.lane} {data.type}");
-            return;
-        }
-
+        GameObject prefab = GetPrefab(data.noteDirection);
         GameObject go = Instantiate(prefab, playArea);
-        RectTransform rt = go.GetComponent<RectTransform>();
-        if (rt == null) rt = go.AddComponent<RectTransform>();
+        float side = Random.value > 0.5f ? 1f : -1f;
+        Vector2 spawnPos = new Vector2(side * spawnDistanceX, 0f);
 
-        Vector2 spawnPos = GetLaneSpawnPos(data.lane);
-        rt.anchoredPosition = spawnPos;
-
-        R3_Note n = go.GetComponent<R3_Note>();
-        if (n == null) n = go.AddComponent<R3_Note>();
-
-        float spawnPrimary = (data.lane == "left" || data.lane == "right") ? spawnPos.x : spawnPos.y;
-
-        n.Init(data, judgeManager, hitLine, spawnPrimary, travelTime, judgeRadius);
+        go.GetComponent<R3_Note>().Initialize(data, spawnPos, travelTime);
     }
 
-    Vector2 GetLaneSpawnPos(string lane)
+    GameObject GetPrefab(string dir) => dir switch
     {
-        foreach (var p in lanePositions)
-            if (p.laneName == lane) return p.spawnPos;
-
-        return new Vector2(0f, 600f);
-    }
+        "up" => noteUpPrefab,
+        "down" => noteDownPrefab,
+        "left" => noteLeftPrefab,
+        "right" => noteRightPrefab,
+        _ => null
+    };
 }

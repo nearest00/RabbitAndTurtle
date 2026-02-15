@@ -31,12 +31,12 @@ public class N_StageSellectButton : MonoBehaviour
     }
     public void OnClick333StageButton()
     {
-        Stage = 4; //씬번호입력(임시임)
+        Stage = 5; //씬번호입력(임시임)
         DifficultPanel.SetActive(true);
     }
     public void OnClick444StageButton()
     {
-        Stage = 5;
+        Stage = 6;
         DifficultPanel.SetActive(true);
     }
 
