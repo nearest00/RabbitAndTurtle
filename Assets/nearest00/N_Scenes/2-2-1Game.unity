@@ -1685,9 +1685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462c225f801da7c4ab5280acf6445cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyBGM: {fileID: 8300000, guid: 829416e406c90394c9c568a9cffa7a72, type: 3}
-  normalBGM: {fileID: 8300000, guid: 39741b9d2a0fcbd428bf2c97a5adf912, type: 3}
-  hardBGM: {fileID: 8300000, guid: 00865d74edd83994e80bd1ba4a4af9bc, type: 3}
+  easyBGM: {fileID: 8300000, guid: 87104adf492ac644ebb8c7add727dada, type: 3}
+  normalBGM: {fileID: 8300000, guid: 87104adf492ac644ebb8c7add727dada, type: 3}
+  hardBGM: {fileID: 8300000, guid: 87104adf492ac644ebb8c7add727dada, type: 3}
 --- !u!4 &1330300593
 Transform:
   m_ObjectHideFlags: 0
