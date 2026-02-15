@@ -34,13 +34,38 @@ public class RRInputHandler : MonoBehaviour
         }
     }
 
+
     void Update()
+    {
+        if (gm == null) return;
+        double cur = gm.GetSongTime();
+
+        // 눌렀을 때 (탭 or 롱노트 시작)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            TryHitLane("up", cur);
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            TryHitLane("down", cur);
+
+        // 누르고 있는 동안 (롱노트 유지)
+        if (Input.GetKey(KeyCode.UpArrow))
+            TryHoldLane("up", cur);
+        if (Input.GetKey(KeyCode.DownArrow))
+            TryHoldLane("down", cur);
+
+        // 뗐을 때 (롱노트 종료)
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+            TryReleaseLane("up", cur);
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+            TryReleaseLane("down", cur);
+    }
+
+    /*void Update()
     {
         if (gm == null) return;
 
         double cur = gm.GetSongTime();
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        *//*if (Input.GetKeyDown(KeyCode.UpArrow))
             TryHitLane("up", cur);
         if (Input.GetKeyDown(KeyCode.DownArrow))
             TryHitLane("down", cur);
@@ -48,8 +73,9 @@ public class RRInputHandler : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.UpArrow))
             TryReleaseLane("up", cur);
         if (Input.GetKeyUp(KeyCode.DownArrow))
-            TryReleaseLane("down", cur);
-    }
+            TryReleaseLane("down", cur);*//*
+
+    }*/
 
     void TryHitLane(string lane, double time)
     {
@@ -104,4 +130,19 @@ public class RRInputHandler : MonoBehaviour
             n.OnHoldRelease(time);
         }
     }
+
+    void TryHoldLane(string lane, double time)
+    {
+        foreach (Transform t in gm.noteParent)
+        {
+            RRNote n = t.GetComponent<RRNote>();
+            if (n == null) continue;
+            if (n.data.lane != lane) continue;
+            if (n.data.type != "long") continue;
+
+            // 누르고 있는 동안 isBeingHeld를 true로 유지
+            n.isBeingHeld = true;
+        }
+    }
+
 }

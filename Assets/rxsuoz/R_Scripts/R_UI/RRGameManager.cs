@@ -22,6 +22,10 @@ public class RRGameManager : MonoBehaviour
     // public GameObject clearPanel; // 주석 처리
     // public GameObject failPanel;  // 주석 처리
 
+    [Header("Note Parent")]
+    public RectTransform noteParent;
+
+
     [Header("Judge Popup")]
     public GameObject judgeTextPrefab;
     public RectTransform judgeParent;

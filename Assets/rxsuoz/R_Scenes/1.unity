@@ -816,6 +816,7 @@ MonoBehaviour:
   noteManager: {fileID: 875212134}
   guideManager: {fileID: 1795540824}
   scoreSlider: {fileID: 1799517402}
+  noteParent: {fileID: 1313714885}
   judgeTextPrefab: {fileID: 6603378925275860982, guid: 5e5626afdd8e2924795692dc0ac5961c, type: 3}
   judgeParent: {fileID: 1959880254}
   panelFadeDuration: 0.4

@@ -18,7 +18,7 @@ public class RRNote : MonoBehaviour
     private bool judged = false;
 
     private bool isHoldActive = false;
-    private bool isBeingHeld = false;
+    public bool isBeingHeld = false;
     private double holdEndTime = 0.0;
 
     private float initialBodyLength = 0f;
@@ -143,25 +143,22 @@ public class RRNote : MonoBehaviour
     {
         if (!isHoldActive) return;
 
+
         isBeingHeld = false;
 
-        // 홀드 진행 비율 계산
         double holdProgress = (releaseSongTime - data.time) / data.holdDuration;
 
-        // 1) 거의 다 잡은 상태(90% 이상)는 성공 처리
-        // 2) 약간 일찍 뗐을 때도 Miss가 아닌 Hold Complete로 처리
-        if (holdProgress >= 0.88f)
+        if (holdProgress >= 0.9f)
         {
             HoldComplete();
         }
         else
         {
-            ApplyJudge("Miss", 0);
+            isHoldActive = false;
             Destroy(gameObject, 0.05f);
         }
-
-        isHoldActive = false;
     }
+
 
     private void HoldComplete()
     {
