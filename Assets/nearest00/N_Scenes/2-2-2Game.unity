@@ -1302,51 +1302,34 @@ MonoBehaviour:
       keyDir: 1
       keyDir2: 4
   - notes:
-    - noteType: 0
+    - noteType: 3
+      beat: 0
+      keyDir: 0
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 0
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 0
+      keyDir2: 4
+    - noteType: 5
       beat: 0
       keyDir: 0
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-  - notes:
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
+      keyDir: 2
       keyDir2: 4
   - notes:
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 3
+      keyDir2: 4
+    - noteType: 0
+      beat: 0
+      keyDir: 2
       keyDir2: 4
     - noteType: 0
       beat: 0
@@ -1354,41 +1337,16 @@ MonoBehaviour:
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 1
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-  - notes:
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
+      keyDir: 3
       keyDir2: 4
   - notes:
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 2
       keyDir2: 4
     - noteType: 0
       beat: 0
@@ -1396,36 +1354,78 @@ MonoBehaviour:
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 3
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 2
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 1
+      keyDir2: 4
+  - notes:
+    - noteType: 3
+      beat: 0
+      keyDir: 1
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 1
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 1
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 1
+      keyDir2: 4
+    - noteType: 0
+      beat: 0
+      keyDir: 2
       keyDir2: 4
   - notes:
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 3
       keyDir2: 4
     - noteType: 0
       beat: 0
+      keyDir: 2
+      keyDir2: 4
+    - noteType: 1
+      beat: 0
       keyDir: 0
+      keyDir2: 1
+    - noteType: 0
+      beat: 0
+      keyDir: 3
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 2
+      keyDir2: 4
+  - notes:
+    - noteType: 3
+      beat: 0
+      keyDir: 3
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 3
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 3
+      keyDir2: 4
+    - noteType: 5
+      beat: 0
+      keyDir: 3
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
+      keyDir: 2
       keyDir2: 4
   noteSlots:
   - {fileID: 1804827642}
