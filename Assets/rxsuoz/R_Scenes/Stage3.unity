@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2418915551877711071, guid: a5202bcd53068c94fa8462b043abf37d, type: 3}
+  m_Sprite: {fileID: -103429854600543296, guid: a077a16291e370841b0f0557bbc479ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2350,9 +2350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462c225f801da7c4ab5280acf6445cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyBGM: {fileID: 8300000, guid: 121517a45b8c5624d881b40479c27cdd, type: 3}
-  normalBGM: {fileID: 8300000, guid: c3cac4a84753a2e4ea90a7df2792fab9, type: 3}
-  hardBGM: {fileID: 8300000, guid: ca7cb434387411f45bbd7e4d203a2d3f, type: 3}
+  easyBGM: {fileID: 8300000, guid: 3dfc4743a0c35e044a7cf6962cfd04c5, type: 3}
+  normalBGM: {fileID: 8300000, guid: 3dfc4743a0c35e044a7cf6962cfd04c5, type: 3}
+  hardBGM: {fileID: 8300000, guid: 3dfc4743a0c35e044a7cf6962cfd04c5, type: 3}
 --- !u!1 &1795540822
 GameObject:
   m_ObjectHideFlags: 0
