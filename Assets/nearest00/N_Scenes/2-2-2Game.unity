@@ -1260,46 +1260,46 @@ MonoBehaviour:
       keyDir: 3
       keyDir2: 4
   - notes:
-    - noteType: 0
+    - noteType: 3
       beat: 0
-      keyDir: 0
+      keyDir: 3
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 3
+      keyDir2: 4
+    - noteType: 4
+      beat: 0
+      keyDir: 3
+      keyDir2: 4
+    - noteType: 5
+      beat: 0
+      keyDir: 3
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
+      keyDir: 2
       keyDir2: 4
   - notes:
     - noteType: 0
       beat: 0
-      keyDir: 0
+      keyDir: 2
       keyDir2: 4
     - noteType: 0
       beat: 0
+      keyDir: 1
+      keyDir2: 4
+    - noteType: 1
+      beat: 0
       keyDir: 0
+      keyDir2: 3
+    - noteType: 0
+      beat: 0
+      keyDir: 2
       keyDir2: 4
     - noteType: 0
       beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
-      keyDir2: 4
-    - noteType: 0
-      beat: 0
-      keyDir: 0
+      keyDir: 1
       keyDir2: 4
   - notes:
     - noteType: 0
@@ -3992,7 +3992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1342603966
 RectTransform:
   m_ObjectHideFlags: 0
