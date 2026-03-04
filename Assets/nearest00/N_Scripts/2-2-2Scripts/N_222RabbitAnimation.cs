@@ -1,4 +1,5 @@
 using UnityEngine;
+using Live2D.Cubism.Framework;
 
 public class N_222RabbitAnimation : MonoBehaviour
 {
@@ -11,10 +12,6 @@ public class N_222RabbitAnimation : MonoBehaviour
 
     public void PlayTalking()
     {
-        anim.SetBool("RabbitTalking", true);
-    }
-    public void StopTalking()
-    {
-        anim.SetBool("RabbitTalking", false);
-    }
+        anim.SetTrigger("Rabbittalking");
+	}
 }

@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 83150432}
   m_Layer: 5
   m_Name: SoundButton
-  m_TagString: NoSound
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85f10260278de3469c369d9d1c8eaac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSound: {fileID: 8300000, guid: 8331b560314c1304985e59b53e042c57, type: 3}
+  ButtonSound: {fileID: 8300000, guid: d7797f4346600ef43adbb9ecd417218b, type: 3}
 --- !u!1 &528750804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3254,7 +3254,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 3709235759082718755, guid: dc2398322e20d52498305dcfde301c3b, type: 3}
     m_PressedSprite: {fileID: 702659278857270867, guid: cd762fdc364ccd349a8fc80e1ca7f0aa, type: 3}
     m_SelectedSprite: {fileID: 3709235759082718755, guid: dc2398322e20d52498305dcfde301c3b, type: 3}
-    m_DisabledSprite: {fileID: 3709235759082718755, guid: dc2398322e20d52498305dcfde301c3b, type: 3}
+    m_DisabledSprite: {fileID: -8711766413810791851, guid: cd47d48f66a12f24880b3249777a084f, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted

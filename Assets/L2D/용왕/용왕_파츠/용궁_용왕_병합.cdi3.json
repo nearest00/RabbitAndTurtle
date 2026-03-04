@@ -1,0 +1,42 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "각도 X"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "말하는입"
+		},
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "",
+			"Name": "다문입"
+		},
+		{
+			"Id": "ParamEyeLSmile",
+			"GroupId": "",
+			"Name": "푹신"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "팔"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "꼬리"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "용궁_용왕_병합.psd(레이어를 찾을 수 없음)"
+		}
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "수영토끼_정리됨.moc3",
+		"Textures": [
+			"수영토끼_정리됨.1024/texture_00.png"
+		],
+		"DisplayInfo": "수영토끼_정리됨.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	]
+}

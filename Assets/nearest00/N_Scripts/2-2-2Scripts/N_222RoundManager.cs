@@ -42,7 +42,7 @@ public class N_222RoundManager : MonoBehaviour
     public RectTransform[] secondNoteSlots = new RectTransform[5];
 
     [Header("Settings")]
-    public Vector2 judgeLineStartPos = new Vector2(-346, 0);
+    public Vector2 judgeLineStartPos = new Vector2(-519, 0);
 
     [Header("Movement Settings")]
     [SerializeField] private float easyBPM = 120f;
@@ -100,6 +100,9 @@ public class N_222RoundManager : MonoBehaviour
 	private bool isTimerRunning = false;
 	private bool isPreviewFinished = false;
 	private bool lastCountingState = true;
+
+	private bool isGameStarted = false;
+
 	private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -123,8 +126,16 @@ public class N_222RoundManager : MonoBehaviour
 		// 1. 카운트다운 체크 (true였다가 false가 되는 순간 감지)
 		if (lastCountingState == true && isCountingDown == false)
 		{
-			Debug.Log("<color=cyan>카운트다운 종료! 첫 라운드를 시작합니다.</color>");
-			StartRound(currentDifficulty, 0); // 여기서 첫 라운드 시작
+			if (!isGameStarted)
+			{
+				Debug.Log("<color=cyan>최초 시작! 0번 라운드를 시작합니다.</color>");
+				isGameStarted = true;
+                StartRound(currentDifficulty, 0);
+			}
+			else
+			{
+				Debug.Log("<color=orange>일시정지 해제! 기존 로직을 이어서 진행합니다.</color>");
+			}
 		}
 		lastCountingState = isCountingDown; // 현재 상태를 저장해서 다음 프레임에서 비교
 
@@ -144,7 +155,6 @@ public class N_222RoundManager : MonoBehaviour
 				if (tutorialing) return;
 				if (isCountingDown) return; // 카운트다운 중에는 실행 방지
 				if (!CanSettingOn) return;
-				if (rabbitAnimation != null) rabbitAnimation.StopTalking();
 
 				NextRound();
 				Debug.Log("6박자가 지났습니다! 다음 라운드 실행.");
@@ -167,7 +177,7 @@ public class N_222RoundManager : MonoBehaviour
         if (targetList == null || targetList.Count == 0) return;
 
         currentRoundIndex++;
-        if (currentRoundIndex == targetList.Count)
+        if (currentRoundIndex >= 20)
         {
             Time.timeScale = 0f;
             

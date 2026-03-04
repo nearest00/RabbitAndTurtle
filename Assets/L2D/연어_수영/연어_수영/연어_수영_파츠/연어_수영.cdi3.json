@@ -1,0 +1,42 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamEyeLSmile",
+			"GroupId": "",
+			"Name": "쫘부"
+		},
+		{
+			"Id": "ParamEyeROpen",
+			"GroupId": "",
+			"Name": "얼굴짜부"
+		},
+		{
+			"Id": "ParamAngleY",
+			"GroupId": "",
+			"Name": "옆지느러미"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "위지느러미"
+		},
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "",
+			"Name": "아래지느러미"
+		},
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "꼬리"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "Y"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": []
+}

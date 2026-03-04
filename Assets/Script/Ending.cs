@@ -7,7 +7,9 @@ public class Ending : MonoBehaviour
         get => SettingPanel.Instance.CanSettingOn;
         set => SettingPanel.Instance.CanSettingOn = value;
     }
-    private N_222RoundManager roundmng;
+	public AudioClip clearSound;
+	public AudioClip failedSound;
+	private N_222RoundManager roundmng;
     [SerializeField] private GameObject ClearPanel;
     [SerializeField] private GameObject FailedPanel;
 
@@ -15,12 +17,14 @@ public class Ending : MonoBehaviour
     {
         CanSettingOn = false;
         SoundManager.Instance.StopBGM();
+        SoundManager.Instance.PlaySFX(clearSound);
         ClearPanel.SetActive(true);
     }
     public void StageFailed()
     {
         CanSettingOn = false;
        SoundManager.Instance.StopBGM();
-       FailedPanel.SetActive(true);
+		SoundManager.Instance.PlaySFX(failedSound);
+		FailedPanel.SetActive(true);
     }
 }

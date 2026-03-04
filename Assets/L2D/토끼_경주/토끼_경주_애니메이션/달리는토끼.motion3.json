@@ -1,0 +1,96 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 0.633,
+		"Fps": 30.0,
+		"Loop": true,
+		"AreBeziersRestricted": true,
+		"CurveCount": 3,
+		"TotalSegmentCount": 8,
+		"TotalPointCount": 27,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "ParamAngleZ",
+			"Segments": [
+				0,
+				14.39,
+				1,
+				0.033,
+				14.39,
+				0.067,
+				30,
+				0.1,
+				30,
+				1,
+				0.222,
+				30,
+				0.344,
+				-20,
+				0.467,
+				-20,
+				1,
+				0.522,
+				-20,
+				0.578,
+				3.883,
+				0.633,
+				11.844
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeLOpen",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.122,
+				0,
+				0.244,
+				1,
+				0.367,
+				1,
+				1,
+				0.456,
+				1,
+				0.544,
+				0.21,
+				0.633,
+				0.034
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeLSmile",
+			"Segments": [
+				0,
+				0.9,
+				1,
+				0.033,
+				0.9,
+				0.067,
+				1,
+				0.1,
+				1,
+				1,
+				0.222,
+				1,
+				0.344,
+				0.7,
+				0.467,
+				0.7,
+				1,
+				0.522,
+				0.7,
+				0.578,
+				0.839,
+				0.633,
+				0.885
+			]
+		}
+	]
+}
