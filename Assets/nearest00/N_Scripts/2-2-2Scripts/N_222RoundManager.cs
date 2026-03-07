@@ -105,10 +105,24 @@ public class N_222RoundManager : MonoBehaviour
 
 	private void Awake()
     {
-        if (Instance == null) Instance = this;
+		Time.timeScale = 0f;
+
+		if (mainLine != null)
+		{
+			mainLine.StopMoving();
+			mainLine.ResetPosition(judgeLineStartPos.x);
+		}
+		if (previewLine != null)
+		{
+			previewLine.StopMoving();
+			previewLine.ResetPosition(judgeLineStartPos.x);
+		}
+		if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
+		isGameStarted = false;
 		isTimerRunning = false;
 		isPreviewFinished = false;
+		timer = 0f;
 	}
 	private int GetSpeedStepInterval()
 	{
@@ -120,17 +134,29 @@ public class N_222RoundManager : MonoBehaviour
 			default: return 5;
 		}
 	}
-
-    void Update()
+	private IEnumerator SafeStartRoutine()
 	{
-		// 1. 카운트다운 체크 (true였다가 false가 되는 순간 감지)
+		// [핵심] 한 프레임 대기하여 모든 오브젝트의 좌표가 고정되길 기다림
+		yield return null;
+
+		Time.timeScale = 1f; // 이제야 시간을 풀어줌
+		StartRound(currentDifficulty, 0);
+	}
+	void Update()
+	{
+		if (tutorialing)
+		{
+			lastCountingState = isCountingDown;
+			return;
+		}
+
 		if (lastCountingState == true && isCountingDown == false)
 		{
 			if (!isGameStarted)
 			{
 				Debug.Log("<color=cyan>최초 시작! 0번 라운드를 시작합니다.</color>");
 				isGameStarted = true;
-                StartRound(currentDifficulty, 0);
+				StartCoroutine(SafeStartRoutine());
 			}
 			else
 			{
@@ -152,9 +178,9 @@ public class N_222RoundManager : MonoBehaviour
 			timer -= Time.deltaTime;
 			if (timer <= 0)
 			{
-				if (tutorialing) return;
-				if (isCountingDown) return; // 카운트다운 중에는 실행 방지
-				if (!CanSettingOn) return;
+				if (tutorialing || isCountingDown || !CanSettingOn) return;
+
+				//if (rabbitAnimation != null) rabbitAnimation.StopTalking();
 
 				NextRound();
 				Debug.Log("6박자가 지났습니다! 다음 라운드 실행.");
@@ -202,7 +228,6 @@ public class N_222RoundManager : MonoBehaviour
 
     private void SpawnCurrent()
     {
-        
         // 1. 난이도 문자열에 따라 BPM 설정
         switch (currentDifficulty.ToLower())
         {
@@ -280,8 +305,13 @@ public class N_222RoundManager : MonoBehaviour
     }
     private IEnumerator LineSequenceRoutine()
     {
-        // [Step 1] 미리보기 판정선만 출발
-        kingAnimation.PlayTalking();
+
+		while (tutorialing || isCountingDown)
+		{
+			yield return null;
+		}
+		// [Step 1] 미리보기 판정선만 출발
+		kingAnimation.PlayTalking();
         previewLine.StartMoving();
 
         // [Step 2] 6박자 동안 대기

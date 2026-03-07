@@ -9,6 +9,7 @@ public class N_222JudgeManager : MonoBehaviour
     [SerializeField] private float baseGood = 60f;
     [SerializeField] private float baseBad = 90f;
     [SerializeField] private float baseMissBoundary = 100f;
+	[SerializeField] private N_222SFXList sfx;
 
 	private float perfectRange;
 	private float greatRange;
@@ -97,8 +98,11 @@ public class N_222JudgeManager : MonoBehaviour
                 if (Input.GetKeyDown(n.inputKey))
                 {
                     float dist = Mathf.Abs(n.RectTransform.anchoredPosition.x - judgeLine.anchoredPosition.x);
-                    if (dist <= badRange * 2.5f) // 연타는 좀 더 넉넉하게
-                        n.GetComponent<N_222ManyTapNote>()?.OnManyTapInput();
+                    if (dist <= badRange * 2.5f)
+                    {
+						SoundManager.Instance.PlaySFX(sfx.NoteSound);
+						n.GetComponent<N_222ManyTapNote>()?.OnManyTapInput();
+                    }
                 }
             }
         }
@@ -144,8 +148,19 @@ public class N_222JudgeManager : MonoBehaviour
 
             if (isHit)
             {
-                // 거리와 상관없이 일단 'hit' 했으므로 판정 실행
-                if (note.noteType == N_222NoteBase.NoteType.LongStart) holdingRoundID = note.roundID;
+				if (note.noteType == N_222NoteBase.NoteType.LongStart)
+				{
+					holdingRoundID = note.roundID;
+					// 롱노트 시작: 루프 사운드 재생 및 해당 노트에 저장
+					note.holdSFXSource = SoundManager.Instance.PlayLoopingSFX(sfx.SlideHoldSound);
+				}
+				else
+				{
+					// 단타/동타: 일반 사운드
+					SoundManager.Instance.PlaySFX(sfx.NoteSound);
+				}
+				// 거리와 상관없이 일단 'hit' 했으므로 판정 실행
+				if (note.noteType == N_222NoteBase.NoteType.LongStart) holdingRoundID = note.roundID;
                 note.isJudged = true;
                 Judge(note, dist);
                 // Debug.Log($"판정 성공: {note.noteType}, 거리: {dist}");
@@ -195,7 +210,8 @@ public class N_222JudgeManager : MonoBehaviour
         {
             if (n.roundID == holdingRoundID && n.inputKey == key)
             {
-                isCorrectKey = true;
+				StopLongNoteSound(holdingRoundID);
+				isCorrectKey = true;
                 if (n.noteType == N_222NoteBase.NoteType.LongEnd) endNote = n;
             }
         }
@@ -226,6 +242,7 @@ public class N_222JudgeManager : MonoBehaviour
 
 	private void FailLongGroup(int rID, string reason)
     {
+       StopLongNoteSound(rID);
         foreach (var n in activeNotes)
         {
             if (n.roundID == rID && IsLongNote(n.noteType))
@@ -251,5 +268,12 @@ public class N_222JudgeManager : MonoBehaviour
 
     private bool IsLongNote(N_222NoteBase.NoteType type) =>
         type == N_222NoteBase.NoteType.LongStart || type == N_222NoteBase.NoteType.LongHold || type == N_222NoteBase.NoteType.LongEnd;
-	
+	private void StopLongNoteSound(int rID)
+	{
+		foreach (var n in activeNotes)
+		{
+			if (n.roundID == rID) n.StopHoldSFX();
+		}
+	}
+
 }

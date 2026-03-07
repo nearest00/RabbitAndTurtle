@@ -70,7 +70,6 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         if (clip == null || isPaused) return;
-        // 재생하는 순간의 설정된 SFX 볼륨을 적용
         sfxSource.PlayOneShot(clip, SfxVolume);
     }
 
@@ -138,7 +137,30 @@ public class SoundManager : MonoBehaviour
             bgmSource.Play();
         }
     }
-    public void StopBGM()
+	public void StopLoopingSFX(AudioSource source)
+	{
+		if (source != null)
+		{
+			source.Stop();
+			Destroy(source.gameObject); // 생성했던 객체 삭제
+		}
+	}
+	public AudioSource PlayLoopingSFX(AudioClip clip)
+	{
+		if (clip == null || isPaused) return null;
+
+		// 새로운 오디오 소스 생성 (효과음 전용)
+		GameObject go = new GameObject("LoopingSFX_" + clip.name);
+		AudioSource source = go.AddComponent<AudioSource>();
+
+		source.clip = clip;
+		source.volume = SfxVolume;
+		source.loop = true; // 루프 설정
+		source.Play();
+
+		return source; // 나중에 Stop하기 위해 반환
+	}
+	public void StopBGM()
     {
         bgmSource.Pause();
     }

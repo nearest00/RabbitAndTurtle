@@ -37,8 +37,8 @@ public abstract class N_222NoteBase : MonoBehaviour
     [SerializeField] private Sprite manyDown;
 
     public RectTransform RectTransform => GetComponent<RectTransform>();
-
-    public void SetKeyAndVisual(string k1, string k2)
+	[HideInInspector] public AudioSource holdSFXSource;
+	public void SetKeyAndVisual(string k1, string k2)
     {
         // 1. 키 데이터 설정
         inputKey = ConvertToKeyCode(k1);
@@ -121,4 +121,14 @@ public abstract class N_222NoteBase : MonoBehaviour
     public abstract void OnGood();
     public abstract void OnBad();
     public abstract void OnMiss();
+	public virtual void StopHoldSFX()
+	{
+		if (holdSFXSource != null)
+		{
+			SoundManager.Instance.StopLoopingSFX(holdSFXSource);
+			holdSFXSource = null;
+		}
+	}
+
+	private void OnDestroy() { StopHoldSFX(); } // 안전장치
 }

@@ -20,11 +20,17 @@ public class N_44Note : MonoBehaviour
     private N_44GameManager gameManager;
     private N_44InputManager inputManager;
     private N_44JudgeEffectManager judgeEffectManager;
+    private N_444SFXList sfx;
 
     // 롱노트 꼬리 이미지를 참조하기 위한 변수
     private RectTransform bodyRect;
 
-    public void Setup(NoteInfo info, float speed, RectTransform receptor, Sprite noteSprite)
+	private AudioSource holdSFXSource; // 현재 재생중인 사운드 저장용
+	public void Start()
+	{
+		sfx=Object.FindFirstObjectByType<N_444SFXList>();
+	}
+	public void Setup(NoteInfo info, float speed, RectTransform receptor, Sprite noteSprite)
     {
         // 1. 매니저 참조를 가장 먼저 수행 (NullReferenceException 방지)
         gameManager = Object.FindFirstObjectByType<N_44GameManager>();
@@ -185,14 +191,31 @@ public class N_44Note : MonoBehaviour
     { 
         IsHolding = true;
         lastCheckedBeat = Data.hitTime;
-        Image headImage = GetComponent<Image>();
+		if ( sfx.NoteSound != null && SoundManager.Instance != null)
+		{
+			holdSFXSource = SoundManager.Instance.PlayLoopingSFX(sfx.HoldSound);
+		}
+		Image headImage = GetComponent<Image>();
         if (headImage != null) headImage.enabled = false;
     }
-
-    public void FailLongNote()
-    {
-        IsFailed = true;
-        // 실패 시 즉시 파괴 (필요에 따라 연출 코드로 대체 가능)
-        Destroy(gameObject);
-    }
+	public void StopHoldSFX()
+	{
+		if (holdSFXSource != null && SoundManager.Instance != null)
+		{
+			SoundManager.Instance.StopLoopingSFX(holdSFXSource);
+			holdSFXSource = null;
+		}
+        Debug.Log("사운드 정지");
+	}
+	public void FailLongNote()
+	{
+		IsFailed = true;
+		StopHoldSFX(); // 사운드 정지
+		Destroy(gameObject);
+	}
+	private void OnDestroy()
+	{
+		// 어떤 이유로든 이 오브젝트가 파괴될 때 사운드가 살아있다면 강제로 정지
+		StopHoldSFX();
+	}
 }
