@@ -137,18 +137,13 @@ public class N_222RoundManager : MonoBehaviour
 	private IEnumerator SafeStartRoutine()
 	{
 		// [핵심] 한 프레임 대기하여 모든 오브젝트의 좌표가 고정되길 기다림
+		StartRound(currentDifficulty, 0);
 		yield return null;
 
 		Time.timeScale = 1f; // 이제야 시간을 풀어줌
-		StartRound(currentDifficulty, 0);
 	}
 	void Update()
 	{
-		if (tutorialing)
-		{
-			lastCountingState = isCountingDown;
-			return;
-		}
 
 		if (lastCountingState == true && isCountingDown == false)
 		{

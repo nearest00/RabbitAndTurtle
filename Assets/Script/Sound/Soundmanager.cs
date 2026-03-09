@@ -99,8 +99,12 @@ public class SoundManager : MonoBehaviour
     {
         StartCoroutine(StageFadeAndLoadRoutine(sceneName, duration));
     }
+	public void StageFadeAndTimeStopLoadScene(int sceneName, float duration)
+	{
+		StartCoroutine(StageFadeAndTimeStopLoadRoutine(sceneName, duration));
+	}
 
-    private IEnumerator FadeAndLoadRoutine(string sceneName, float duration)
+	private IEnumerator FadeAndLoadRoutine(string sceneName, float duration)
     {
         FadeOutBGM(duration);
         yield return new WaitForSeconds(duration);
@@ -114,7 +118,15 @@ public class SoundManager : MonoBehaviour
         CanSettingOn = true;
         SceneManager.LoadScene(sceneName);
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	private IEnumerator StageFadeAndTimeStopLoadRoutine(int sceneName, float duration)
+	{
+		FadeOutBGM(duration);
+		yield return new WaitForSeconds(duration);
+		CanSettingOn = true;
+		SceneManager.LoadScene(sceneName);
+        Time.timeScale = 0f;
+	}
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // ¾À ÀÌµ¿ ÈÄ º¼·ý ÀÚµ¿ º¹±¸
         bgmSource.volume = BgmVolume;

@@ -71,7 +71,7 @@ public class N_StageSellectButton : MonoBehaviour
         isTransitioning = true;
         if (SoundManager.Instance != null)
         {
-            SoundManager.Instance.StageFadeAndLoadScene(Stage, 1.5f);
+            SoundManager.Instance.StageFadeAndTimeStopLoadScene(Stage, 1.5f);
         }
     }
 }
