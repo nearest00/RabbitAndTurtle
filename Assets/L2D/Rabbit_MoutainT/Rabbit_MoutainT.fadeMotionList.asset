@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
+  m_Name: Rabbit_MoutainT.fadeMotionList
+  m_EditorClassIdentifier: 
+  MotionInstanceIds: 6e5bfeff1058feffe857feffc057feff9857feff
+  CubismFadeMotionObjects:
+  - {fileID: 11400000, guid: 66a83d07db7f60946b162c3603314769, type: 2}
+  - {fileID: 11400000, guid: 15659508c5ae5a8448c09ce46382e871, type: 2}
+  - {fileID: 11400000, guid: 343e57937d2cd7b418f7e5de405a8a85, type: 2}
+  - {fileID: 11400000, guid: 43bb66c81b7e165419e6b4df6d1414a1, type: 2}
+  - {fileID: 11400000, guid: 38a2f14d4f5066d469f0bf46aea82f7c, type: 2}

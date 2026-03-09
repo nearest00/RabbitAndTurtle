@@ -1,0 +1,37 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "말랑"
+		},
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "각도 X"
+		},
+		{
+			"Id": "ParamAngleY",
+			"GroupId": "",
+			"Name": "각도 Y"
+		},
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "",
+			"Name": "얼굴"
+		},
+		{
+			"Id": "ParamEyeLSmile",
+			"GroupId": "",
+			"Name": "입"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "폴더 1"
+		}
+	]
+}

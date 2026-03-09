@@ -315,7 +315,6 @@ public class N_222RoundManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         // [Step 3] 미리보기 판정선 멈춤
-        kingAnimation.StopTalking();
         previewLine.StopMoving();
 
         // [Step 4] 메인 판정선 출발

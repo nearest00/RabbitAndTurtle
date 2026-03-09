@@ -11,10 +11,6 @@ public class N_222KingAnimation : MonoBehaviour
 
     public void PlayTalking()
     {
-        anim.SetBool("KingTalking", true);
-    }
-    public void StopTalking()
-    {
-        anim.SetBool("KingTalking", false);
+        anim.SetTrigger("KingTalking");
     }
 }

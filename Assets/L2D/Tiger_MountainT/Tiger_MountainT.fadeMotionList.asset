@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
+  m_Name: Tiger_MountainT.fadeMotionList
+  m_EditorClassIdentifier: 
+  MotionInstanceIds: 4c60feff1660feffee5ffeff5a5dfeff325dfeff
+  CubismFadeMotionObjects:
+  - {fileID: 11400000, guid: b991a609328daaf4494033fa5889bb60, type: 2}
+  - {fileID: 11400000, guid: abbb21472708c8d4f865e094d508a17b, type: 2}
+  - {fileID: 11400000, guid: d3d6756d5e8d7204bb3d6093bbbfc325, type: 2}
+  - {fileID: 11400000, guid: bbb891610a1e6584eb3eb13f7e9738f1, type: 2}
+  - {fileID: 11400000, guid: a1b16878ac775d147a9a0a622c0b5ac8, type: 2}

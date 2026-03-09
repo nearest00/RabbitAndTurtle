@@ -1,0 +1,22 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "Rabbit_MountainT.moc3",
+		"Textures": [
+			"Rabbit_MountainT.1024/texture_00.png"
+		],
+		"DisplayInfo": "Rabbit_MountainT.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	]
+}

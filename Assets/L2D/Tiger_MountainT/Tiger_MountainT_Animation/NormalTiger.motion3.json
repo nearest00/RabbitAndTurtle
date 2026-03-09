@@ -1,0 +1,136 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 0.633,
+		"Fps": 30.0,
+		"Loop": true,
+		"AreBeziersRestricted": true,
+		"CurveCount": 5,
+		"TotalSegmentCount": 12,
+		"TotalPointCount": 39,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "ParamAngleZ",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.056,
+				0,
+				0.111,
+				-30,
+				0.167,
+				-30,
+				1,
+				0.278,
+				-30,
+				0.389,
+				30,
+				0.5,
+				30,
+				1,
+				0.544,
+				30,
+				0.589,
+				10.8,
+				0.633,
+				3.12
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamAngleX",
+			"Segments": [
+				0,
+				0,
+				0,
+				0.633,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamAngleY",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.111,
+				0,
+				0.222,
+				5,
+				0.333,
+				5,
+				1,
+				0.433,
+				5,
+				0.533,
+				0.95,
+				0.633,
+				0.14
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeLOpen",
+			"Segments": [
+				0,
+				1,
+				1,
+				0.111,
+				1,
+				0.222,
+				0,
+				0.333,
+				0,
+				1,
+				0.433,
+				0,
+				0.533,
+				0.81,
+				0.633,
+				0.972
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeLSmile",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.056,
+				0,
+				0.111,
+				1,
+				0.167,
+				1,
+				1,
+				0.222,
+				1,
+				0.278,
+				0,
+				0.333,
+				0,
+				1,
+				0.389,
+				0,
+				0.444,
+				1,
+				0.5,
+				1,
+				1,
+				0.544,
+				1,
+				0.589,
+				0.36,
+				0.633,
+				0.104
+			]
+		}
+	]
+}

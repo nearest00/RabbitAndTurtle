@@ -8,6 +8,7 @@ public class N_44InputManager : MonoBehaviour
     public N_44GameManager gameManager;
     public N_44JudgementManager judgeManager;
     public N_44JudgeEffectManager judgeEffectManager;
+	public N_44RabbitAnimation rabbitAnimation;
     // 각 라인별로 생성된 노트들을 관리하는 리스트 (0:Left, 1:Down, 2:Up, 3:Right)
     public List<N_44Note>[] activeNotes = new List<N_44Note>[4];
     private N_444SFXList sfx;
@@ -31,41 +32,85 @@ public class N_44InputManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.DownArrow)) CheckRelease(1);
         if (Input.GetKeyUp(KeyCode.UpArrow)) CheckRelease(2);
         if (Input.GetKeyUp(KeyCode.RightArrow)) CheckRelease(3);
-    }
+		if (Input.anyKeyDown)
+		{
+			string dir = "";
+			if (Input.GetKeyDown(KeyCode.UpArrow)) dir = "Up";
+			else if (Input.GetKeyDown(KeyCode.DownArrow)) dir = "Down";
+			else if (Input.GetKeyDown(KeyCode.LeftArrow)) dir = "Left";
+			else if (Input.GetKeyDown(KeyCode.RightArrow)) dir = "Right";
 
-    private void ProcessInput(int direction)
-    {
-        if (activeNotes[direction].Count > 0)
-        {
-            N_44Note note = activeNotes[direction][0];
-            float currentBeat = gameManager.GetBeatTime();
-        
-            // 1. 박자 차이 계산
-            float beatDiff = note.Data.hitTime - currentBeat;
+			if (dir != "" && rabbitAnimation != null)
+			{
+				rabbitAnimation.RabbitMove(dir);
+			}
+		}
+	}
+	private void ProcessInput(int direction)
+	{
+		// 1. 해당 라인에서 플레이어용 노트를 '시간순'으로 가져옴
+		var targetNote = activeNotes[direction]
+			.Where(n => n.Data.isPlayerNote && !n.IsFinished && !n.IsHolding)
+			.OrderBy(n => n.Data.hitTime)
+			.FirstOrDefault();
 
-            // 2. JudgementManager를 통해 실제 판정 결과 가져오기
-            N_44JudgementManager.Judge result = judgeManager.GetJudgement(beatDiff);
+		if (targetNote == null) return; // 칠 노트가 없으면 리턴
 
-            // 3. Miss가 아닐 때만 처리
-            if (result != N_44JudgementManager.Judge.Miss && result != N_44JudgementManager.Judge.None)
-            {
-                if (note.Data.duration > 0)
-                {
-                    note.StartHolding();
-                    activeNotes[direction].RemoveAt(0);
-                }
-                else
-                {
-                    SoundManager.Instance.PlaySFX(sfx.NoteSound);
-                    activeNotes[direction].RemoveAt(0);
-                    RemoveNote(note, direction);
-                }
-            }
-        }
-    }
+		float currentBeat = gameManager.GetBeatTime();
+		float beatDiff = targetNote.Data.hitTime - currentBeat;
+
+		// [중요] 너무 빨리 눌렀을 때 (예: 0.5박자보다 더 전)
+		// 리듬 게임에서 너무 일찍 누르면 보통 무시하거나 'Bad'를 줍니다.
+		if (beatDiff > 0.5f) return;
+
+		// [중요] 이미 한참 지나간 노트를 누르려고 하면 (미스 이펙트 없이 지나가는 주범)
+		// 여기서 강제로 Miss 판정을 내고 리스트에서 지워줘야 다음 노트가 밀리지 않습니다.
+		if (beatDiff < -0.3f)
+		{
+			Debug.Log("너무 늦게 눌러서 강제 미스 처리");
+			judgeManager.GetJudgement(-1.0f); // 강제 Miss 유도
+			RemoveNote(targetNote, direction);
+			return;
+		}
+
+		// 정상 범위 판정
+		N_44JudgementManager.Judge result = judgeManager.GetJudgement(beatDiff);
+
+		if (result != N_44JudgementManager.Judge.None)
+		{
+			if (targetNote.Data.duration > 0 && result != N_44JudgementManager.Judge.Miss)
+			{
+				targetNote.StartHolding();
+				// 롱노트는 activeNotes에서 바로 지우지 말고 
+				// 나중에 CheckRelease나 Note 내부에서 지우게 관리하는 게 안전합니다.
+			}
+			else
+			{
+				SoundManager.Instance.PlaySFX(sfx.NoteSound);
+				RemoveNote(targetNote, direction);
+			}
+		}
+	}
+
+	// RemoveNote도 더 안전하게 수정
+	public void RemoveNote(N_44Note note, int line)
+	{
+		if (note == null) return;
+
+		if (activeNotes[line].Contains(note))
+		{
+			activeNotes[line].Remove(note);
+		}
+
+		note.IsFinished = true; // 플래그 설정
+		if (note.gameObject != null)
+		{
+			Destroy(note.gameObject);
+		}
+	}
 
 
-    void CheckRelease(int direction)
+	void CheckRelease(int direction)
     {
         N_44Note holdNote = Object.FindObjectsByType<N_44Note>(FindObjectsSortMode.None)
             .FirstOrDefault(n => n.IsHolding && (int)n.Data.direction == direction);
@@ -84,16 +129,14 @@ public class N_44InputManager : MonoBehaviour
 				if (diff <= 0.6f)
 				{
 					Debug.Log("까비~");
-					N_44LifeSlider.Instance.AddValue(-40);
 				}
 				else
 				{
 					Debug.Log("롱노트 엔딩 미스(빠름)");
-					N_44LifeSlider.Instance.AddValue(-50);
 				}
 
 				judgeEffectManager.ShowJudge("miss");
-				holdNote.FailLongNote();
+				holdNote.ProcessLongNoteEndMiss();
 			}
 			else
 			{
@@ -102,18 +145,5 @@ public class N_44InputManager : MonoBehaviour
 				RemoveNote(holdNote, direction);
 			}
 		}
-    }
-
-    public void RemoveNote(N_44Note note, int line)
-    {
-        if (activeNotes[line].Contains(note))
-        {
-            activeNotes[line].Remove(note);
-        }
-
-        if (note != null && note.gameObject != null)
-        {
-            Destroy(note.gameObject);
-        }
     }
 }
