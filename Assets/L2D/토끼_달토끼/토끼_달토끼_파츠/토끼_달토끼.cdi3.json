@@ -1,0 +1,27 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "망치Y"
+		},
+		{
+			"Id": "ParamAngleY",
+			"GroupId": "",
+			"Name": "각도 X"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "파라미터3"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "짜부"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": []
+}

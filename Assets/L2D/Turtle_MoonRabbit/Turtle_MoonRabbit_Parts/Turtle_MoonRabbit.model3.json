@@ -1,0 +1,22 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "Turtle_MoonRabbit.moc3",
+		"Textures": [
+			"Turtle_MoonRabbit.1024/texture_00.png"
+		],
+		"DisplayInfo": "Turtle_MoonRabbit.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	]
+}
