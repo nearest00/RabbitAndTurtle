@@ -52,12 +52,4 @@ public class N_44JudgementManager : MonoBehaviour
             return Judge.Miss;
         }
     }
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			N_44LifeSlider.Instance.AddValue(100f);
-            Debug.Log("치트씀ㅎㅎ 저잠을자고싶어요");
-		}
-	}
 }
