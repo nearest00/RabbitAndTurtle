@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 216930956}
   - component: {fileID: 216930957}
   - component: {fileID: 216930958}
+  - component: {fileID: 216930959}
   m_Layer: 5
   m_Name: SettingPanelManager
   m_TagString: Untagged
@@ -619,6 +620,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7a1c4706c7f0d409aa5d5d86693cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &216930959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216930954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8664ad269f7bbaf4eb9e8a505cdd1025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSource: {fileID: 1320618881}
+  sfxSource: {fileID: 1320618880}
 --- !u!1 &319008711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,7 +2227,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1320618878}
-  - component: {fileID: 1320618879}
   - component: {fileID: 1320618881}
   - component: {fileID: 1320618880}
   m_Layer: 0
@@ -2238,20 +2252,6 @@ Transform:
   - {fileID: 448951841}
   m_Father: {fileID: 216930955}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1320618879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320618877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8664ad269f7bbaf4eb9e8a505cdd1025, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bgmSource: {fileID: 1320618881}
-  sfxSource: {fileID: 1320618880}
 --- !u!82 &1320618880
 AudioSource:
   m_ObjectHideFlags: 0

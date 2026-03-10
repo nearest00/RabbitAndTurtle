@@ -19,27 +19,6 @@ public class N_44LifeSlider : MonoBehaviour
     void Start()
     {
         if (targetSlider == null) targetSlider = GetComponent<Slider>();
-        if (N_StageSellectButton.Instance != null) roundDifficulty = N_StageSellectButton.Instance.StageDifficulty;
-        if (roundDifficulty == "easy")
-        {
-            Max = 550;
-        }
-        else if (roundDifficulty == "normal")
-        {
-            Max = 800;
-        }
-        else if (roundDifficulty == "hard")
-            Max = 1200;
-        if (N_StageSellectButton.Instance != null)
-        {
-            roundDifficulty = N_StageSellectButton.Instance.StageDifficulty.ToLower().Trim();
-            Debug.Log($"현재 감지된 난이도: {roundDifficulty}");
-        }
-        else
-        {
-            Debug.LogWarning("StageSelectButton 인스턴스가 없습니다!");
-        }
-        UpdateSliderUI();
     }
 
     private void UpdateSliderUI()

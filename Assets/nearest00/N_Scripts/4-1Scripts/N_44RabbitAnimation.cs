@@ -9,12 +9,13 @@ public class N_44RabbitAnimation : MonoBehaviour
 		anim = GetComponent<Animator>();
 	}
 
-	// 인풋 매니저가 키 입력 시 호출할 함수
 	public void RabbitMove(string dir)
 	{
 		if (anim != null)
 		{
-			anim.SetTrigger(dir);
+			// 트리거 이름이 "RabbitUp", "RabbitDown" 등인지 다시 확인!
+			anim.SetTrigger("Rabbit" + dir);
+			Debug.Log($"토끼 애니메이션 호출: Rabbit{dir}"); // <-- 이 로그가 찍히는지 보세요
 		}
 	}
 }
