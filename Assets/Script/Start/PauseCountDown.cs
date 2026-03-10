@@ -8,6 +8,7 @@ public class PauseCountDown : MonoBehaviour
     public static PauseCountDown Instance;
 
     public TextMeshProUGUI countdownText;
+    public GameObject countdownPanel;
     public bool isCounting;
 
     private void Awake()
@@ -26,6 +27,7 @@ public class PauseCountDown : MonoBehaviour
         Debug.Log("카운트 코루틴 시작");
         isCounting = true;
         Time.timeScale = 0f;
+        countdownPanel.gameObject.SetActive(true);
         countdownText.gameObject.SetActive(true);
         int count = 3;
         while (count > 0)
@@ -39,7 +41,9 @@ public class PauseCountDown : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
 
         countdownText.gameObject.SetActive(false);
-        Time.timeScale = 1f;
+		countdownPanel.gameObject.SetActive(false);
+
+		Time.timeScale = 1f;
         SoundManager.Instance.ResumeAllSounds();
         isCounting = false;
 
