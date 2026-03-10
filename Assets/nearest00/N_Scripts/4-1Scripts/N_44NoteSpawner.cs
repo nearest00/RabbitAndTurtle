@@ -23,6 +23,7 @@ public class N_44NoteSpawner : MonoBehaviour
 	private List<N_44GameManager.NoteInfo> remainingNotes;
 	private N_44GameManager gameManager;
 	public Ending Ending;
+	public EndingIlustScript EndingIlustScript;
 
 	// [수정] 차트 에셋 대신 리스트와 BPM을 직접 받는 방식으로 변경
 	public void Initialize(List<N_44GameManager.NoteInfo> generatedNotes, float bpm)
@@ -94,6 +95,7 @@ public class N_44NoteSpawner : MonoBehaviour
 		if (N_44LifeSlider.Instance.internalValue / N_44LifeSlider.Instance.Max >= 0.6)
 		{
 			Ending.StageClear();
+			EndingIlustScript.ShowEnding();
 		}
 		else Ending.StageFailed();
 	}

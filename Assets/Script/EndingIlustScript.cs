@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class EndingIlustScript : MonoBehaviour
 {
 	public CanvasGroup endingPanelGroup;
@@ -44,6 +44,7 @@ public class EndingIlustScript : MonoBehaviour
 			if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 클릭
 			{
 				Debug.Log("엔딩 패널 활성화 5초 후 마우스 클릭 감지됨!");
+				SoundManager.Instance.StageFadeAndLoadScene(0, 1.5f);
 			}
 		}
 	}
