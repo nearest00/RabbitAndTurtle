@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ending: {fileID: 763518876}
-  song: {fileID: 11400000, guid: 30645e4e961a3e744b8989cb106830d6, type: 2}
+  song: {fileID: 11400000, guid: 44c8d5c7665d7fe4b8a5d3a47cad1b0e, type: 2}
   manualSongLength: 60
   noteManager: {fileID: 875212134}
   guideManager: {fileID: 1795540824}

@@ -100,7 +100,6 @@ public class R_NoteManager : MonoBehaviour
         float distance = spawnY - judgeY;
         float fallSpeed = (travelTime > 0f) ? distance / travelTime : 500f;
 
-        // 수정된 부분 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
         noteComp.Init(data, judgeManager, hitLine, spawnY, travelTime, judgeRadius);
         if (data.type == "long")
         {
