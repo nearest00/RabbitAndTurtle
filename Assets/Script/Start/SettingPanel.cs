@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class SettingPanel : MonoBehaviour
 {
@@ -142,4 +143,8 @@ public class SettingPanel : MonoBehaviour
     {
         return basePanel.activeSelf || soundPanel.activeSelf;
     }
+    public void GotoTitle()
+    {
+		SoundManager.Instance.StageFadeAndTimeStopLoadScene(1, 1.5f);
+	}
 }
