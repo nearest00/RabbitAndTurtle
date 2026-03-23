@@ -106,17 +106,26 @@ public class SoundManager : MonoBehaviour
 
 	private IEnumerator FadeAndLoadRoutine(string sceneName, float duration)
     {
-        FadeOutBGM(duration);
-        yield return new WaitForSeconds(duration);
-        CanSettingOn=true;
-        SceneManager.LoadScene(sceneName);
+		Debug.Log("1");
+		FadeOutBGM(duration);
+		Debug.Log("2");
+		yield return new WaitForSecondsRealtime(duration);
+		Debug.Log("3");
+		CanSettingOn = true;
+		Debug.Log("4");
+		SceneManager.LoadScene(sceneName);
     }
     private IEnumerator StageFadeAndLoadRoutine(int sceneName, float duration)
     {
+        Debug.Log("열심히 실행 중...");
         FadeOutBGM(duration);
+        Debug.Log("1");
         yield return new WaitForSeconds(duration);
-        CanSettingOn = true;
-        SceneManager.LoadScene(sceneName);
+		Debug.Log("2");
+		CanSettingOn = true;
+		Debug.Log("3");
+		SceneManager.LoadScene(sceneName);
+        Debug.Log("실행 완료");
     }
 	private IEnumerator StageFadeAndTimeStopLoadRoutine(int sceneName, float duration)
 	{

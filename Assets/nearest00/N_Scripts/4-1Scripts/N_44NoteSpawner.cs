@@ -12,6 +12,10 @@ public class N_44NoteSpawner : MonoBehaviour
 	[Header("Long Note Settings")]
 	public Sprite longBodySprite;
 
+	[Header("Containers")]
+	public Transform playerNoteContainer;
+	public Transform opponentNoteContainer;
+
 	public float pixelsPerBeat = 600f;
 	private int totalNoteCount = 0;
 	private int spawnedNoteCount = 0;
@@ -108,9 +112,8 @@ public class N_44NoteSpawner : MonoBehaviour
 		{
 			selectedSprite = noteSprites[(int)info.direction];
 		}
-
-		GameObject go = Instantiate(notePrefab);
-		N_44Note note = go.GetComponent<N_44Note>();
+		Transform parentContainer = info.isPlayerNote ? playerNoteContainer : opponentNoteContainer;
+		GameObject go = Instantiate(notePrefab, parentContainer); N_44Note note = go.GetComponent<N_44Note>();
 
 		// 방향(NoteDirection)을 int로 캐스팅하여 인덱스로 사용
 		int dirIndex = (int)info.direction;

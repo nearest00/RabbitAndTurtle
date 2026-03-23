@@ -146,9 +146,6 @@ public class N221_GameManager : MonoBehaviour
         {
             // 12시 방향부터 시계방향으로 줄어들게 함 (1.0 -> 0.0)
             timerGauge.fillAmount = timeRemaining / currentTimeLimit;
-
-            // 보너스: 시간이 촉박하면 게이지 색상도 변경
-            if (timeRemaining <= 10f) timerGauge.color = new Color(1, 0, 0, 0.8f); // 약간 투명한 빨강
         }
     }
 

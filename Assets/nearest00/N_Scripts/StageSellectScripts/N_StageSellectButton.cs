@@ -16,7 +16,7 @@ public class N_StageSellectButton : MonoBehaviour
     private bool isTransitioning = false;
     void Start()
     {
-        CanSettingOn = false;
+        CanSettingOn = true;
         Instance=this;
     }
     public void OnClick111StageButton()

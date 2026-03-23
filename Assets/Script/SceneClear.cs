@@ -12,18 +12,51 @@ public class SceneClear : MonoBehaviour
     }
     public void ButtonClick(int sceneName)
     {
-        Destroy(N_222LifeSlider.Instance);
-        Destroy(N_222RoundManager.Instance);
-        if (isTransitioning) return;
-        if (isCountingDown) return;
+        if (isTransitioning) {
+            Debug.Log("isTransitioning");
+            return;
+        }
+
+        if (isCountingDown)
+        {
+            Debug.Log("isCountingDown");
+            return;
+        }
         if (SettingPanel.Instance != null && SettingPanel.Instance.IsAnyPanelOpen())
         {
+            Debug.Log("SettingPanel");
             return;
         }
         isTransitioning = true;
         if (SoundManager.Instance != null)
         {
+            Debug.Log("실행");
             SoundManager.Instance.StageFadeAndLoadScene(sceneName, 1.5f);
         }
     }
+	public void ButtonClick2(string sceneName)
+	{
+		if (isTransitioning)
+		{
+			Debug.Log("isTransitioning");
+			return;
+		}
+
+		if (isCountingDown)
+		{
+			Debug.Log("isCountingDown");
+			return;
+		}
+		if (SettingPanel.Instance != null && SettingPanel.Instance.IsAnyPanelOpen())
+		{
+			Debug.Log("SettingPanel");
+			return;
+		}
+		isTransitioning = true;
+		if (SoundManager.Instance != null)
+		{
+			Debug.Log("실행");
+			SoundManager.Instance.FadeAndLoadScene(sceneName, 1.5f);
+		}
+	}
 }

@@ -5,7 +5,7 @@ public class N_222LifeSlider : MonoBehaviour
 {
     public static N_222LifeSlider Instance;
     public Slider targetSlider;
-    private float internalValue = 0f;
+    public float internalValue = 0f;
     public float Max=1000;
     void Awake()
     {
