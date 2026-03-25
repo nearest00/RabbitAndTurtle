@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource bgmSource;
     public AudioSource sfxSource;
+    public GameObject basePanel;
 
     // 현재 설정된 볼륨 값 (설정창과 동기화됨)
     public float BgmVolume { get; private set; } = 1f;
@@ -129,11 +130,14 @@ public class SoundManager : MonoBehaviour
     }
 	private IEnumerator StageFadeAndTimeStopLoadRoutine(int sceneName, float duration)
 	{
-		FadeOutBGM(duration);
-		yield return new WaitForSeconds(duration);
+        FadeOutBGM(duration);
+		yield return new WaitForSecondsRealtime(duration);
 		CanSettingOn = true;
+        if (basePanel.activeSelf == true)
+        {
+            basePanel.SetActive(false);
+        }
 		SceneManager.LoadScene(sceneName);
-        Time.timeScale = 0f;
 	}
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

@@ -73,8 +73,13 @@ public class SettingPanel : MonoBehaviour
             basePanel.SetActive(false);
             soundPanel.SetActive(false);
 
-            isCountingDown = true;
-            PauseCountDown.Instance.ResumeGameCountDown();
+			if (SceneManager.GetActiveScene().buildIndex == 0|| SceneManager.GetActiveScene().buildIndex == 1)
+			{
+                Time.timeScale = 1f;
+				SoundManager.Instance.ResumeAllSounds();
+				return;
+			}
+			PauseCountDown.Instance.ResumeGameCountDown();
         }
         else
         {
@@ -144,6 +149,5 @@ public class SettingPanel : MonoBehaviour
     }
     public void GotoTitle()
     {
-		SoundManager.Instance.StageFadeAndTimeStopLoadScene(1, 1.5f);
-	}
+		SoundManager.Instance.StageFadeAndTimeStopLoadScene(1, 1.5f);	}
 }

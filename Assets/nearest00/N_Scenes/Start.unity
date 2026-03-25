@@ -635,6 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 1320618881}
   sfxSource: {fileID: 1320618880}
+  basePanel: {fileID: 1687193022}
 --- !u!1 &319008711
 GameObject:
   m_ObjectHideFlags: 0
