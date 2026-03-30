@@ -38,7 +38,7 @@ public class RRJudgePopup : MonoBehaviour
                 break;
             default:
                 image.sprite = missSprite;
-                RLifeSlider.Instance.AddValue(-10); //-50
+                RLifeSlider.Instance.AddValue(-25); //-50
                 break;
         }
 

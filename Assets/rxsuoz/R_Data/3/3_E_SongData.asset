@@ -16,5 +16,5 @@ MonoBehaviour:
   musicClip: {fileID: 0}
   chartEasy: {fileID: 4900000, guid: 3511d88a0dab61345a98739d9b595f93, type: 3}
   chartNormal: {fileID: 4900000, guid: 5d94b6cc562d8724f8dc7397729ec737, type: 3}
-  chartHard: {fileID: 4900000, guid: 80267ebf519cb6d478f994049676c954, type: 3}
+  chartHard: {fileID: 4900000, guid: 36499fd5a68cb4c499ae41338ae3f1eb, type: 3}
   difficulty: 
