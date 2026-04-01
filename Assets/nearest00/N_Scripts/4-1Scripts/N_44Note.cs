@@ -22,8 +22,10 @@ public class N_44Note : MonoBehaviour
 
     private RectTransform bodyRect;
     private AudioSource holdSFXSource;
+    [Header("Long Note Appearance")]
+    public float longNoteBodyWidth = 50f;
 
-    public void Start()
+	public void Start()
     {
         sfx = Object.FindFirstObjectByType<N_444SFXList>();
     }
@@ -56,7 +58,6 @@ public class N_44Note : MonoBehaviour
 
         GameObject bodyObj = new GameObject("LongNoteBody", typeof(Image));
         bodyObj.transform.SetParent(this.transform, false);
-        bodyObj.transform.SetAsFirstSibling();
 
         Image bodyImg = bodyObj.GetComponent<Image>();
         bodyImg.sprite = bodySprite;
@@ -66,11 +67,12 @@ public class N_44Note : MonoBehaviour
         bodyRect.pivot = new Vector2(0.5f, 1f);
         bodyRect.anchorMin = new Vector2(0.5f, 1f);
         bodyRect.anchorMax = new Vector2(0.5f, 1f);
-
         float finalHeight = durationInBeats * speed;
-        bodyRect.sizeDelta = new Vector2(100f, finalHeight);
+        bodyRect.sizeDelta = new Vector2(longNoteBodyWidth, finalHeight);
         bodyRect.anchoredPosition = Vector2.zero;
-    }
+		bodyObj.transform.SetAsFirstSibling();
+		bodyObj.transform.localPosition = new Vector3(0, 0, 0.1f);
+	}
 
     void Update()
     {

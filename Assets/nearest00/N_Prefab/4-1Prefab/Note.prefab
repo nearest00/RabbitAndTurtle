@@ -96,5 +96,7 @@ MonoBehaviour:
     isPlayerNote: 0
   IsFailed: 0
   IsHolding: 0
+  IsFinished: 0
   targetReceptor: {fileID: 0}
   noteSpeed: 5
+  longNoteBodyWidth: 70
