@@ -22,8 +22,6 @@ public class N_44Note : MonoBehaviour
 
     private RectTransform bodyRect;
     private AudioSource holdSFXSource;
-    [Header("Long Note Appearance")]
-    public float longNoteBodyWidth = 50f;
 
 	public void Start()
     {
@@ -58,8 +56,10 @@ public class N_44Note : MonoBehaviour
 
         GameObject bodyObj = new GameObject("LongNoteBody", typeof(Image));
         bodyObj.transform.SetParent(this.transform, false);
-
-        Image bodyImg = bodyObj.GetComponent<Image>();
+		Canvas bodyCanvas = bodyObj.AddComponent<Canvas>();
+		bodyCanvas.overrideSorting = true;
+		bodyCanvas.sortingOrder = 0;
+		Image bodyImg = bodyObj.GetComponent<Image>();
         bodyImg.sprite = bodySprite;
         bodyImg.type = Image.Type.Sliced;
 
@@ -67,11 +67,11 @@ public class N_44Note : MonoBehaviour
         bodyRect.pivot = new Vector2(0.5f, 1f);
         bodyRect.anchorMin = new Vector2(0.5f, 1f);
         bodyRect.anchorMax = new Vector2(0.5f, 1f);
+
         float finalHeight = durationInBeats * speed;
-        bodyRect.sizeDelta = new Vector2(longNoteBodyWidth, finalHeight);
-        bodyRect.anchoredPosition = Vector2.zero;
+        bodyRect.sizeDelta = new Vector2(70, finalHeight);
+        bodyRect.anchoredPosition = new Vector2(0, -40f);
 		bodyObj.transform.SetAsFirstSibling();
-		bodyObj.transform.localPosition = new Vector3(0, 0, 0.1f);
 	}
 
     void Update()
@@ -166,7 +166,8 @@ public class N_44Note : MonoBehaviour
         {
             float remainingBeat = Mathf.Max(0, (Data.hitTime + Data.duration) - currentBeat);
             bodyRect.sizeDelta = new Vector2(bodyRect.sizeDelta.x, remainingBeat * noteSpeed);
-        }
+			bodyRect.anchoredPosition = new Vector2(0, -40f);
+		}
     }
 
     private void HandleLongNoteScoring(float currentBeat)

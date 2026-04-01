@@ -149,5 +149,5 @@ public class SettingPanel : MonoBehaviour
     }
     public void GotoTitle()
     {
-		SoundManager.Instance.StageFadeAndTimeStopLoadScene(1, 1.5f);	}
+		SoundManager.Instance.StageFadeAndTimeStopLoadScene(0, 1.5f);	}
 }
