@@ -371,7 +371,6 @@ GameObject:
   - component: {fileID: 30674615}
   - component: {fileID: 30674614}
   - component: {fileID: 30674613}
-  - component: {fileID: 30674617}
   - component: {fileID: 30674616}
   m_Layer: 5
   m_Name: Manager
@@ -1767,19 +1766,6 @@ MonoBehaviour:
   failedSound: {fileID: 8300000, guid: 7a23cda6cc8bedc4d8a733f0ededb47b, type: 3}
   ClearPanel: {fileID: 1026558773}
   FailedPanel: {fileID: 560915876}
---- !u!114 &30674617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30674611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04b2c2d4070ed6f4baeedf17d3438638, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  N_222LifeSlider: {fileID: 1392283553}
 --- !u!1 &62682190
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,13 +11,7 @@ public class N_44JudgementManager : MonoBehaviour
     N_44LifeSlider Lifeslider;
     public N_44JudgeEffectManager judgeEffectManager;
     public enum Judge { Perfect, Great, Good, Bad, Miss, None }
-	public void Update()
-	{
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-			N_44LifeSlider.Instance.AddValue(50);
-		}
-	}
+	
 	public Judge GetJudgement(float diff)
     {
         float absDiff = Mathf.Abs(diff);
